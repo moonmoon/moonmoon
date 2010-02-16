@@ -1,0 +1,232 @@
+html, body{
+	margin: 0;
+	padding: 0;
+}
+html{
+	font-size: 62.5%;
+}
+body{
+	background: #FFF;
+	color: #333;
+	font: 1.1em/1.6em "Lucida Grande", Tahoma, Arial, sans-serif;
+}
+
+
+fieldset{
+	border: 0;
+	padding: 0;
+	margin: 1em 0;
+}
+input.text{
+	border: 1px solid #BBB;
+	padding: 4px;
+}
+input.submit{
+	font-size: 1em;
+	padding: 4px;
+	background: #D1D1D1 url(img/button.png) repeat-x left center;
+	border: 1px solid #FFF;
+	border-bottom: 1px solid #CECECE;
+	border-right: 1px solid #CECECE;
+    cursor: pointer;
+}
+input.submit:hover{
+	background: #D1D1D1 url(img/button-h.png) repeat-x left center;
+	color: #000;
+	border: 1px solid #FFF;
+	border-bottom: 1px solid #C6C6C6;
+	border-right: 1px solid #C6C6C6;
+}
+input.delete{
+	margin-left: 1em;
+}
+input.delete:hover{
+	background: #ffabab url(img/button-delete.png) repeat-x left center;
+	color: #C00;
+	border: 1px solid #FCC;
+	border-bottom: 1px solid #F99;
+	border-right: 1px solid #F99;
+}
+input.add{
+	font-weight: bold;
+}
+input.add:hover{
+	background: #65a5e1 url(img/button-add.png) repeat-x left center;
+	color: #20466a;
+	border: 1px solid #a6c7e5;
+	border-bottom: 1px solid #4f90cd;
+	border-right: 1px solid #4f90cd;
+}
+p.help{
+	font-size: 0.8em;
+	color: #999;
+	margin: 0;
+}
+
+#page{
+}
+
+	#header{
+		background: #E0E0E0 url(img/moonmoon.png) no-repeat right center;
+		border-top: 5px solid #D0D0D0;
+		margin: 0;
+		padding: 10px;
+	}
+		#header h1{
+			display: none;
+			margin: 0 0 0 20px;
+			padding: 0;
+			height: 14px;
+			width: 95px;
+			background: transparent url(img/moonmoon.png) no-repeat left center;
+			
+			overflow: hidden;
+			text-indent: -1000em;
+		}
+		#header p{
+			margin: 0 0 0 20px;
+			padding: 0;
+		}
+		#header p a{
+			color: #AAA;
+		}
+		#header p a:hover{
+			color: #111;
+		}
+		
+		
+	ul#nav{
+		margin: 20px 30px;
+		padding: 0;
+		list-style: none;
+	}
+	ul#nav:after {content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+	ul#nav {display: inline-table;}
+	/* Hides from IE-mac \*/
+	* html ul#nav {height: 1%;}
+	ul#nav {display: block;}
+	/* End hide from IE-mac */
+	
+		ul#nav li{
+			display: block;
+			float: left;
+		}
+		ul#nav li a{
+			display: block;
+			border: 1px solid #DDD;
+			padding: 8px 8px 8px 36px;
+			margin-right: 8px;
+			text-decoration: none;
+			color: #666;
+			background-repeat: no-repeat;
+			background-position: 6px center;
+		}
+		ul#nav li a:hover,
+		body#admin-feed #nav-feed a,
+		body#admin-admin #nav-admin a {
+			background-color: #f0f2f6;
+			border-color: #AAA;
+			color: #111;
+		}
+		#nav-feed a{
+			background-image: url(img/nav-feed.png);
+		}
+		#nav-admin a{
+			background-image: url(img/nav-admin.png);
+		}
+		
+	#content{
+		margin: 20px 30px;
+	}
+	
+	.widget{
+		margin: 20px 0;
+	}
+	.widget h3{
+		background: #3e4350 url(img/h3.png) repeat-x left center;
+		color: #FFF;
+		text-transform: uppercase;
+		margin: 0;
+		padding: 10px;
+	}
+	.widget form{
+		padding: 10px;
+		border: 1px solid #EEE;
+		border-top: 0;
+	}
+	
+	#feedmanage p.select{
+		margin: 3px 0;
+	}
+	#feedmanage p.action span.count{
+		float: right;
+		padding-right: 10px;
+		font-size: 1.3em;
+	}
+	#feedmanage table{
+		width: 99%;
+		border-collapse: collapse;
+		border: 1px solid #f0f2f6;
+	}
+	#feedmanage thead th{
+		background: #f0f2f6;
+		text-align: left;
+		padding: 6px;
+	}
+	#feedmanage thead span{
+		display: none;
+	}
+	#feedmanage tr{
+		border-bottom: 1px solid #e8ebf1;
+	}
+	#feedmanage tr.even td{
+		background: #f0f2f6;
+		width: auto;
+	}
+	#feedmanage .text{
+		background: transparent;
+		border: 1px solid #FFF;
+		width: 90%;
+	}
+	#feedmanage tr.even td .text{
+		border: 1px solid #f0f2f6;
+	}
+	#feedmanage tr td input.text:focus{
+		background: #FFF;
+		border: 1px solid #4392b7;
+	}
+	
+	#feedmanage tr.selected td{
+		background: #ffabab;
+		background: #4392b7;
+		color: #FFF;
+	}
+	#feedmanage tr.selected td .text{
+		color: #FFF;
+		border: 1px solid #4392b7;
+	}
+	#feedmanage tr td input.text:focus{
+		background: #FFF;
+		color: #000;
+		border: 1px solid #4392b7;
+	}
+    
+/* Login form
+*******************************************************************************/
+form.login {
+    width: 400px;
+    margin: 0 auto;
+}
+form.login fieldset {
+    border: 1px solid #CCC;
+    text-align: center;
+}
+
+p.logout {
+    float: right;
+    margin: 20px 30px 0 0;
+}
+    p.logout a {
+        padding: 8px;
+        display: block;
+    }

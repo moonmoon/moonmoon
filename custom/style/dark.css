@@ -1,0 +1,125 @@
+html{
+	font-family: Arial, sans-serif;
+	color: #FFF;
+	background: #333;
+	font-size: 62.5%;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	font-size: 1.1em;
+	line-height: 1.5em;
+}
+
+a{
+	color: #CCC;
+}
+
+a:visited{
+	color: #AAA;
+}
+
+a:hover{
+	color: #FFF;
+}
+
+a img{
+	border: none;
+}
+
+pre, code{
+	font-size: 1.2em;
+}
+/* Top
+*******************************************************************************/
+#page{
+	width: 640px;
+	margin: 0 auto;
+}
+/* Top
+*******************************************************************************/
+#top{
+	padding: 2%;
+	margin: 3em;
+	line-height: 2em;
+	color: #FFF;
+	text-align: center;
+}
+
+	#top h1{
+		margin: 0;
+		letter-spacing: -1px;
+		font-family: Georgia, serif;
+	}
+	
+/* Top
+*******************************************************************************/
+#content{
+	width: 66%;
+	padding: 0 2%;
+	margin: 0;
+	float: right;
+}
+
+.post{
+	margin-bottom: 3em;
+}
+
+.post-title, .post-title a{
+	font-family: Georgia, serif;
+	color: #CCC;
+	text-decoration: none;
+}
+
+.post-title{
+	padding-bottom: 0.5em;
+	border-bottom: 1px solid #444;
+}
+
+.post-info{
+	color: #999;
+	margin-top: -1em;
+}
+
+.post-info a{
+	color: #999;
+	text-decoration : none;
+}
+
+/* Top
+*******************************************************************************/
+#sidebar{
+	width: 26%;
+	padding: 0 2%;
+	margin: 0;
+	float: left;
+}
+
+	#sidebar div{
+		font-size: 0.8em;
+	}
+
+	#sidebar h2{
+		font-family: Georgia, serif;
+		color: #999;
+	}
+
+	#sidebar a{
+		text-decoration: none;
+	}
+
+	#sidebar ul{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	
+/* Footer
+*******************************************************************************/
+#footer{
+	padding: 1ex 1em;
+	clear: both;
+	border-top: 1px solid #444;
+	color: #999;
+}

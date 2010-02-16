@@ -1,0 +1,132 @@
+html{
+	font-family: "Lucida Grande", Tahoma, sans-serif;
+	color: #333;
+	background: #DFC;
+	font-size: 62.5%;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	font-size: 1.1em;
+	line-height: 1.5em;
+}
+
+a{
+	color: #669;
+}
+
+a:visited{
+	color: #444;
+}
+
+a:hover{
+	color: #000;
+}
+
+a img{
+	border: none;
+}
+
+pre, code{
+	font-size: 1.2em;
+}
+/* Top
+*******************************************************************************/
+#page{
+	width: 60em;
+	margin: 0 auto;
+	background: #FFF;
+}
+/* Top
+*******************************************************************************/
+#top{
+	padding: 1.5em;
+	margin: 0;
+	background: #99cc33;
+	color: #FFF;
+	
+	border-top: 3px solid #7A2;
+	
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+}
+
+	#top h1{
+		margin: 0;	
+	}
+	
+	#top h1 a{
+		color: #FFF;
+		text-decoration: none;
+	}
+	
+/* Top
+*******************************************************************************/
+#content{
+	width: 38em;
+	padding: 0 2em;
+	margin: 2em 0;
+	float: left;
+	overflow: hidden;
+}
+
+.post{
+	margin-bottom: 3em;
+}
+
+.post-title, .post-title a{
+	color: #77AA22;
+	text-decoration: none;
+}
+
+.post-info{
+	color: #666;
+	margin-top: -1em;
+}
+
+.post-info a{
+	color: #669;
+	text-decoration : none;
+}
+
+/* Top
+*******************************************************************************/
+#sidebar{
+	width: 13em;
+	padding: 0 2em;
+	margin: 2em 0;
+	float: right;
+}
+
+	#sidebar div{
+		font-size: 0.8em;
+	}
+
+	#sidebar h2{
+		color: #99CC33;
+	}
+
+	#sidebar a{
+		text-decoration: none;
+		border-bottom: 1px solid #DDD;
+	}
+
+	#sidebar ul{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	
+	#sidebar li{
+		margin: 0.5ex 0;
+	}
+	
+/* Footer
+*******************************************************************************/
+#footer{
+	padding: 1ex 1em;
+	clear: both;
+	border-top: 1px dotted #CCC;
+	color: #999;
+}

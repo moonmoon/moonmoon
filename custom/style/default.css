@@ -1,0 +1,128 @@
+html{
+    font-family: "Lucida Grande", "Segoe UI", sans-serif;
+    color: #111;
+    background: #EEE;
+    font-size: 62.5%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
+
+a{
+    color: #669;
+}
+
+a:visited{
+    color: #444;
+}
+
+a:hover{
+    color: #000;
+}
+
+a img{
+    border: none;
+}
+
+pre, code{
+    max-height: 100%;
+    width: 100%;
+    font-size: 1.2em;
+    overflow: auto;
+}
+
+h1, h2{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h2{
+    margin: 0;
+}
+
+#page {
+    width: 890px;
+    margin: 0 auto;
+}
+
+/* Header
+*******************************************************************************/
+#top {
+    color: #FFF;
+    padding: 10px 30px;
+}
+    h1 a,
+    h1 a:visited {
+        color: #665;
+        text-decoration: none;
+    }
+    h1 a:hover {
+        color: #444;
+    }
+
+/* Content
+*******************************************************************************/
+#content {
+    width: 590px;
+    float: left;
+}
+
+/* Sidebar
+*******************************************************************************/
+#sidebar {
+    width: 300px;
+    float: left;
+}
+    #sidebar div {
+        padding: 1em 30px;
+    }
+    #sidebar h2 {
+        color: #665;
+    }
+    #sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 1em 0;
+    }
+    
+/* Article
+*******************************************************************************/
+.article{
+    margin-bottom: 2em;
+    padding: 30px;
+    background: #FFF;
+    border: 1px solid #DDD;
+}
+
+    .article-title,
+    .article-title a{
+        color: #111;
+        text-decoration: none;
+    }
+
+    .article-info{
+        margin: 0 0 1em 0;
+        color: #999;
+    }
+    
+    .article-content {
+        font-family: Georgia, serif;
+    }
+
+    .article img{
+        max-width: 440px;
+    }
+
+    .article .collapsed{
+        display: none;
+    }
+
+/* Footer
+*******************************************************************************/
+#footer {
+    clear: both;
+    padding: 0 30px;
+}
