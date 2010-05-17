@@ -1,11 +1,4 @@
 <?php
-
-//Do not do anything before install
-if (is_file(dirname(__FILE__).'/install.php')) {
-    echo '<p>You might want to <a href="install.php">install moonmoon</a>.<br/>If not, <strong>delete</strong> <code>install.php</code>.</p>';
-    die;
-}
-
 $bench['start'] = microtime(true);
 
 $debug = isset($_GET['debug']) ? $_GET['debug'] : 0;
@@ -23,7 +16,8 @@ if (is_file(dirname(__FILE__).'/custom/config.yml')){
     $conf = Spyc::YAMLLoad(dirname(__FILE__).'/custom/config.yml');
     $PlanetConfig = new PlanetConfig($conf);
 } else {
-    die('Config file (custom/config.yml) is missing.');
+    echo '<p>You might want to <a href="install.php">install moonmoon</a>.</p>';
+    exit;
 }
 
 //Instantiate app

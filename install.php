@@ -1,9 +1,16 @@
 <?php
 include (dirname(__FILE__).'/app/classes/Planet.class.php');
 
+define('CONFIG_FILE', dirname(__FILE__).'/custom/config.yml');
+define('PWD_FILE', dirname(__FILE__).'/admin/inc/pwd.inc.php');
+define('OPML_FILE',dirname(__FILE__).'/custom/people.opml');
+
 $status = 'install';
 
-if (isset($_REQUEST['url'])) {
+if (file_exists(CONFIG_FILE) && file_exists(PWD_FILE)) {
+    //Nothing to do, already installed;
+    $status = 'installed';
+} elseif (isset($_REQUEST['url'])) {
     $save = Array();
     
     //Save config file
@@ -39,10 +46,6 @@ if (isset($_REQUEST['url'])) {
         	'label' => '<code>./custom</code> is writable',
         	'solution' => 'Change the access rights for <code>./custom</code> with CHMOD'
         ),
-        'config' => array(
-            'label'=>'<code>./custom/config.yml</code> is writable',
-            'solution' => 'Change the access right for <code>./custom/config.yml</code> with CHMOD'
-        ),
         'opml' => array(
             'label'=>'<code>./custom/people.opml</code> is writable',
             'solution' => 'Change the access rights for <code>./custom/people.opml</code> with CHMOD'
@@ -60,7 +63,6 @@ if (isset($_REQUEST['url'])) {
     $tests['php5']['result'] = (5 <= phpversion());
     $tests['custom']['result'] = is_writable(dirname(__FILE__).'/custom');
     $tests['opml']['result'] = is_writable(dirname(__FILE__).'/custom/people.opml');
-    $tests['config']['result'] = is_writable(dirname(__FILE__).'/custom/config.yml');
     $tests['changepassword']['result'] = is_writable(dirname(__FILE__).'/admin/inc/pwd.inc.php');
     $tests['cache']['result'] = is_writable(dirname(__FILE__).'/cache');
 
