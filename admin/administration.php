@@ -37,15 +37,15 @@ $opml_people = $opml->getPeople();
 
         <div id="content">
             <div class="widget">
-                <h3>Purge cache</h3>
+                <h3>Clear cache</h3>
                 <form action="purgecache.php" method="post" id="frmPurge">
-                    <p><label>Purge cache:</label><input type="submit" class="submit delete" name="purge" id="purge" value="Purge" /></p>
-                    <p class="help">Purging the cache will make moonmoon reload all feeds.</p>
+                    <p><label>Clear cache:</label><input type="submit" class="submit delete" name="purge" id="purge" value="Clear" /></p>
+                    <p class="help">Clearing the cache will make moonmoon reload all feeds.</p>
                 </form>
             </div>
             
             <div class="widget">
-                <h3>Change administration password</h3>
+                <h3>Change administrator password</h3>
                 <form action="changepassword.php" method="post" id="frmPassword">
                     <p><label for="password">New password:</label> <input type="password" class="text" value="" name="password" id="password" size="20" /> <input type="submit" class="submit delete" name="changepwd" id="changepwd" value="Change password" /></p>
                 </form>
