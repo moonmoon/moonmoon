@@ -54,8 +54,8 @@ if (isset($_POST['opml']) || isset($_POST['add'])) {
             $person['feed'] = $feed->feed_url;
 
             $oldOpml->entries[] = $person;
-            $newOpml->entries = $oldOpml->entries;
         }
+        $newOpml->entries = $oldOpml->entries;
     }
 
     // Backup old OPML
