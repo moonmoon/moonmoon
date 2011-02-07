@@ -1,3 +1,4 @@
         <div id="top">
-            <h1><a href="./index.php"><?php echo $PlanetConfig->getName(); ?></a></h1>
+            <h1><a href="<?php echo $PlanetConfig->getUrl() ?>"><?php echo $PlanetConfig->getName(); ?></a></h1>
         </div>
+        
