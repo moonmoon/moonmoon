@@ -263,7 +263,6 @@ class Planet{
     /**
      * Download
      * @var $max_load percentage of feeds to load
-     * @var $force_cache boolean 
      */
     function download($max_load=0.1){
         
