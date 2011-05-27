@@ -49,7 +49,8 @@ class PlanetConfig{
             'cache' => 10,
             'nohtml' => 0,
             'postmaxlength' => 0,
-            'cachedir' => './cache'
+            'cachedir' => './cache',
+            'categoryfilter' => null
         );
         
         //User config
@@ -100,6 +101,10 @@ class PlanetConfig{
     //@TODO: drop this pref
     function getPostMaxLength(){
         return $this->conf['postmaxlength'];
+    }
+
+    function getCategoryFilter(){
+        return $this->conf['categoryfilter'];
     }
     
     function toYaml(){
@@ -208,11 +213,37 @@ class Planet{
     }
     
     /**
-     * Getters
+     * Getter for all items
+     * 
+     * If categoryfilter is defined in config.yml,
+     * only return items matching this category/tag (case insensitive)
      */
     function getItems() {
+        if (!is_null($category = $this->config->getCategoryFilter())) {
+            $category = strtolower($category);
+            foreach ($this->items as $k => $v) {
+                $found = false;
+                $cats  = $v->get_categories();
+                if (is_array($cats)) {
+                    foreach ($cats as $v) {
+                        if (strtolower($c->get_label()) == $category) {
+                            $found = true;
+                            break;
+                        }
+                    }
+                }
+                if (!$found) {
+                    unset($this->items[$k]);
+                }
+            }
+            $this->items = array_values($this->items);
+        }
         return $this->items;
     }
+
+    /**
+     * Getter
+    */
     function getPeople() {
         return $this->people;
     }
