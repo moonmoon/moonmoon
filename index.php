@@ -1,6 +1,4 @@
 <?php
-$bench['start'] = microtime(true);
-
 $debug = isset($_GET['debug']) ? $_GET['debug'] : 0;
 if ($debug) {
     error_reporting(E_ALL);
@@ -22,7 +20,6 @@ if (is_file(dirname(__FILE__).'/custom/config.yml')){
 
 //Instantiate app
 $Planet = new Planet($PlanetConfig);
-$bench['codeloaded'] = microtime(true);
 
 //Load from cache
 $items = Array();
@@ -30,7 +27,6 @@ if (0 < $Planet->loadOpml(dirname(__FILE__).'/custom/people.opml')) {
     $Planet->loadFeeds();
     $items = $Planet->getItems();
 }
-$bench['contentloaded'] = microtime(true);
 
 //Prepare output cache
 Cache::$enabled = false;
@@ -51,11 +47,6 @@ if (!OutputCache::Start($_GET['type'], $cache_key, $cache_duration)) {
     OutputCache::End();
 }
 
-$bench['contentdisplayed'] = microtime(true);
-
-echo "<!-- Load code: ".($bench['codeloaded'] - $bench['start'])." -->";
-echo "<!-- Load content: ".($bench['contentloaded'] - $bench['codeloaded'])." -->";
-echo "<!-- Display: ".($bench['contentdisplayed'] - $bench['contentloaded'])." -->";
 echo "<!--";
 var_dump($Planet->errors);
 echo "-->";
