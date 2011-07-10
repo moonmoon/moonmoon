@@ -1,9 +1,5 @@
 <?php
-/**
- * Load one particular feed
- */
-error_reporting(0);
-include_once(dirname(__FILE__).'/app/classes/Planet.class.php');
+include_once(dirname(__FILE__).'/app/app.php');
 
 function unhtmlspecialchars( $string ) {
     $string = str_replace ( '&amp;', '&', $string );
@@ -14,13 +10,6 @@ function unhtmlspecialchars( $string ) {
    
     return $string;
 }
-
-//Build config object
-//Use OPML title if no title defined in the config file
-$PlanetConfig = new PlanetConfig(array());
-
-//Instantiate app
-$Planet = new Planet($PlanetConfig);
 
 $Planet->addPerson(
     new PlanetPerson(

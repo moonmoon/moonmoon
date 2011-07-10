@@ -1,25 +1,12 @@
 <?php
-$debug = isset($_GET['debug']) ? $_GET['debug'] : 0;
-if ($debug) {
-    error_reporting(E_ALL);
-} else {
-    error_reporting(0);
-}
-
-include_once(dirname(__FILE__).'/app/classes/Planet.class.php');
+include_once(dirname(__FILE__).'/app/app.php');
 include_once(dirname(__FILE__).'/app/lib/Cache.php');
 
-//Load configuration
-if (is_file(dirname(__FILE__).'/custom/config.yml')){
-    $conf = Spyc::YAMLLoad(dirname(__FILE__).'/custom/config.yml');
-    $PlanetConfig = new PlanetConfig($conf);
-} else {
+//Installed ?
+if (!isset($Planet)) {
     echo '<p>You might want to <a href="install.php">install moonmoon</a>.</p>';
     exit;
 }
-
-//Instantiate app
-$Planet = new Planet($PlanetConfig);
 
 //Load from cache
 $items = Array();
