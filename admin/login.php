@@ -1,11 +1,19 @@
 <?php
 if (isset($_POST['password'])) {
-    setcookie('auth',md5($_POST['password']));
+    setcookie('auth', hash('sha256', $_POST['password']));
     header('Location: index.php');
 }
 
 
 $page_content = <<<FRAGMENT
+<body id="admin-feed">
+    <div id="page">
+        <div id="header">
+            <h1>moonmoon</h1>
+            <p><a href="../">Back to main page</a></p>
+        </div>
+
+        <div id="content">
             <form action="" method="post" class="login">
                 <fieldset>
                     <p class="field">
@@ -31,3 +39,4 @@ FRAGMENT;
 $page_id      = 'admin-login';
 $admin_access = 0;
 require_once dirname(__FILE__) . '/template.php';
+
