@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['password'])) {
-    setcookie('auth',md5($_POST['password']));
+    setcookie('auth', hash('sha256', $_POST['password']));
     header('Location: index.php');
 }
 header('Content-type: text/html; charset=UTF-8');
@@ -23,14 +23,14 @@ header('Content-type: text/html; charset=UTF-8');
             <h1>moonmoon</h1>
             <p><a href="../">Back to main page</a></p>
         </div>
-        
+
         <div id="content">
             <form action="" method="post" class="login">
                 <fieldset>
                     <p class="field">
                         <label for="password">Password:</label>
                         <input type="password" name="password" id="password"/>
-                        
+
                         <input type="submit" class="submit" value="OK"/>
                     </p>
                 </fieldset>
