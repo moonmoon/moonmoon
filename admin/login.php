@@ -1,10 +1,35 @@
 <?php
+
 if (isset($_POST['password'])) {
-    setcookie('auth', hash('sha256', $_POST['password']));
+
+    $hash_pwd = hash('sha256', $_POST['password']);
+
+    // check if old moonmoon installed and convert stored password from md5 to current hash function
+    $passfile = dirname(__FILE__) . '/inc/pwd.inc.php';
+    $md5_pwd  = md5($_POST['password']);
+
+    include $passfile;
+
+    if( $md5_pwd == $password ) {
+
+        $passfile_content = <<<PASS
+<?php
+\$login = "admin";
+\$password = "$hash_pwd";
+
+PASS;
+        // Save new login/password file
+        file_put_contents($passfile, $passfile_content);
+    }
+
+    // normal
+    setcookie('auth', $hash_pwd);
     header('Location: index.php');
 }
+
 header('Content-type: text/html; charset=UTF-8');
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
