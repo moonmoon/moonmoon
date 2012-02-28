@@ -2,7 +2,7 @@
 require_once dirname(__FILE__).'/inc/auth.inc.php';
 
 include_once(dirname(__FILE__).'/../app/classes/Planet.class.php');
-include_once(dirname(__FILE__).'/../app/lib/spyc-0.2.3/spyc.php');
+include_once(dirname(__FILE__).'/../app/lib/spyc-0.5/spyc.php');
 require_once dirname(__FILE__).'/../app/lib/lib.opml.php';
 require_once dirname(__FILE__).'/../app/lib/simplepie/simplepie.inc';
 
@@ -39,7 +39,7 @@ if (isset($_POST['opml']) || isset($_POST['add'])) {
             }
         }
     }
-    
+
     // Add feed
     if (isset($_POST['add'])){
         if ('http://' != $_POST['url']) {
@@ -60,7 +60,7 @@ if (isset($_POST['opml']) || isset($_POST['add'])) {
 
     // Backup old OPML
     OpmlManager::backup(dirname(__FILE__).'/../custom/people.opml');
-    
+
     // Save new OPML
     OpmlManager::save($newOpml, dirname(__FILE__).'/../custom/people.opml');
 }

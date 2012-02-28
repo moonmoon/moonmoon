@@ -31,14 +31,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 include(dirname(__FILE__).'/../lib/lib.opml.php');
 include(dirname(__FILE__).'/../lib/simplepie/simplepie.inc');
-include(dirname(__FILE__).'/../lib/spyc-0.2.3/spyc.php');
+include(dirname(__FILE__).'/../lib/spyc-0.5/spyc.php');
 
 /**
  * Planet configuration class
  */
 class PlanetConfig{
     var $conf;
-    
+
     function __construct($array){
         $defaultConfig = Array(
             'url' => 'http://www.example.com/',
@@ -51,10 +51,10 @@ class PlanetConfig{
             'postmaxlength' => 0,
             'cachedir' => './cache'
         );
-        
+
         //User config
         $this->conf = $array;
-        
+
         //Complete config with default config
         foreach ($defaultConfig as $key => $value){
             if (!isset($this->conf[$key])){
@@ -62,7 +62,7 @@ class PlanetConfig{
             }
         }
     }
-    
+
     function getUrl(){
         return $this->conf['url'];
     }
@@ -74,7 +74,7 @@ class PlanetConfig{
     function setName($name){
         $this->conf['name'] = $name;
     }
-    
+
     function getCacheTimeout(){
         return $this->conf['refresh'];
     }
@@ -87,7 +87,7 @@ class PlanetConfig{
     function getShuffle(){
         return $this->conf['shuffle'];
     }
-    
+
     function getMaxDisplay(){
         return $this->conf['items'];
     }
@@ -101,7 +101,7 @@ class PlanetConfig{
     function getPostMaxLength(){
         return $this->conf['postmaxlength'];
     }
-    
+
     function toYaml(){
         return Spyc::YAMLDump($this->conf,4);
     }
@@ -114,7 +114,7 @@ class PlanetPerson extends SimplePie{
     var $name;
     var $feed;
     var $website;
-    
+
     function __construct($name, $feed, $website){
         $this->name = $name;
         $this->feed = $feed;
@@ -127,19 +127,19 @@ class PlanetPerson extends SimplePie{
         $this->set_timeout(5);
         $this->set_stupidly_fast(true);
     }
-    
+
     function getFeed(){
         return $this->feed;
     }
-    
+
     function getName(){
         return $this->name;
     }
-    
+
     function getWebsite(){
         return $this->website;
     }
-    
+
     function compare($person1, $person2){
         return strcasecmp($person1->name, $person2->name);
     }
@@ -152,7 +152,7 @@ class PlanetItem{
     function __construct($feed, $data){
         parent::SimplePie_Item($feed, $data);
     }
-    
+
     function compare($item1, $item2){
         $item1_date = $item1->get_date('U');
         $item2_date = $item2->get_date('U');
@@ -169,12 +169,12 @@ class PlanetItem{
 class PlanetError {
     var $level;
     var $message;
-    
+
     function __construct($level, $message) {
         $this->level = (int) $level;
         $this->message = $message;
     }
-    
+
     function toString($format = '%1$s : %2$s') {
         $levels = array(
             1 => "notice",
@@ -192,9 +192,9 @@ class Planet{
     var $config;
     var $items;
     var $people;
-    
+
     var $errors;
-    
+
     function Planet($config=null) {
         if ($config == null){
             $this->config = new PlanetConfig(array());
@@ -206,7 +206,7 @@ class Planet{
         $this->people = array();
         $this->errors = array();
     }
-    
+
     /**
      * Getters
      */
@@ -216,7 +216,7 @@ class Planet{
     function getPeople() {
         return $this->people;
     }
-    
+
     /**
      * Adds a person to the planet
      * @param PlanetPerson person
@@ -224,7 +224,7 @@ class Planet{
     function addPerson(&$person) {
         $this->people[] = $person;
     }
-    
+
     /**
      * Load people from an OPML
      * @return integer Number of people loaded
@@ -247,7 +247,7 @@ class Planet{
         }
         return count($opml_people);
     }
-    
+
     /**
      * Load feeds
      */
@@ -259,29 +259,29 @@ class Planet{
         }
         $this->sort();
     }
-    
+
     /**
      * Download
      * @var $max_load percentage of feeds to load
      */
     function download($max_load=0.1){
-        
+
         $max_load_feeds = ceil(count($this->people) * $max_load);
-        
+
         foreach ($this->people as $person) {
             //Avoid mass loading with variable cache duration
             //$person->set_cache_duration($this->config->getCacheTimeout()+rand(0,30));
             $person->set_cache_duration($this->config->getCacheTimeout());
-            
+
             //Load only a few feeds, force other to fetch from the cache
             if (0 > $max_load_feeds--) {
                 $person->set_timeout(-1);
                 $this->errors[] = new PlanetError(1, 'Forced from cache : '.$person->getFeed());
             }
-            
+
             //Load feed
             $person->init();
-            
+
             // http://simplepie.org/wiki/reference/simplepie/merge_items ?
             //Add items to index
             if (($person->data) && ($person->get_item_quantity() > 0)){
@@ -292,7 +292,7 @@ class Planet{
             }
         }
     }
-    
+
     function sort() {
         usort($this->items, array('PlanetItem','compare'));
     }
