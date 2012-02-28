@@ -1,5 +1,5 @@
 <?php
-class opml 
+class opml
 {
     var $_xml = null;
     var $_currentTag = '';
@@ -25,7 +25,7 @@ class opml
         xml_set_object($this->_xml, $this);
         xml_set_element_handler($this->_xml,'_openTag','_closeTag');
         xml_set_character_data_handler ($this->_xml, '_cData');
-        
+
         xml_parse($this->_xml,$data);
         xml_parser_free($this->_xml);
         return $this->entries;
@@ -35,7 +35,7 @@ class opml
     function _openTag($p,$tag,$attrs)
     {
         $this->_currentTag = $tag;
-        
+
         if ($tag == 'OUTLINE')
         {
             $i = count($this->entries);
@@ -43,48 +43,49 @@ class opml
             {
                 if (isset($attrs[$key])) {
                     $this->entries[$i][$this->map[$key]] = $attrs[$key];
-                } 
+                }
             }
         }
     }
-    
+
     function _closeTag($p, $tag){
         $this->_currentTag = '';
     }
-    
+
     function _cData($p, $cdata){
         if ($this->_currentTag == 'TITLE'){
             $this->title = $cdata;
         }
     }
-    
+
     function getTitle(){
         return $this->title;
     }
-    
+
     function getPeople(){
         return $this->entries;
     }
 }
 
-class OpmlManager {
-    function load($file) {
+class OpmlManager
+{
+    public function load($file) {
         if (@file_exists($file)) {
             $opml = new opml();
-            
+
             //Remove BOM if needed
             $BOM = '/^﻿/';
             $fileContent = file_get_contents($file);
             $fileContent = preg_replace($BOM, '', $fileContent, 1);
-            
+
             //Parse
             $opml->parse($fileContent);
-            
+
             return $opml;
         }
     }
-    
-    function save($opml, $file){
+
+    public function save($opml, $file){
         $out = '<?xml version="1.0"?>'."\n";
         $out.= '<opml version="1.1">'."\n";
         $out.= '<head>'."\n";
@@ -98,12 +99,11 @@ class OpmlManager {
         }
         $out.= '</body>'."\n";
         $out.= '</opml>';
-        
+
         file_put_contents($file, $out);
     }
-    
-    function backup($file){
+
+    public function backup($file){
         copy($file, $file.'.bak');
     }
 }
-?>
