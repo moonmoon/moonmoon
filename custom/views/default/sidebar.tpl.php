@@ -1,6 +1,6 @@
 <?php
 $all_people = &$Planet->getPeople();
-usort($all_people, array('PlanetPerson', 'compare'));
+usort($all_people, array('PlanetFeed', 'compare'));
 ?>
 <div id="sidebar" class="aside">
     <div id="sidebar-people" class="section">
