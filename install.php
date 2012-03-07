@@ -35,36 +35,47 @@ if (file_exists(CONFIG_FILE) && file_exists(PWD_FILE)) {
         $status = 'installed';
     }
 } else {
-    
+
     //Requirements
     $tests = array(
         'php5' => array(
-            'label'=>'Server is running PHP5',
-            'solution' => 'Check your server documentation to activate PHP5.'
+            'file'       => false,
+            'label'      => 'Server is running PHP5',
+            'solution'   => 'Check your server documentation to activate PHP5.',
+            'result'     => phpversion() >= 5
         ),
         'custom' => array(
-        	'label' => '<code>./custom</code> is writable',
-        	'solution' => 'Change the access rights for <code>./custom</code> with CHMOD'
+            'file'       => '/custom',
+            'label'      => '<code>./custom</code> is writable',
+            'solution'   => 'Change the access rights for <code>./custom</code> with CHMOD'
         ),
         'opml' => array(
-            'label'=>'<code>./custom/people.opml</code> is writable',
-            'solution' => 'Change the access rights for <code>./custom/people.opml</code> with CHMOD'
+            'file'       => '/custom/people.opml',
+            'label'      => '<code>./custom/people.opml</code> is writable',
+            'solution'   => 'Change the access rights for <code>./custom/people.opml</code> with CHMOD'
         ),
         'changepassword' => array(
-            'label'=>'Administrator password can be changed',
-            'solution' => 'Change the access right for <code>./admin/inc/pwd.inc.php</code> with CHMOD'
+            'file'       => '/admin/inc/pwd.inc.php',
+            'label'      => 'Administrator password can be changed',
+            'solution'   => 'Change the access right for <code>./admin/inc/pwd.inc.php</code> with CHMOD'
         ),
         'cache' => array(
-            'label'=>'<code>./cache</code> is writable',
-            'solution' => 'Make <code>./cache</code> writable with CHMOD'
+            'file'       => '/cache',
+            'label'      => '<code>./cache</code> is writable',
+            'solution'   => 'Make <code>./cache</code> writable with CHMOD'
         ),
     );
 
-    $tests['php5']['result'] = (5 <= phpversion());
-    $tests['custom']['result'] = is_writable(dirname(__FILE__).'/custom');
-    $tests['opml']['result'] = is_writable(dirname(__FILE__).'/custom/people.opml');
-    $tests['changepassword']['result'] = is_writable(dirname(__FILE__).'/admin/inc/pwd.inc.php');
-    $tests['cache']['result'] = is_writable(dirname(__FILE__).'/cache');
+    foreach ($tests as $k => $v) {
+        // test file requirements, exclude php5 test
+        if ($tests[$k]['file']) {
+             if(is_writable(dirname(__FILE__) . $tests[$k]['file'])) {
+                $tests[$k]['result'] = true;
+             } else {
+                $tests[$k]['result'] = false;
+             }
+        }
+    }
 
     $bInstallOk = true;
     $strInstall = '';
