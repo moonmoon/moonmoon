@@ -66,52 +66,52 @@ p.help{
 #page{
 }
 
-	#header{
+	header{
 		background: #E0E0E0 url(img/moonmoon.png) no-repeat right center;
 		border-top: 5px solid #D0D0D0;
 		margin: 0;
 		padding: 10px;
 	}
-		#header h1{
+		header h1{
 			display: none;
 			margin: 0 0 0 20px;
 			padding: 0;
 			height: 14px;
 			width: 95px;
 			background: transparent url(img/moonmoon.png) no-repeat left center;
-			
+
 			overflow: hidden;
 			text-indent: -1000em;
 		}
-		#header p{
+		header p{
 			margin: 0 0 0 20px;
 			padding: 0;
 		}
-		#header p a{
+		header p a{
 			color: #AAA;
 		}
-		#header p a:hover{
+		header p a:hover{
 			color: #111;
 		}
-		
-		
-	ul#nav{
+
+
+	nav ul{
 		margin: 20px 30px;
 		padding: 0;
 		list-style: none;
 	}
-	ul#nav:after {content: "."; display: block; height: 0; clear: both; visibility: hidden; }
-	ul#nav {display: inline-table;}
+	nav ul:after {content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+	nav ul {display: inline-table;}
 	/* Hides from IE-mac \*/
-	* html ul#nav {height: 1%;}
-	ul#nav {display: block;}
+	* html nav ul {height: 1%;}
+	nav ul {display: block;}
 	/* End hide from IE-mac */
-	
-		ul#nav li{
+
+		nav ul li{
 			display: block;
 			float: left;
 		}
-		ul#nav li a{
+		nav ul li a{
 			display: block;
 			border: 1px solid #DDD;
 			padding: 8px 8px 8px 36px;
@@ -121,7 +121,7 @@ p.help{
 			background-repeat: no-repeat;
 			background-position: 6px center;
 		}
-		ul#nav li a:hover,
+		nav ul li a:hover,
 		body#admin-feed #nav-feed a,
 		body#admin-admin #nav-admin a {
 			background-color: #f0f2f6;
@@ -134,11 +134,11 @@ p.help{
 		#nav-admin a{
 			background-image: url(img/nav-admin.png);
 		}
-		
+
 	#content{
 		margin: 20px 30px;
 	}
-	
+
 	.widget{
 		margin: 20px 0;
 	}
@@ -148,13 +148,15 @@ p.help{
 		text-transform: uppercase;
 		margin: 0;
 		padding: 10px;
+		height: 20px;
+		clear:both;
 	}
 	.widget form{
 		padding: 10px;
 		border: 1px solid #EEE;
 		border-top: 0;
 	}
-	
+
 	#feedmanage p.select{
 		margin: 3px 0;
 	}
@@ -195,7 +197,7 @@ p.help{
 		background: #FFF;
 		border: 1px solid #4392b7;
 	}
-	
+
 	#feedmanage tr.selected td{
 		background: #ffabab;
 		background: #4392b7;
@@ -210,7 +212,7 @@ p.help{
 		color: #000;
 		border: 1px solid #4392b7;
 	}
-    
+
 /* Login form
 *******************************************************************************/
 form.login {

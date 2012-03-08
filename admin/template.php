@@ -1,35 +1,38 @@
 <?php if(!isset($admin_access)) return; ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/HTML; charset=UTF-8" />
-    <meta http-equiv="Content-Script-Type" content="text/javascript" />
-    <meta http-equiv="Content-Style-Type" content="text/css" />
-    <meta http-equiv="Content-Language" content="en" />
-
+    <meta charset="utf-8">
     <title>moonmoon administration</title>
-    <link rel="stylesheet" media="screen" type="text/css" href="default.css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="default.css">
+<!--[if lte IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
     <?=@$header_extra ?: ''; ?>
+
 </head>
 
 <body id="<?=@$page_id ?: ''; ?>">
     <div id="page">
-        <div id="header">
+        <header>
             <h1>moonmoon</h1>
             <p><a href="../">Back to main page</a></p>
-        </div>
+        </header>
 
         <?php if($admin_access == 1) : ?>
 
         <p class="logout"><a href="logout.php">Logout</a></p>
-        <ul id="nav">
-            <li id="nav-feed"><a href="index.php">Feeds</a></li>
-            <li id="nav-admin"><a href="administration.php">Administration</a></li>
-        </ul>
+        <nav>
+            <ul>
+                <li id="nav-feed"><a href="index.php">Feeds</a></li>
+                <li id="nav-admin"><a href="administration.php">Administration</a></li>
+            </ul>
+        </nav>
 
         <?php endif; ?>
+
+
 
         <div id="content">
 
