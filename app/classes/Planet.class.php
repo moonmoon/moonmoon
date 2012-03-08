@@ -29,162 +29,6 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-include(dirname(__FILE__).'/../lib/lib.opml.php');
-include(dirname(__FILE__).'/../lib/simplepie/simplepie.inc');
-include(dirname(__FILE__).'/../lib/spyc-0.5/spyc.php');
-
-/**
- * Planet configuration class
- */
-class PlanetConfig{
-    var $conf;
-
-    function __construct($array){
-        $defaultConfig = Array(
-            'url' => 'http://www.example.com/',
-            'name' => '',
-            'items' => 10,
-            'shuffle' => 0,
-            'refresh' => 240,
-            'cache' => 10,
-            'nohtml' => 0,
-            'postmaxlength' => 0,
-            'cachedir' => './cache'
-        );
-
-        //User config
-        $this->conf = $array;
-
-        //Complete config with default config
-        foreach ($defaultConfig as $key => $value){
-            if (!isset($this->conf[$key])){
-                $this->conf[$key] = $value;
-            }
-        }
-    }
-
-    function getUrl(){
-        return $this->conf['url'];
-    }
-
-    function getName(){
-        return $this->conf['name'];
-    }
-
-    function setName($name){
-        $this->conf['name'] = $name;
-    }
-
-    function getCacheTimeout(){
-        return $this->conf['refresh'];
-    }
-
-    function getOutputTimeout(){
-        return $this->conf['cache'];
-    }
-
-    //@TODO: drop this pref
-    function getShuffle(){
-        return $this->conf['shuffle'];
-    }
-
-    function getMaxDisplay(){
-        return $this->conf['items'];
-    }
-
-    //@TODO: drop this pref
-    function getNoHTML(){
-        return $this->conf['nohtml'];
-    }
-
-    //@TODO: drop this pref
-    function getPostMaxLength(){
-        return $this->conf['postmaxlength'];
-    }
-
-    function toYaml(){
-        return Spyc::YAMLDump($this->conf,4);
-    }
-}
-
-/**
- * Planet person
- */
-class PlanetPerson extends SimplePie{
-    var $name;
-    var $feed;
-    var $website;
-
-    function __construct($name, $feed, $website){
-        $this->name = $name;
-        $this->feed = $feed;
-        $this->website = $website;
-        parent::__construct();
-        $this->set_item_class('PlanetItem');
-        $this->set_cache_location(dirname(__FILE__).'/../../cache');
-        $this->set_autodiscovery_level(SIMPLEPIE_LOCATOR_NONE);
-        $this->set_feed_url($this->getFeed());
-        $this->set_timeout(5);
-        $this->set_stupidly_fast(true);
-    }
-
-    function getFeed(){
-        return $this->feed;
-    }
-
-    function getName(){
-        return $this->name;
-    }
-
-    function getWebsite(){
-        return $this->website;
-    }
-
-    function compare($person1, $person2){
-        return strcasecmp($person1->name, $person2->name);
-    }
-}
-
-/**
- * Planet item
- */
-class PlanetItem{
-    function __construct($feed, $data){
-        parent::SimplePie_Item($feed, $data);
-    }
-
-    function compare($item1, $item2){
-        $item1_date = $item1->get_date('U');
-        $item2_date = $item2->get_date('U');
-        if ($item1_date == $item2_date){
-            return 0;
-        }
-        else if ($item1_date < $item2_date){
-            return 1;
-        }
-        return -1;
-    }
-}
-
-class PlanetError {
-    var $level;
-    var $message;
-
-    function __construct($level, $message) {
-        $this->level = (int) $level;
-        $this->message = $message;
-    }
-
-    function toString($format = '%1$s : %2$s') {
-        $levels = array(
-            1 => "notice",
-            2 => "warning",
-            3 => "error"
-        );
-        return sprintf($format, $levels[$this->level], $this->message);
-    }
-}
-
 /**
  * Planet, main app class
  */
@@ -218,11 +62,11 @@ class Planet{
     }
 
     /**
-     * Adds a person to the planet
-     * @param PlanetPerson person
+     * Adds a feed to the planet
+     * @param PlanetFeed feed
      */
-    function addPerson(&$person) {
-        $this->people[] = $person;
+    function addPerson(&$feed) {
+        $this->people[] = $feed;
     }
 
     /**
@@ -238,7 +82,7 @@ class Planet{
         $opml_people = $opml->getPeople();
         foreach ($opml_people as $opml_person){
             $this->addPerson(
-                new PlanetPerson(
+                new PlanetFeed(
                     $opml_person['name'],
                     $opml_person['feed'],
                     $opml_person['website']
