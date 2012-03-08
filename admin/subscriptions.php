@@ -1,10 +1,6 @@
 <?php
-require_once dirname(__FILE__).'/inc/auth.inc.php';
-
-include_once(dirname(__FILE__).'/../app/classes/Planet.class.php');
-include_once(dirname(__FILE__).'/../app/lib/spyc-0.5/spyc.php');
-require_once dirname(__FILE__).'/../app/lib/lib.opml.php';
-require_once dirname(__FILE__).'/../app/lib/simplepie/simplepie.inc';
+require_once dirname(__FILE__) . '/inc/auth.inc.php';
+require_once dirname(__FILE__) . '/../app/app.php';
 
 function removeSlashes(&$item, $key){
     $item = stripslashes($item);
