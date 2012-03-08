@@ -2,7 +2,7 @@
 include_once(dirname(__FILE__).'/app/app.php');
 
 $Planet->addPerson(
-    new PlanetPerson(
+    new PlanetFeed(
         '',
         htmlspecialchars_decode($_GET['url'], ENT_QUOTES),
         ''

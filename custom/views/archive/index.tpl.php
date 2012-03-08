@@ -110,7 +110,5 @@ header('Content-type: text/html; charset=UTF-8');
         
         <?php include(dirname(__FILE__).'/footer.tpl.php'); ?>
     </div>
-    
-    <script src="app/js/mm.js" type="text/javascript"></script>
 </body>
 </html>
