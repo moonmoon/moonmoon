@@ -3,14 +3,17 @@
 /**
  * Planet person
  */
-class PlanetFeed extends SimplePie{
-    var $name;
-    var $feed;
-    var $website;
 
-    function __construct($name, $feed, $website){
-        $this->name = $name;
-        $this->feed = $feed;
+class PlanetFeed extends SimplePie
+{
+    public $name;
+    public $feed;
+    public $website;
+
+    public function __construct($name, $feed, $website)
+    {
+        $this->name    = $name;
+        $this->feed    = $feed;
         $this->website = $website;
         parent::__construct();
         $this->set_item_class('PlanetItem');
@@ -21,19 +24,23 @@ class PlanetFeed extends SimplePie{
         $this->set_stupidly_fast(true);
     }
 
-    function getFeed(){
+    public function getFeed()
+    {
         return $this->feed;
     }
 
-    function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
-    function getWebsite(){
+    public function getWebsite()
+    {
         return $this->website;
     }
 
-    function compare($person1, $person2){
+    public function compare($person1, $person2)
+    {
         return strcasecmp($person1->name, $person2->name);
     }
 }
