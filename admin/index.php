@@ -75,7 +75,7 @@ ob_start();
                 <form action="subscriptions.php" method="post" id="feedimport">
                     <fieldset>
                         <label for="url">Link:</label>
-                        <input type="text" class="text" name="url" id="url" value="http://" class="text" size="50" />
+                        <input type="text" class="text" name="url" id="url" placeholder="http://" class="text" size="50" />
                         <input type="submit" class="submit add" name="add" value="Add feed" />
                     </fieldset>
                     <p class="help">Accepted formats are RSS and ATOM. If the link is not a feed, moonmoon will try to autodiscover the feed.</p>
