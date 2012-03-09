@@ -15,15 +15,15 @@ if (file_exists(CONFIG_FILE) && file_exists(PWD_FILE)) {
 
     //Save config file
     $config = Array(
-        'url' => $_REQUEST['url'],
-        'name' => $_REQUEST['title'],
-        'items' => 10,
-        'shuffle' => 0,
-        'refresh' => 240,
-        'cache' => 10,
-        'nohtml' => 0,
+        'url'           => filter_var($_REQUEST['url'],   FILTER_SANITIZE_ENCODED),
+        'name'          => filter_var($_REQUEST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
+        'items'         => 10,
+        'shuffle'       => 0,
+        'refresh'       => 240,
+        'cache'         => 10,
+        'nohtml'        => 0,
         'postmaxlength' => 0,
-        'cachedir' => './cache'
+        'cachedir'      => './cache'
     );
     $CreatePlanetConfig = new PlanetConfig($config);
     $save['config'] = file_put_contents(dirname(__FILE__).'/custom/config.yml', $CreatePlanetConfig->toYaml());
