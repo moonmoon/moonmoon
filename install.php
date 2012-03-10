@@ -1,30 +1,31 @@
 <?php
-require_once dirname(__FILE__) . '/app/app.php';
 
-define('CONFIG_FILE', dirname(__FILE__).'/custom/config.yml');
-define('PWD_FILE', dirname(__FILE__).'/admin/inc/pwd.inc.php');
-define('OPML_FILE',dirname(__FILE__).'/custom/people.opml');
+// This is an helper function returning an html table row to avoid code duplication
+function installStatus($str, $msg, $result) {
+    $class = ($result) ? 'ok' : 'fail';
+    return '<tr><td>' . $str . '</td><td class="' . $class . '">' . $msg . '</td></tr>';
+}
 
-$status = 'install';
-
-if (file_exists(CONFIG_FILE) && file_exists(PWD_FILE)) {
-    //Nothing to do, already installed;
+// If the password and config files exist, moonmoon is already installed
+if (file_exists(dirname(__FILE__) . '/custom/config.yml')
+    && file_exists(dirname(__FILE__) . '/admin/inc/pwd.inc.php')) {
     $status = 'installed';
 } elseif (isset($_REQUEST['url'])) {
-    $save = Array();
-
+    require_once dirname(__FILE__) . '/app/app.php';
+    $save = array();
     //Save config file
-    $config = Array(
-        'url' => $_REQUEST['url'],
-        'name' => $_REQUEST['title'],
-        'items' => 10,
-        'shuffle' => 0,
-        'refresh' => 240,
-        'cache' => 10,
-        'nohtml' => 0,
+    $config = array(
+        'url'           => filter_var($_REQUEST['url'],   FILTER_SANITIZE_ENCODED),
+        'name'          => filter_var($_REQUEST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
+        'items'         => 10,
+        'shuffle'       => 0,
+        'refresh'       => 240,
+        'cache'         => 10,
+        'nohtml'        => 0,
         'postmaxlength' => 0,
-        'cachedir' => './cache'
+        'cachedir'      => './cache'
     );
+
     $CreatePlanetConfig = new PlanetConfig($config);
     $save['config'] = file_put_contents(dirname(__FILE__).'/custom/config.yml', $CreatePlanetConfig->toYaml());
 
@@ -36,13 +37,12 @@ if (file_exists(CONFIG_FILE) && file_exists(PWD_FILE)) {
     }
 } else {
 
-    //Requirements
+    // Server requirements with advices in case there is something wrong
     $tests = array(
         'php5' => array(
             'file'       => false,
             'label'      => 'Server is running PHP5',
             'solution'   => 'Check your server documentation to activate PHP5.',
-            'result'     => phpversion() >= 5
         ),
         'custom' => array(
             'file'       => '/custom',
@@ -66,64 +66,49 @@ if (file_exists(CONFIG_FILE) && file_exists(PWD_FILE)) {
         ),
     );
 
+    // We start by malking sure we have PHP5 as a base requirement
+    if(phpversion() >= 5) {
+        $strInstall = installStatus($tests['php5']['label'], 'OK',true);
+        $strRecommendation = '';
+    } else {
+        $strInstall = installStatus($tests['php5']['label'], 'FAIL',false);
+        $strRecommendation = '<li>' . $tests['php5']['solution'] . '</li>';
+    }
+
+    // We now test that all required files are writable
     foreach ($tests as $k => $v) {
-        // test file requirements, exclude php5 test
         if ($tests[$k]['file']) {
-             if(is_writable(dirname(__FILE__) . $tests[$k]['file'])) {
-                $tests[$k]['result'] = true;
-             } else {
-                $tests[$k]['result'] = false;
+            if(is_writable(dirname(__FILE__) . $tests[$k]['file'])) {
+                $strInstall .= installStatus($tests[$k]['label'], 'OK', true);
+            } else {
+                $strInstall .= installStatus($tests[$k]['label'], 'FAIL',false);
+                $strRecommendation .= '<li>' . $tests[$k]['solution'] . '</li>';
              }
         }
     }
 
-    $bInstallOk = true;
-    $strInstall = '';
-    $strRecommendation = '';
-    foreach ($tests as $test) {
-        $bInstallOk = $bInstallOk && $test['result'];
-        $strInstall .= "
-        <tr>
-            <td>".$test['label']."</td>
-            <td>".(($test['result'])?'<span class="ok">OK</span>':'<span class="fail">FAIL</span>')."</td>
-        </tr>";
-        if (!$test['result']) {
-            $strRecommendation .= '<li>'.$test['solution'].'</li>';
-        }
-    }
+    // We can now decide if we install moonmoon or not
+    $status = ($strRecommendation != '') ? 'error' : 'install';
 
-    if ($bInstallOk) {
-        $status = 'install';
-    } else {
-        $status = 'error';
-    }
 }
-header('Content-type: text/html; charset=UTF-8');
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="Content-Script-Type" content="text/javascript" />
-    <meta http-equiv="Content-Style-Type" content="text/css" />
-
     <title>moonmoon install</title>
-    <style type="text/css">
+    <style>
     body {
         font: normal 1em sans-serif;
-    }
-
-    .section {
         width: 500px;
         margin: 0 auto;
     }
 
     /* Error */
-    span.ok {
+    td.ok {
         color: #090;
     }
-    span.fail {
+
+    td.fail {
         color: #900;
         font-weight: bold;
     }
@@ -140,15 +125,13 @@ header('Content-type: text/html; charset=UTF-8');
         font-size: 2em;
     }
 
-    /* Installed */
     </style>
 </head>
 
 <body>
-<div class="section">
     <h1>moonmoon installation</h1>
 
-    <?php if ('error' == $status) : ?>
+    <?php if ($status == 'error') : ?>
     <div id="compatibility">
         <h2>Sorry, your server is not compatible with moonmoon.</h2>
 
@@ -168,11 +151,11 @@ header('Content-type: text/html; charset=UTF-8');
         <h3>Troubleshooting</h3>
         <p>To install moonmoon, try the following changes:</p>
         <ul>
-            <ul><?php echo $strRecommendation; ?></ul>
+            <?php echo $strRecommendation; ?>
         </ul>
     </div>
 
-    <?php elseif ('install' == $status) : ?>
+    <?php elseif ($status == 'install') : ?>
     <div>
         <form method="post" action="">
             <fieldset>
@@ -203,7 +186,7 @@ header('Content-type: text/html; charset=UTF-8');
         </form>
     </div>
 
-    <?php elseif ('installed' == $status): ?>
+    <?php elseif ($status =='installed'): ?>
 
     <p>Congratulations! Your moonmoon is ready.</p>
     <h3>What's next?</h3>
@@ -217,6 +200,5 @@ header('Content-type: text/html; charset=UTF-8');
         </li>
     </ol>
     <?php endif; ?>
-</div>
 </body>
 </html>
