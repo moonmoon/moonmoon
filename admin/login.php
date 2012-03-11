@@ -29,14 +29,6 @@ PASS;
 
 
 $page_content = <<<FRAGMENT
-<body id="admin-feed">
-    <div id="page">
-        <div id="header">
-            <h1>moonmoon</h1>
-            <p><a href="../">Back to main page</a></p>
-        </div>
-
-        <div id="content">
             <form action="" method="post" class="login">
                 <fieldset>
                     <p class="field">
