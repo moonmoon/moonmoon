@@ -32,21 +32,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Planet, main app class
  */
-class Planet{
-    var $config;
-    var $items;
-    var $people;
+class Planet
+{
+    public $config;
+    public $items;
+    public $people;
+    public $errors;
 
-    var $errors;
+    public function __construct($config=null)
+    {
 
-    function Planet($config=null) {
-        if ($config == null){
+        if ($config == null) {
             $this->config = new PlanetConfig(array());
-        }
-        else{
+        } else {
             $this->config = $config;
         }
-        $this->items = array();
+
+        $this->items  = array();
         $this->people = array();
         $this->errors = array();
     }
@@ -54,10 +56,13 @@ class Planet{
     /**
      * Getters
      */
-    function getItems() {
+    public function getItems()
+    {
         return $this->items;
     }
-    function getPeople() {
+
+    public function getPeople()
+    {
         return $this->people;
     }
 
@@ -65,7 +70,8 @@ class Planet{
      * Adds a feed to the planet
      * @param PlanetFeed feed
      */
-    function addPerson(&$feed) {
+    public function addPerson(&$feed)
+    {
         $this->people[] = $feed;
     }
 
@@ -73,11 +79,13 @@ class Planet{
      * Load people from an OPML
      * @return integer Number of people loaded
      */
-    function loadOpml($file) {
-        if (!is_file($file)){
+    public function loadOpml($file)
+    {
+        if (!is_file($file)) {
             $this->errors[] = new PlanetError(3, $file.' is missing.');
             return 0;
         }
+
         $opml = OpmlManager::load($file);
         $opml_people = $opml->getPeople();
         foreach ($opml_people as $opml_person){
@@ -95,12 +103,14 @@ class Planet{
     /**
      * Load feeds
      */
-    function loadFeeds() {
+    public function loadFeeds()
+    {
         foreach ($this->people as $person) {
             $person->set_timeout(-1);
             $person->init();
             $this->items = array_merge($this->items, $person->get_items());
         }
+
         $this->sort();
     }
 
@@ -108,7 +118,8 @@ class Planet{
      * Download
      * @var $max_load percentage of feeds to load
      */
-    function download($max_load=0.1){
+    public function download($max_load=0.1)
+    {
 
         $max_load_feeds = ceil(count($this->people) * $max_load);
 
@@ -137,8 +148,8 @@ class Planet{
         }
     }
 
-    function sort() {
+    public function sort()
+    {
         usort($this->items, array('PlanetItem','compare'));
     }
 }
-?>
