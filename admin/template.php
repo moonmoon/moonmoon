@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>moonmoon administration</title>
+    <title><?=_g('moonmoon administration')?></title>
     <link rel="stylesheet" media="screen" type="text/css" href="default.css">
 <!--[if lte IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,16 +17,16 @@
     <div id="page">
         <header>
             <h1>moonmoon</h1>
-            <p><a href="../">Back to main page</a></p>
+            <p><a href="../"><?=_g('Back to main page')?></a></p>
         </header>
 
         <?php if($admin_access == 1) : ?>
 
-        <p class="logout"><a href="logout.php">Logout</a></p>
+        <p class="logout"><a href="logout.php"><?=_g('Logout')?></a></p>
         <nav>
             <ul>
-                <li id="nav-feed"><a href="index.php">Feeds</a></li>
-                <li id="nav-admin"><a href="administration.php">Administration</a></li>
+                <li id="nav-feed"><a href="index.php"><?=_g('Feeds')?></a></li>
+                <li id="nav-admin"><a href="administration.php"><?=_g('Administration')?></a></li>
             </ul>
         </nav>
 

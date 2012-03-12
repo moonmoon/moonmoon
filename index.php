@@ -4,7 +4,7 @@ include_once(dirname(__FILE__).'/app/lib/Cache.php');
 
 //Installed ?
 if (!isset($Planet)) {
-    echo '<p>You might want to <a href="install.php">install moonmoon</a>.</p>';
+    echo '<p>' . _g('You might want to <a href="install.php">install moonmoon</a>.') . '</p>';
     exit;
 }
 
@@ -23,8 +23,8 @@ $cache_duration = $PlanetConfig->getOutputTimeout()*60;
 Cache::setStore(dirname(__FILE__).'/'.$conf['cachedir']);
 
 //Go display
-if (!isset($_GET['type']) || 
-    !is_file(dirname(__FILE__).'/custom/views/'.$_GET['type'].'/index.tpl.php') || 
+if (!isset($_GET['type']) ||
+    !is_file(dirname(__FILE__).'/custom/views/'.$_GET['type'].'/index.tpl.php') ||
     strpos($_GET['type'], DIRECTORY_SEPARATOR)){
     $_GET['type'] = 'default';
 }

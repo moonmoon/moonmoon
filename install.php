@@ -1,5 +1,7 @@
 <?php
 
+require_once dirname(__FILE__) . '/app/app.php';
+
 // This is an helper function returning an html table row to avoid code duplication
 function installStatus($str, $msg, $result) {
     $class = ($result) ? 'ok' : 'fail';
@@ -11,12 +13,12 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
     && file_exists(dirname(__FILE__) . '/admin/inc/pwd.inc.php')) {
     $status = 'installed';
 } elseif (isset($_REQUEST['url'])) {
-    require_once dirname(__FILE__) . '/app/app.php';
     $save = array();
     //Save config file
     $config = array(
         'url'           => filter_var($_REQUEST['url'],   FILTER_SANITIZE_ENCODED),
         'name'          => filter_var($_REQUEST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
+        'locale'        => filter_var($_REQUEST['locale'], FILTER_SANITIZE_SPECIAL_CHARS),
         'items'         => 10,
         'shuffle'       => 0,
         'refresh'       => 240,
@@ -37,53 +39,30 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
     }
 } else {
 
-    // Server requirements with advices in case there is something wrong
-    $tests = array(
-        'php5' => array(
-            'file'       => false,
-            'label'      => 'Server is running PHP5',
-            'solution'   => 'Check your server documentation to activate PHP5.',
-        ),
-        'custom' => array(
-            'file'       => '/custom',
-            'label'      => '<code>./custom</code> is writable',
-            'solution'   => 'Change the access rights for <code>./custom</code> with CHMOD'
-        ),
-        'opml' => array(
-            'file'       => '/custom/people.opml',
-            'label'      => '<code>./custom/people.opml</code> is writable',
-            'solution'   => 'Change the access rights for <code>./custom/people.opml</code> with CHMOD'
-        ),
-        'changepassword' => array(
-            'file'       => '/admin/inc/pwd.inc.php',
-            'label'      => 'Administrator password can be changed',
-            'solution'   => 'Change the access right for <code>./admin/inc/pwd.inc.php</code> with CHMOD'
-        ),
-        'cache' => array(
-            'file'       => '/cache',
-            'label'      => '<code>./cache</code> is writable',
-            'solution'   => 'Make <code>./cache</code> writable with CHMOD'
-        ),
-    );
-
     // We start by malking sure we have PHP5 as a base requirement
     if(phpversion() >= 5) {
-        $strInstall = installStatus($tests['php5']['label'], 'OK',true);
+        $strInstall = installStatus('Server is running PHP5', 'OK',true);
         $strRecommendation = '';
     } else {
-        $strInstall = installStatus($tests['php5']['label'], 'FAIL',false);
-        $strRecommendation = '<li>' . $tests['php5']['solution'] . '</li>';
+        $strInstall = installStatus('Server is running PHP5', 'FAIL',false);
+        $strRecommendation = '<li>Check your server documentation to activate PHP5</li>';
     }
 
+    // Writable file requirements
+    $tests = array(
+        '/custom',
+        '/custom/people.opml',
+        '/admin/inc/pwd.inc.php',
+        '/cache',
+    );
+
     // We now test that all required files are writable
-    foreach ($tests as $k => $v) {
-        if ($tests[$k]['file']) {
-            if(is_writable(dirname(__FILE__) . $tests[$k]['file'])) {
-                $strInstall .= installStatus($tests[$k]['label'], 'OK', true);
-            } else {
-                $strInstall .= installStatus($tests[$k]['label'], 'FAIL',false);
-                $strRecommendation .= '<li>' . $tests[$k]['solution'] . '</li>';
-             }
+    foreach ($tests as $v) {
+        if(is_writable(dirname(__FILE__) . $v)) {
+            $strInstall .= installStatus("<code>$v</code> is writable", 'OK', true);
+        } else {
+            $strInstall .= installStatus("<code>$v</code> is writable", 'FAIL',false);
+            $strRecommendation .= "<li>Make <code>$v</code> writable with CHMOD</li>";
         }
     }
 
@@ -94,8 +73,9 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="utf-8">
 <head>
-    <title>moonmoon install</title>
+    <title><?=_g('moonmoon installation')?></title>
     <style>
     body {
         font: normal 1em sans-serif;
@@ -129,7 +109,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
 </head>
 
 <body>
-    <h1>moonmoon installation</h1>
+    <h1><?=_g('moonmoon installation')?></h1>
 
     <?php if ($status == 'error') : ?>
     <div id="compatibility">
@@ -179,6 +159,13 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
                     <label for="password">Administrator password:</label>
                     <input type="text" id="password" name="password" class="text password" value="admin" />
                 </p>
+                <p class="field">
+                    <label for="locale">Language:</label>
+                    <select name="locale" id="locale">
+                        <option selected="selected" value="en">English</option>
+                        <option value="fr">Français</option>
+                    </select>
+                </p>
                 <p>
                     <input type="submit" class="submit" value="Install"/>
                 </p>
@@ -188,15 +175,14 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
 
     <?php elseif ($status =='installed'): ?>
 
-    <p>Congratulations! Your moonmoon is ready.</p>
-    <h3>What's next?</h3>
+    <p><?=_g('Congratulations! Your moonmoon is ready.')?></p>
+    <h3><?=_g("What's next?")?></h3>
     <ol>
         <li>
-            <strong>Delete</strong> <code>install.php</code> with your FTP software.
+            <?=_g('<strong>Delete</strong> <code>install.php</code> with your FTP software.')?>
         </li>
         <li>
-            Use your password to go to the
-            <a href="./admin/">administration panel</a>
+            <?=_g('Use your password to go to the <a href="./admin/">administration panel</a>')?>
         </li>
     </ol>
     <?php endif; ?>
