@@ -37,53 +37,29 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
     }
 } else {
 
-    // Server requirements with advices in case there is something wrong
-    $tests = array(
-        'php5' => array(
-            'file'       => false,
-            'label'      => 'Server is running PHP5',
-            'solution'   => 'Check your server documentation to activate PHP5.',
-        ),
-        'custom' => array(
-            'file'       => '/custom',
-            'label'      => '<code>./custom</code> is writable',
-            'solution'   => 'Change the access rights for <code>./custom</code> with CHMOD'
-        ),
-        'opml' => array(
-            'file'       => '/custom/people.opml',
-            'label'      => '<code>./custom/people.opml</code> is writable',
-            'solution'   => 'Change the access rights for <code>./custom/people.opml</code> with CHMOD'
-        ),
-        'changepassword' => array(
-            'file'       => '/admin/inc/pwd.inc.php',
-            'label'      => 'Administrator password can be changed',
-            'solution'   => 'Change the access right for <code>./admin/inc/pwd.inc.php</code> with CHMOD'
-        ),
-        'cache' => array(
-            'file'       => '/cache',
-            'label'      => '<code>./cache</code> is writable',
-            'solution'   => 'Make <code>./cache</code> writable with CHMOD'
-        ),
-    );
-
     // We start by malking sure we have PHP5 as a base requirement
     if(phpversion() >= 5) {
-        $strInstall = installStatus($tests['php5']['label'], 'OK',true);
+        $strInstall = installStatus('Server is running PHP5', 'OK',true);
         $strRecommendation = '';
     } else {
-        $strInstall = installStatus($tests['php5']['label'], 'FAIL',false);
-        $strRecommendation = '<li>' . $tests['php5']['solution'] . '</li>';
+        $strInstall = installStatus('Server is running PHP5', 'FAIL',false);
+        $strRecommendation = '<li>Check your server documentation to activate PHP5</li>';
     }
 
+    // Writable file requirements
+    $tests = array(
+        '/custom',
+        '/custom/people.opml',
+        '/admin/inc/pwd.inc.php',
+        '/cache',
+    );
     // We now test that all required files are writable
-    foreach ($tests as $k => $v) {
-        if ($tests[$k]['file']) {
-            if(is_writable(dirname(__FILE__) . $tests[$k]['file'])) {
-                $strInstall .= installStatus($tests[$k]['label'], 'OK', true);
-            } else {
-                $strInstall .= installStatus($tests[$k]['label'], 'FAIL',false);
-                $strRecommendation .= '<li>' . $tests[$k]['solution'] . '</li>';
-             }
+    foreach ($tests as $v) {
+        if(is_writable(dirname(__FILE__) . $v)) {
+            $strInstall .= installStatus("<code>$v</code> is writable", 'OK', true);
+        } else {
+            $strInstall .= installStatus("<code>$v</code> is writable", 'FAIL',false);
+            $strRecommendation .= "<li>Make <code>$v</code> writable with CHMOD</li>";
         }
     }
 
