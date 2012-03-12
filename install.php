@@ -13,6 +13,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
 } elseif (isset($_REQUEST['url'])) {
     require_once dirname(__FILE__) . '/app/app.php';
     $save = array();
+
     //Save config file
     $config = array(
         'url'           => filter_var($_REQUEST['url'],   FILTER_SANITIZE_ENCODED),
@@ -30,7 +31,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
     $save['config'] = file_put_contents(dirname(__FILE__).'/custom/config.yml', $CreatePlanetConfig->toYaml());
 
     //Save password
-    $save['password'] = file_put_contents(dirname(__FILE__).'/admin/inc/pwd.inc.php', '<?php $login="admin"; $password="'.md5($_REQUEST['password']).'"; ?>');
+    $save['password'] = file_put_contents(dirname(__FILE__).'/admin/inc/pwd.inc.php', '<?php $login="admin"; $password="'.hash('sha256', $_REQUEST['password']).'"; ?>');
 
     if (0 != ($save['config'] + $save['password'])) {
         $status = 'installed';
@@ -108,6 +109,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
     <h1>moonmoon installation</h1>
 
     <?php if ($status == 'error') : ?>
+
     <div id="compatibility">
         <h2>Sorry, your server is not compatible with moonmoon.</h2>
 
@@ -132,6 +134,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
     </div>
 
     <?php elseif ($status == 'install') : ?>
+
     <div>
         <form method="post" action="">
             <fieldset>
