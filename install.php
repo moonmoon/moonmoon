@@ -1,5 +1,7 @@
 <?php
 
+require_once dirname(__FILE__) . '/app/app.php';
+
 // This is an helper function returning an html table row to avoid code duplication
 function installStatus($str, $msg, $result) {
     $class = ($result) ? 'ok' : 'fail';
@@ -11,12 +13,12 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
     && file_exists(dirname(__FILE__) . '/admin/inc/pwd.inc.php')) {
     $status = 'installed';
 } elseif (isset($_REQUEST['url'])) {
-    require_once dirname(__FILE__) . '/app/app.php';
     $save = array();
     //Save config file
     $config = array(
         'url'           => filter_var($_REQUEST['url'],   FILTER_SANITIZE_ENCODED),
         'name'          => filter_var($_REQUEST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
+        'locale'        => filter_var($_REQUEST['locale'], FILTER_SANITIZE_SPECIAL_CHARS),
         'items'         => 10,
         'shuffle'       => 0,
         'refresh'       => 240,
@@ -53,6 +55,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
         '/admin/inc/pwd.inc.php',
         '/cache',
     );
+
     // We now test that all required files are writable
     foreach ($tests as $v) {
         if(is_writable(dirname(__FILE__) . $v)) {
@@ -70,8 +73,9 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="utf-8">
 <head>
-    <title>moonmoon install</title>
+    <title><?=_g('moonmoon installation')?></title>
     <style>
     body {
         font: normal 1em sans-serif;
@@ -105,7 +109,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
 </head>
 
 <body>
-    <h1>moonmoon installation</h1>
+    <h1><?=_g('moonmoon installation')?></h1>
 
     <?php if ($status == 'error') : ?>
     <div id="compatibility">
@@ -155,6 +159,13 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
                     <label for="password">Administrator password:</label>
                     <input type="text" id="password" name="password" class="text password" value="admin" />
                 </p>
+                <p class="field">
+                    <label for="locale">Language:</label>
+                    <select name="locale" id="locale">
+                        <option selected="selected" value="en">English</option>
+                        <option value="fr">Français</option>
+                    </select>
+                </p>
                 <p>
                     <input type="submit" class="submit" value="Install"/>
                 </p>
@@ -164,15 +175,14 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
 
     <?php elseif ($status =='installed'): ?>
 
-    <p>Congratulations! Your moonmoon is ready.</p>
-    <h3>What's next?</h3>
+    <p><?=_g('Congratulations! Your moonmoon is ready.')?></p>
+    <h3><?=_g("What's next?")?></h3>
     <ol>
         <li>
-            <strong>Delete</strong> <code>install.php</code> with your FTP software.
+            <?=_g('<strong>Delete</strong> <code>install.php</code> with your FTP software.')?>
         </li>
         <li>
-            Use your password to go to the
-            <a href="./admin/">administration panel</a>
+            <?=_g('Use your password to go to the <a href="./admin/">administration panel</a>')?>
         </li>
     </ol>
     <?php endif; ?>
