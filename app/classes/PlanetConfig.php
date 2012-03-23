@@ -13,6 +13,7 @@ class PlanetConfig
         $defaultConfig = array(
             'url'           => 'http://www.example.com/',
             'name'          => '',
+            'locale'        => 'en',
             'items'         => 10,
             'shuffle'       => 0,
             'refresh'       => 240,

@@ -71,34 +71,34 @@ ob_start();
 ?>
 
             <div class="widget">
-                <h3>Add a new feed</h3>
+                <h3><?=_g('Add Feed')?></h3>
                 <form action="subscriptions.php" method="post" id="feedimport">
                     <fieldset>
-                        <label for="url">Link:</label>
+                        <label for="url"><?=_g('Link:')?></label>
                         <input type="text" class="text" name="url" id="url" placeholder="http://" class="text" size="50" />
-                        <input type="submit" class="submit add" name="add" value="Add feed" />
+                        <input type="submit" class="submit add" name="add" value="<?=_g('Add Feed')?>" />
                     </fieldset>
-                    <p class="help">Accepted formats are RSS and ATOM. If the link is not a feed, moonmoon will try to autodiscover the feed.</p>
+                    <p class="help"><?=_g('Accepted formats are RSS and ATOM. If the link is not a feed, moonmoon will try to autodiscover the feed.')?></p>
                 </form>
             </div>
 
             <div class="widget">
-                <h3>Manage existing feeds</h3>
+                <h3><?=_g('Manage existing feeds')?></h3>
                 <form action="subscriptions.php" method="post" id="feedmanage">
                 <p class="action">
-                <span class="count">Number of feeds: <?=$count_feeds?></span>
-                <input type="submit" class="submit save" name="save" id="save" value="Save changes" />
-                <input type="submit" class="submit delete" name="delete" id="delete" value="Delete selected" />
+                <span class="count"><?php echo sprintf(_g('Number of feeds: %s'), $count_feeds)?></span>
+                <input type="submit" class="submit save" name="save" id="save" value="<?=_g('Save changes')?>" />
+                <input type="submit" class="submit delete" name="delete" id="delete" value="<?=_g('Delete selected Feeds')?>" />
                 </p>
-                <p class="select">Select : <a href="javascript:void(0);" id="selectall">All</a>, <a href="javascript:void(0);" id="selectnone">None</a></p>
+                <p class="select"><?=_g('Select :')?> <a href="javascript:void(0);" id="selectall"><?=_g('All')?></a>, <a href="javascript:void(0);" id="selectnone"><?=_g('None')?></a></p>
                 <table>
                     <thead>
                         <tr>
-                            <th><span>Selection</span></th>
-                            <th>Name</th>
-                            <th>Last entry</th>
-                            <th>Website link</th>
-                            <th>Feed link</th>
+                            <th><span><?=_g('Selection')?></span></th>
+                            <th><?=_g('Name')?></th>
+                            <th><?=_g('Last entry')?></th>
+                            <th><?=_g('Website link')?></th>
+                            <th><?=_g('Feed link')?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -116,7 +116,7 @@ ob_start();
                                 if (count($items) > 0) {
                                     echo $items[0]->get_date();
                                 } else {
-                                    echo "Not in cache";
+                                    echo _g('Not in cache');
                                 }
                                 ?>
                             </td>
