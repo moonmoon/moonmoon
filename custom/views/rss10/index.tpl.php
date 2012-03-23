@@ -14,7 +14,7 @@ echo '<?xml version="1.0" encoding="UTF-8" ?>';
     xmlns="http://purl.org/rss/1.0/">
 
     <channel rdf:about="<?php echo $PlanetConfig->getUrl(); ?>">
-        <title><?php echo $PlanetConfig->getName(); ?></title>
+        <title><?php echo htmlentities($PlanetConfig->getName()); ?></title>
         <description></description>
         <link><?php echo $PlanetConfig->getUrl(); ?></link>
         <dc:language></dc:language>
