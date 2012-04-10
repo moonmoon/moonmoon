@@ -105,10 +105,10 @@ class Planet
      */
     public function loadFeeds()
     {
-        foreach ($this->people as $person) {
-            $person->set_timeout(-1);
-            $person->init();
-            $this->items = array_merge($this->items, $person->get_items());
+        foreach ($this->people as $feed) {
+            $feed->set_timeout(-1);
+            $feed->init();
+            $this->items = array_merge($this->items, $feed->get_items());
         }
 
         $this->sort();
@@ -123,27 +123,27 @@ class Planet
 
         $max_load_feeds = ceil(count($this->people) * $max_load);
 
-        foreach ($this->people as $person) {
+        foreach ($this->people as $feed) {
             //Avoid mass loading with variable cache duration
-            //$person->set_cache_duration($this->config->getCacheTimeout()+rand(0,30));
-            $person->set_cache_duration($this->config->getCacheTimeout());
+            //$feed->set_cache_duration($this->config->getCacheTimeout()+rand(0,30));
+            $feed->set_cache_duration($this->config->getCacheTimeout());
 
             //Load only a few feeds, force other to fetch from the cache
             if (0 > $max_load_feeds--) {
-                $person->set_timeout(-1);
-                $this->errors[] = new PlanetError(1, 'Forced from cache : '.$person->getFeed());
+                $feed->set_timeout(-1);
+                $this->errors[] = new PlanetError(1, 'Forced from cache : '.$feed->getFeed());
             }
 
             //Load feed
-            $person->init();
+            $feed->init();
 
             // http://simplepie.org/wiki/reference/simplepie/merge_items ?
             //Add items to index
-            if (($person->data) && ($person->get_item_quantity() > 0)){
-                $items = $person->get_items();
+            if (($feed->data) && ($feed->get_item_quantity() > 0)){
+                $items = $feed->get_items();
                 $this->items = array_merge($this->items, $items);
             } else {
-                $this->errors[] = new PlanetError(1, 'No items : '.$person->getFeed());
+                $this->errors[] = new PlanetError(1, 'No items : '.$feed->getFeed());
             }
         }
     }
