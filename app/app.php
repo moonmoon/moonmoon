@@ -39,7 +39,7 @@ if (is_file($savedConfig)){
 $l10n = new Simplel10n($conf['locale']);
 
 // this is an helper function. We will usually use that function and not Simplel10n::getString()
-function _g($str) {
+function _g($str, $comment='') {
     return Simplel10n::getString($str);
 }
 
