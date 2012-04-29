@@ -17,7 +17,7 @@ class Simplel10n {
         $this->l10nFolder = $path;
     }
 
-    static function getString($str) {
+    static function getString($str, $comment='') {
         if(array_key_exists($str, $GLOBALS['locale'])) {
             return $GLOBALS['locale'][$str];
         } else {
