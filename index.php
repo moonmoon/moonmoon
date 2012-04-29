@@ -17,10 +17,11 @@ if (0 < $Planet->loadOpml(dirname(__FILE__).'/custom/people.opml')) {
 
 //Prepare output cache
 Cache::$enabled = false;
-$cache_key = (count($items)) ? $items[0]->get_id() : '';
-$last_modified = (count($items)) ? $items[0]->get_date() : '';
+$cache_key      = (count($items)) ? $items[0]->get_id()   : '';
+$last_modified  = (count($items)) ? $items[0]->get_date() : '';
 $cache_duration = $PlanetConfig->getOutputTimeout()*60;
-Cache::setStore(dirname(__FILE__).'/'.$conf['cachedir']);
+
+Cache::setStore(dirname(__FILE__) . '/' . $conf['cachedir'] . '/');
 
 //Go display
 if (!isset($_GET['type']) ||
