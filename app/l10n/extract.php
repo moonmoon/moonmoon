@@ -30,7 +30,7 @@ include_once $root . '/app/classes/Simplel10n.class.php';
 
 function extract_l10n_strings($file) {
     $lines    = file($file);
-    $patterns = array('/_g\((.*?)\)/', '/getString\((.*?)\)/', );
+    $patterns = array('/_g\([\'"](.*?)[\'"]\)/', '/getString\([\'"](.*?)[\'"]\)/',);
 
     foreach ($lines as $line) {
 
@@ -55,10 +55,10 @@ function extract_l10n_strings($file) {
 
                     // Extract cleaned up strings
                     if(count($l10n_note) == 2) {
-                        $l10n_str  = substr(trim($l10n_note[0]), 1, -1);
-                        $l10n_note = substr(trim($l10n_note[1]), 1, -1);
+                        $l10n_str  = trim($l10n_note[0]);
+                        $l10n_note = trim(substr(trim($l10n_note[1]),1)); # Remove quote at begining of string
                     } else {
-                        $l10n_str  = substr(trim($val), 1, -1); # Remove quotes around the string
+                        $l10n_str  = trim($val);
                         $l10n_note = '';
                     }
 
@@ -112,7 +112,7 @@ function find_all_files($dir) {
 
         if(is_file("$dir/$value")) {
             $split = explode('.', $value);
-            if(isset($split[1]) && $split[1] == 'php'){
+            if(end($split) == 'php'){
                 $result[] = "$dir/$value";
             }
             continue;
@@ -163,17 +163,22 @@ function update_lang_files($source, $dest) {
 
         ob_start();
         foreach($GLOBALS['english'] as $key => $val) {
+            $warning = '';
+            $value   = @Simplel10n::extractString($key);
 
-            if($val[1]) {
-                echo '# Translation note: ' . $val[1] . "\n";
-            }
-            echo ";$val[0]\n";
-
-            $value = @Simplel10n::getString($key);
-            echo $value . "\n\n\n";
             if($value == $val[0]) {
                 $status[$locale]++;
+                $warning = ' ** String needs translation **';
             }
+
+            if($val[1]) {
+                echo '# Translation note: ' . $val[1] . $warning . "\n";
+            } elseif($warning != '') {
+                echo '# Translation note: ' . $warning . "\n";
+            }
+
+            echo ";$val[0]\n";
+            echo $value . "\n\n\n";
         }
 
         $content = ob_get_contents();

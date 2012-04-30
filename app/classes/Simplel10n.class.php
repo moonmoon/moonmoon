@@ -19,6 +19,18 @@ class Simplel10n {
 
     static function getString($str, $comment='') {
         if(array_key_exists($str, $GLOBALS['locale'])) {
+            return trim(str_replace('{ok}', '', $GLOBALS['locale'][$str]));
+        } else {
+            return $str;
+        }
+    }
+
+    /*
+     * This is the same as getString except that we don't remove the {ok} string
+     * This is needed only for the extraction script
+     */
+    static function extractString($str, $comment='') {
+        if(array_key_exists($str, $GLOBALS['locale'])) {
             return $GLOBALS['locale'][$str];
         } else {
             return $str;

@@ -1,0 +1,270 @@
+# Translation note:  ** String needs translation **
+;Are you sure you want to purge the cache?
+Are you sure you want to purge the cache?
+
+
+# Translation note:  ** String needs translation **
+;Clear cache
+Clear cache
+
+
+# Translation note:  ** String needs translation **
+;Clear cache:
+Clear cache:
+
+
+# Translation note:  ** String needs translation **
+;Clear
+Clear
+
+
+# Translation note:  ** String needs translation **
+;Clearing the cache will make moonmoon reload all feeds.
+Clearing the cache will make moonmoon reload all feeds.
+
+
+# Translation note:  ** String needs translation **
+;Change administrator password
+Change administrator password
+
+
+# Translation note:  ** String needs translation **
+;New password:
+New password:
+
+
+# Translation note:  ** String needs translation **
+;Change password
+Change password
+
+
+# Translation note:  ** String needs translation **
+;Add Feed
+Add Feed
+
+
+# Translation note:  ** String needs translation **
+;Link:
+Link:
+
+
+# Translation note:  ** String needs translation **
+;Accepted formats are RSS and ATOM. If the link is not a feed, moonmoon will try to autodiscover the feed.
+Accepted formats are RSS and ATOM. If the link is not a feed, moonmoon will try to autodiscover the feed.
+
+
+# Translation note:  ** String needs translation **
+;Manage existing feeds
+Manage existing feeds
+
+
+# Translation note:  ** String needs translation **
+;Number of feeds: %s
+Number of feeds: %s
+
+
+# Translation note:  ** String needs translation **
+;Save changes
+Save changes
+
+
+# Translation note:  ** String needs translation **
+;Delete selected Feeds
+Delete selected Feeds
+
+
+# Translation note:  ** String needs translation **
+;Select :
+Select :
+
+
+# Translation note:  ** String needs translation **
+;All
+All
+
+
+# Translation note:  ** String needs translation **
+;None
+None
+
+
+# Translation note:  ** String needs translation **
+;Selection
+Selection
+
+
+# Translation note:  ** String needs translation **
+;Name
+Name
+
+
+# Translation note:  ** String needs translation **
+;Last entry
+Last entry
+
+
+# Translation note:  ** String needs translation **
+;Website link
+Website link
+
+
+# Translation note:  ** String needs translation **
+;Feed link
+Feed link
+
+
+# Translation note:  ** String needs translation **
+;Not in cache
+Not in cache
+
+
+# Translation note:  ** String needs translation **
+;Password:
+Password:
+
+
+# Translation note:  ** String needs translation **
+;OK
+OK
+
+
+# Translation note:  ** String needs translation **
+;moonmoon administration
+moonmoon administration
+
+
+# Translation note:  ** String needs translation **
+;Back to main page
+Back to main page
+
+
+# Translation note:  ** String needs translation **
+;Logout
+Logout
+
+
+# Translation note:  ** String needs translation **
+;Feeds
+Feeds
+
+
+# Translation note:  ** String needs translation **
+;Administration
+Administration
+
+
+# Translation note:  ** String needs translation **
+;Powered by <a %s>moonmoon</a>
+Powered by <a %s>moonmoon</a>
+
+
+# Translation note:  ** String needs translation **
+;No article
+No article
+
+
+# Translation note:  ** String needs translation **
+;No news, good news.
+No news, good news.
+
+
+# Translation note:  ** String needs translation **
+;Today
+Today
+
+
+# Translation note:  ** String needs translation **
+;Go to original place
+Go to original place
+
+
+# Translation note:  ** String needs translation **
+;This week
+This week
+
+
+# Translation note:  ** String needs translation **
+;This month
+This month
+
+
+# Translation note:  ** String needs translation **
+;Older items
+Older items
+
+
+# Translation note:  ** String needs translation **
+;People
+People
+
+
+# Translation note:  ** String needs translation **
+;Feed
+Feed
+
+
+# Translation note:  ** String needs translation **
+;Website
+Website
+
+
+# Translation note:  ** String needs translation **
+;All feeds in OPML format
+All feeds in OPML format
+
+
+# Translation note:  ** String needs translation **
+;Syndicate
+Syndicate
+
+
+# Translation note:  ** String needs translation **
+;Feed (ATOM)
+Feed (ATOM)
+
+
+# Translation note:  ** String needs translation **
+;Archives
+Archives
+
+
+# Translation note:  ** String needs translation **
+;See all headlines
+See all headlines
+
+
+# Translation note:  ** String needs translation **
+;Source:
+Source:
+
+
+# Translation note:  ** String needs translation **
+;You might want to <a href="install.php">install moonmoon</a>.
+You might want to <a href="install.php">install moonmoon</a>.
+
+
+# Translation note:  ** String needs translation **
+;moonmoon installation
+moonmoon installation
+
+
+# Translation note:  ** String needs translation **
+;Congratulations! Your moonmoon is ready.
+Congratulations! Your moonmoon is ready.
+
+
+# Translation note:  ** String needs translation **
+;What's next?
+What's next?
+
+
+# Translation note:  ** String needs translation **
+;<strong>Delete</strong> <code>install.php</code> with your FTP software.
+<strong>Delete</strong> <code>install.php</code> with your FTP software.
+
+
+# Translation note:  ** String needs translation **
+;Use your password to go to the <a href="./admin/">administration panel</a>
+Use your password to go to the <a href="./admin/">administration panel</a>
+
+
