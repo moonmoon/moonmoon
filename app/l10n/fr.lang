@@ -1,126 +1,70 @@
-;People
-Personnes
-
-;Powered by <a %s>moonmoon</a>
-Propulsé par <a %s>moonmoon</a>
-
-;Feed
-Flux
-
-;Website
-Site Web
-
-;All feeds in OPML format
-Tous les flux au format OPML
-
-;Syndicate
-Syndiquer
-
-;Feed (ATOM)
-Flux (ATOM)
-
-;Archives
-Archives
-
-;See all headlines
-Afficher tous les titres
-
-;Source:
-Source&nbsp;:
-
-;Today
-Aujourd'hui
-
-;This week
-Cette semaine
-
-;This month
-Ce mois
-
-;Older items
-Billets plus anciens
-
-;No article
-Pas d'articles
-
-;No news, good news.
-Pas de nouvelles, bonne nouvelle.
-
-;Go to original place
-Aller à l'emplacement d'origine
-
-# administration panel strings below
-
-;moonmoon installation
-Installation de moonmoon
+;Are you sure you want to purge the cache?
+Êtes-vous sûr de vouloir vider le cache ?
 
 
-;Server is running PHP5
-Le serveur utilise PHP5
-
-;Check your server documentation to activate PHP5.
-Vérifiez la documentation de votre serveur pour activer PHP5
-
-;<code>%s</code> is writable
-<code>%s</code> est accessible en écriture
-
-;Make <code>%s</code> writable with CHMOD
-Donnez les droits en écriture sur <code>%s</code> avec CHMOD
-
-;Congratulations! Your moonmoon is ready.
-Félicitations&nbsp;! Votre moonmoon est prêt.
-
-;What's next?
-Et maintenant &nbsp;?
-
-;<strong>Delete</strong> <code>install.php</code> with your FTP software.
-<strong>Effacez</strong> <code>install.php</code> avec votre logiciel FTP.
-
-;Use your password to go to the <a href="./admin/">administration panel</a>
-Utilisez votre mot de passe pour vous rendre sur la <a href="./admin/">console d'administration</a>
+;Clear cache
+Vider le cache
 
 
-;Feeds
-Flux
+;Clear cache:
+Vider le cache &nbsp;:
 
-;Back to main page
-Retour à l'accueil
 
-;moonmoon administration
-Administration de moonmoon
+;Clear
+Vider
 
-;Logout
-Déconnexion
 
-;Administration
-Administration
+;Clearing the cache will make moonmoon reload all feeds.
+Vider le cache forcera moonmoon à recharger tous les flux.
+
+
+;Change administrator password
+Changer le mot de passe de l'administrateur
+
+
+;New password:
+Nouveau mot de passe &nbsp;:
+
+
+;Change password
+Changer le mot de passe
+
 
 ;Add Feed
 Ajouter un flux
 
+
 ;Link:
 Lien&nbsp;:
+
 
 ;Accepted formats are RSS and ATOM. If the link is not a feed, moonmoon will try to autodiscover the feed.
 Les formats valides sont RSS et ATOM. Si le lien n'est pas un flux, moonmoon essaiera de trouver le flux automatiquement.
 
+
 ;Manage existing feeds
 Gérer les flux
+
 
 ;Number of feeds: %s
 Nombre de flux&nbsp;: %s
 
+
 ;Save changes
 Enregistrer les changements
+
 
 ;Delete selected Feeds
 Effacer les flux sélectionnés
 
+
 ;Select :
 Sélectionner
 
+
 ;All
 Tout
+
 
 ;None
 Aucun
@@ -129,47 +73,144 @@ Aucun
 ;Selection
 Sélection
 
+
 ;Name
 Titre
+
 
 ;Last entry
 Dernière entrée
 
+
 ;Website link
 Lien du site
+
 
 ;Feed link
 Lien du Flux
 
+
 ;Not in cache
 Pas en cache
 
-;Are you sure you want to purge the cache?
-Êtes-vous sûr de vouloir vider le cache ?
-
-;Clear cache:
-Vider le cache &nbsp;:
-
-;Clear cache
-Vider le cache
-
-;Clear
-Vider
-
-;Clearing the cache will make moonmoon reload all feeds.
-Vider le cache forcera moonmoon à recharger tous les flux.
-
-;Change administrator password
-Changer le mot de passe de l'administrateur
-
-;New password:
-Nouveau mot de passe &nbsp;:
-
-;Change password
-Changer le mot de passe
 
 ;Password:
 Mot de passe&nbsp;:
 
+
 ;OK
-OK
+OK {ok}
+
+
+;moonmoon administration
+Administration de moonmoon
+
+
+;Back to main page
+Retour à l'accueil
+
+
+;Logout
+Déconnexion
+
+
+;Feeds
+Flux
+
+
+;Administration
+Administration {ok}
+
+
+;Powered by <a %s>moonmoon</a>
+Propulsé par <a %s>moonmoon</a>
+
+
+;No article
+Pas d'articles
+
+
+;No news, good news.
+Pas de nouvelles, bonne nouvelle.
+
+
+;Today
+Aujourd'hui
+
+
+;Go to original place
+Aller à l'emplacement d'origine
+
+
+;This week
+Cette semaine
+
+
+;This month
+Ce mois
+
+
+;Older items
+Billets plus anciens
+
+
+;People
+Personnes
+
+
+;Feed
+Flux
+
+
+;Website
+Site Web
+
+
+;All feeds in OPML format
+Tous les flux au format OPML
+
+
+;Syndicate
+Syndiquer
+
+
+;Feed (ATOM)
+Flux (ATOM)
+
+
+;Archives
+Archives{ok}
+
+
+;See all headlines
+Afficher tous les titres
+
+
+;Source:
+Source&nbsp;:
+
+
+;You might want to <a href="install.php">install moonmoon</a>.
+Vous voulez probablement <a href="install.php">installer moonmoon</a>.
+
+
+;moonmoon installation
+Installation de moonmoon
+
+
+;Congratulations! Your moonmoon is ready.
+Félicitations&nbsp;! Votre moonmoon est prêt.
+
+
+;What's next?
+Et maintenant &nbsp;?
+
+
+;<strong>Delete</strong> <code>install.php</code> with your FTP software.
+<strong>Effacez</strong> <code>install.php</code> avec votre logiciel FTP.
+
+
+;Use your password to go to the <a href="./admin/">administration panel</a>
+Utilisez votre mot de passe pour vous rendre sur la <a href="./admin/">console d'administration</a>
+
+
