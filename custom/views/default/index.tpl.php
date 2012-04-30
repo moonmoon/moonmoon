@@ -26,9 +26,9 @@ header('Content-type: text/html; charset=UTF-8');
             <?php if (0 == count($items)) : ?>
                 <div class="article">
                     <h2 class="article-title">
-                        No article
+                        <?=_g('No article', 'note de trad')?>
                     </h2>
-                    <p class="article-content">No news, good news.</p>
+                    <p class="article-content"><?=_g('No news, good news.')?></p>
                 </div>
             <?php else : ?>
                 <?php foreach ($items as $item): ?>
