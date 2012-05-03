@@ -3,7 +3,13 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title><?=_g('moonmoon administration')?></title>
+    <title>
+
+<?php
+    echo _g('Administration') . ' — ';
+    printf(_g('moonmoon %s', '%s is the version number for moonmoon, this string appears as the tab title in the admin panel'), $moon_version);
+?>
+    </title>
     <link rel="stylesheet" media="screen" type="text/css" href="default.css">
 <!--[if lte IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
