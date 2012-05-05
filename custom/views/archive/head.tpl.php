@@ -3,4 +3,4 @@
     <link rel="stylesheet" media="screen" type="text/css" href="custom/style/light.css" title="Light" />
     <link rel="stylesheet" media="screen" type="text/css" href="custom/style/dark.css" title="Dark" />
 
-    <link rel="alternate" type="application/atom+xml" title="ATOM" href="?type=atom10" />
+    <link rel="alternate" type="application/atom+xml" title="ATOM" href="atom.php" />

@@ -21,7 +21,7 @@ usort($all_people, array('PlanetFeed', 'compare'));
     <div class="section">
         <h2><?=_g('Syndicate')?></h2>
         <ul>
-            <li><img src="custom/img/feed.png" alt="<?=_g('Feed')?>" height="12" width="12" />&nbsp;<a href="?type=atom10"><?=_g('Feed (ATOM)')?></a></li>
+            <li><img src="custom/img/feed.png" alt="<?=_g('Feed')?>" height="12" width="12" />&nbsp;<a href="atom.php"><?=_g('Feed (ATOM)')?></a></li>
         </ul>
     </div>
 
