@@ -23,6 +23,16 @@ $cache_duration = $PlanetConfig->getOutputTimeout()*60;
 
 Cache::setStore(dirname(__FILE__) . '/' . $conf['cachedir'] . '/');
 
+if (isset($_GET['type']) && $_GET['type'] == 'atom10') {
+    /* XXX: Redirect old ATOM feeds to new url to make sure our users don't
+     * loose subscribers upon upgrading their moonmoon installation.
+     * Remove this check in a more distant future.
+     */
+    header('Status: 301 Moved Permanently', false, 301);
+    header('Location: atom.php');
+    exit;
+}
+
 //Go display
 if (!isset($_GET['type']) ||
     !is_file(dirname(__FILE__).'/custom/views/'.$_GET['type'].'/index.tpl.php') ||
