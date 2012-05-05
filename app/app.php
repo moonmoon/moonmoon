@@ -19,7 +19,8 @@ include_once(dirname(__FILE__).'/classes/PlanetError.php');
 include_once(dirname(__FILE__).'/classes/Planet.class.php');
 include_once(dirname(__FILE__).'/classes/Simplel10n.class.php');
 
-$savedConfig = dirname(__FILE__).'/../custom/config.yml';
+$savedConfig  = dirname(__FILE__).'/../custom/config.yml';
+$moon_version = file_get_contents(dirname(__FILE__).'/../VERSION');
 
 if (is_file($savedConfig)){
 
