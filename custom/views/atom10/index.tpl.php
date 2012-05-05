@@ -15,7 +15,7 @@ echo '<?xml version="1.0" encoding="UTF-8" ?>';
 
     <?php $count = 0; ?>
     <?php foreach ($items as $item): ?>
-    <entry xmlns="http://www.w3.org/2005/Atom">
+    <entry>
         <title type="html"><?php echo htmlspecialchars($item->get_feed()->getName()); ?> : <?php echo htmlspecialchars($item->get_title());?></title>
         <id><?php echo htmlspecialchars($item->get_permalink());?></id>
         <link rel="alternate" href="<?php echo htmlspecialchars($item->get_permalink());?>"/>
