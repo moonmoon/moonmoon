@@ -5,8 +5,8 @@ $count = 0;
 header('Content-Type: application/atom+xml; charset=UTF-8');
 echo '<?xml version="1.0" encoding="UTF-8" ?>';
 ?><feed xmlns="http://www.w3.org/2005/Atom">
-    <title><?php echo htmlentities($PlanetConfig->getName()); ?></title>
-    <subtitle></subtitle>
+    <title><?php echo htmlspecialchars($PlanetConfig->getName()); ?></title>
+    <subtitle><?php echo htmlspecialchars($PlanetConfig->getName()); ?></subtitle>
     <id><?php echo $PlanetConfig->getUrl(); ?></id>
     <link rel="self" type="text/html" href="<?php echo $PlanetConfig->getUrl(); ?>?type=atom10" />
     <link rel="alternate" type="text/html" href="<?php echo $PlanetConfig->getUrl(); ?>" />
