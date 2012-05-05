@@ -8,7 +8,7 @@ echo '<?xml version="1.0" encoding="UTF-8" ?>';
     <title><?php echo htmlspecialchars($PlanetConfig->getName()); ?></title>
     <subtitle><?php echo htmlspecialchars($PlanetConfig->getName()); ?></subtitle>
     <id><?php echo $PlanetConfig->getUrl(); ?></id>
-    <link rel="self" type="text/html" href="<?php echo $PlanetConfig->getUrl(); ?>?type=atom10" />
+    <link rel="self" type="application/atom+xml" href="<?php echo $PlanetConfig->getUrl(); ?>?type=atom10" />
     <link rel="alternate" type="text/html" href="<?php echo $PlanetConfig->getUrl(); ?>" />
     <updated><?php echo date("Y-m-d\TH:i:s\Z") ?></updated>
     <author><name>Author</name></author>
