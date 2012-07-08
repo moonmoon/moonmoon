@@ -1,4 +1,6 @@
 <?php
+//Test file for PlanetItemStorage
+
 include_once(dirname(__FILE__).'/app/app.php');
 include_once(dirname(__FILE__).'/app/lib/Cache.php');
 
