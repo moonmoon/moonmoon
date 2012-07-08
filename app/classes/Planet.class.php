@@ -38,8 +38,9 @@ class Planet
     public $items;
     public $people;
     public $errors;
+    private $storage;
 
-    public function __construct($config=null)
+    public function __construct($config=null, $storage=null)
     {
 
         if ($config == null) {
@@ -51,6 +52,7 @@ class Planet
         $this->items  = array();
         $this->people = array();
         $this->errors = array();
+        $this->storage = $storage;
     }
 
     /**
@@ -139,9 +141,15 @@ class Planet
 
             // http://simplepie.org/wiki/reference/simplepie/merge_items ?
             //Add items to index
-            if (($feed->data) && ($feed->get_item_quantity() > 0)){
+            if ($feed->get_item_quantity() > 0){
                 $items = $feed->get_items();
                 $this->items = array_merge($this->items, $items);
+
+                //Storage
+                foreach ($items as $item) {
+                    $this->storage->save($item);
+                }
+                
             } else {
                 $this->errors[] = new PlanetError(1, 'No items : '.$feed->getFeed());
             }

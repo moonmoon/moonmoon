@@ -15,6 +15,7 @@ include(dirname(__FILE__).'/lib/spyc-0.5/spyc.php');
 include_once(dirname(__FILE__).'/classes/PlanetConfig.php');
 include_once(dirname(__FILE__).'/classes/PlanetFeed.php');
 include_once(dirname(__FILE__).'/classes/PlanetItem.php');
+include_once(dirname(__FILE__).'/classes/PlanetItemStorage.php');
 include_once(dirname(__FILE__).'/classes/PlanetError.php');
 include_once(dirname(__FILE__).'/classes/Planet.class.php');
 include_once(dirname(__FILE__).'/classes/Simplel10n.class.php');
@@ -23,6 +24,9 @@ $savedConfig  = dirname(__FILE__).'/../custom/config.yml';
 $moon_version = file_get_contents(dirname(__FILE__).'/../VERSION');
 
 if (is_file($savedConfig)){
+
+    $db = __DIR__ . "/../custom/feeds.sqlite";
+    $storage = new PlanetItemStorage($db);
 
     $conf = Spyc::YAMLLoad($savedConfig);
 
@@ -34,7 +38,7 @@ if (is_file($savedConfig)){
     }
 
     $PlanetConfig = new PlanetConfig($conf);
-    $Planet = new Planet($PlanetConfig);
+    $Planet = new Planet($PlanetConfig, $storage);
 }
 
 $l10n = new Simplel10n($conf['locale']);
