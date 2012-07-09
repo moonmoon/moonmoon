@@ -9,7 +9,7 @@ if ($debug) {
 }
 
 include(dirname(__FILE__).'/lib/lib.opml.php');
-include(dirname(__FILE__).'/lib/simplepie/simplepie.inc');
+include(dirname(__FILE__).'/lib/simplepie/simplepie_1.3.compiled.php');
 include(dirname(__FILE__).'/lib/spyc-0.5/spyc.php');
 
 include_once(dirname(__FILE__).'/classes/PlanetConfig.php');
