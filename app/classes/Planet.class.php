@@ -58,6 +58,10 @@ class Planet
      */
     public function getItems()
     {
+        $this->items = $this->_filterItemsByCategory(
+            $this->items,
+            $this->config->getCategories());
+
         return $this->items;
     }
 
@@ -151,5 +155,42 @@ class Planet
     public function sort()
     {
         usort($this->items, array('PlanetItem','compare'));
+    }
+
+    /**
+     * Filter out items that do not match at least one
+     * of the defined categories.
+     *
+     * If there's no category, return all items.
+     *
+     * @param array  $items to filter
+     * @param string $categories to filter against; may be a single word
+     * or a comma-separated list of words.
+     *
+     * @return array resulting list of items
+    */
+    public function _filterItemsByCategory($items, $categories = null)
+    {
+        $categories = trim($categories);
+
+        if (empty($categories))
+            return $items;
+
+        $categories         = array_map('trim', explode(',', strtolower($categories)));
+        $cb_category_filter =
+            function ($item) use ($categories)
+            {
+                if (!is_array($item_categories = $item->get_categories()))
+                    return false;
+
+                $item_categories = array_map(
+                    function ($i) { return strtolower($i->get_label()); },
+                    $item_categories
+                );
+
+                return array_intersect($categories, $item_categories);
+            };
+
+        return array_values(array_filter($items, $cb_category_filter));
     }
 }
