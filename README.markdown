@@ -17,3 +17,25 @@ Web hosting with PHP5 (PHP4 will not work).
 License
 -------
 Moonmoon is free software and is released under BSD license.
+
+
+Configuration options
+---------------------
+After installation, configuration is kept in a YAML formatted ```custom/config.yml```:
+
+```%yaml
+url: http://planet.example.net  # your planet base URL
+name: My Planet                 # your planet front page name
+locale: en                      # front page locale
+items: 10                       # how many items to show
+refresh: 240                    # feeds cache timeout (in seconds)
+cache: 10                       # front page cache timeout (in seconds)
+cachedir: ./cache               # where is cache stored
+postmaxlength: 0                # deprecated
+shuffle: 0                      # deprecated
+nohtml: 0                       # deprecated
+categories:                     # only list posts that have one
+                                # of these (tag or category)
+```
+
+---
