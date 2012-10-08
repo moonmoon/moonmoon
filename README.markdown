@@ -12,7 +12,7 @@ It does not archive articles, it does not do comments nor votes.
 
 Requirements
 ------------
-Web hosting with PHP5 (PHP4 will not work).
+Web hosting with PHP5.3 (PHP4 & 5.2 will not work).
 
 License
 -------
