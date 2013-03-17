@@ -81,8 +81,25 @@ class PlanetConfig
         return $this->conf['postmaxlength'];
     }
 
+    public function getCategories()
+    {
+        return $this->conf['categories'];
+    }
+
     public function toYaml()
     {
         return Spyc::YAMLDump($this->conf,4);
+    }
+
+    /**
+     * Generic accessor for config.
+    */
+    public function __get($key)
+    {
+        $key = strtolower($key);
+
+        return array_key_exists($key, $this->conf) ?
+            $this->conf[$key] :
+            null;
     }
 }
