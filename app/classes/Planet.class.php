@@ -153,7 +153,7 @@ class Planet
                 foreach ($items as $item) {
                     $this->storage->save($item);
                 }
-                
+
             } else {
                 $this->errors[] = new PlanetError(1, 'No items : '.$feed->getFeed());
             }
