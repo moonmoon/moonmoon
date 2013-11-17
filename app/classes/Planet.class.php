@@ -111,26 +111,19 @@ class Planet
      */
     public function loadFeeds()
     {
-        $this->items = array();
+        $simplepie_items = array();
 
-        //Load from database
-        // if ($this->storage) {
-        //     $db_items = $this->storage->getAll();
-        //     foreach ($db_items as $item) {
-        //         $this->items[] = new 
-        //     }
-        // }
-
-        //Load from Simplepie Cache
         foreach ($this->people as $feed) {
             $feed->init();
             $feed->set_timeout(0);
-            $items = array_merge($this->items, $feed->get_items());
-            foreach ($items as $item) {
-                $planet_item = new PlanetItem();
-                $planet_item->initFromSimplepieItem($item, $feed);
-                $this->items[] = $planet_item;
-            }
+            $simplepie_items = array_merge($simplepie_items, $feed->get_items());
+        }
+
+        //Convert Simplepie_Item to PlanetItem
+        foreach ($simplepie_items as $item) {
+            $planet_item = new PlanetItem();
+            $planet_item->initFromSimplepieItem($item, $item->get_feed());
+            $this->items[] = $planet_item;
         }
 
         $this->sort();

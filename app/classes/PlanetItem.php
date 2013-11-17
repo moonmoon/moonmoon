@@ -39,6 +39,9 @@ class PlanetItem
     }
 
     public function initFromSimplepieItem($Simplepie_Item, $feed) {
+        if ("SimplePie_Item" !== get_class($Simplepie_Item)) {
+            return;
+        }
         $this->guid = $Simplepie_Item->get_id();
         $this->permalink = $Simplepie_Item->get_permalink();
         $this->date = $Simplepie_Item->get_date() ? $Simplepie_Item->get_date('U') : date('U');
