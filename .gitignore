@@ -2,3 +2,5 @@ custom/config.yml
 custom/people.opml
 custom/people.opml.bak
 custom/feeds.sqlite
+vendor/
+composer.lock
