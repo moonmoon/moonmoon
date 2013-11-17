@@ -18,7 +18,7 @@ class Simplel10n {
     }
 
     static function getString($str, $comment='') {
-        if(array_key_exists($str, $GLOBALS['locale'])) {
+        if(array_key_exists('locale', $GLOBALS) && array_key_exists($str, $GLOBALS['locale'])) {
             return trim(str_replace('{ok}', '', $GLOBALS['locale'][$str]));
         } else {
             return $str;
