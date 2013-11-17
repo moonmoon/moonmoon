@@ -2,6 +2,12 @@
 include_once(dirname(__FILE__).'/app/app.php');
 include_once(dirname(__FILE__).'/app/lib/Cache.php');
 
+if (!isset($Planet)) {
+    header($_SERVER['SERVER_PROTOCOL'] . ' 503 Service Unavailable', true, 503);
+    echo "moonmoon is not configured";
+    die();
+}
+
 if ($Planet->loadOpml(dirname(__FILE__).'/custom/people.opml') == 0) exit;
 
 $Planet->loadFeeds();
