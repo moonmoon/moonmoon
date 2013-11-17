@@ -81,6 +81,10 @@ class PlanetItem
         return $this->feed;
     }
 
+    public function set_feed($feed) {
+        $this->feed = $feed;
+    }
+
     public function compare($item1, $item2)
     {
         $item1_date = $item1->get_date('U');

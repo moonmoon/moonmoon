@@ -86,13 +86,19 @@ class PlanetItemStorage
      */
     public function getAll($where = array())
     {
-        $query = "SELECT * FROM items";
+        $query = "SELECT guid, permalink, date, title, author, content, feed_url as feedUrl FROM items";
         if (count($where)) {
             $query.= " WHERE " . join($where, " AND ");
         }
         $query.= " ORDER BY date DESC";
         $sth = $this->db->query($query);
-        return $sth->fetchAll();
+
+        $out = array();
+        while ($row = $sth->fetch(PDO::FETCH_ASSOC)) {
+            $out[] = new PlanetItem($row);
+        }
+
+        return $out;
     }
 
     /**

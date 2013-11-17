@@ -113,20 +113,35 @@ class Planet
     {
         $simplepie_items = array();
 
-        foreach ($this->people as $feed) {
-            $feed->init();
-            $feed->set_timeout(0);
-            $simplepie_items = array_merge($simplepie_items, $feed->get_items());
+        //Load items from Simplepie cache
+        if ('sqlite' !== $this->config->storage) {
+            foreach ($this->people as $feed) {
+                $feed->init();
+                $feed->set_timeout(0);
+                $simplepie_items = array_merge($simplepie_items, $feed->get_items());
+            }
+
+            //Convert Simplepie_Item to PlanetItem
+            foreach ($simplepie_items as $item) {
+                $planet_item = new PlanetItem();
+                $planet_item->initFromSimplepieItem($item, $item->get_feed());
+                $this->items[] = $planet_item;
+            }
+            $this->sort();
+        } else {
+            $this->items = $this->storage->getAll();
+
+            //Link an item to its feed
+            //@FIXME: should be done in PlanetItemStorage
+            foreach ($this->items as $item) {
+                foreach ($this->people as $feed) {
+                    if ($item->feedUrl == $feed->feed_url) {
+                        $item->set_feed($feed);
+                    }
+                }
+            }
         }
 
-        //Convert Simplepie_Item to PlanetItem
-        foreach ($simplepie_items as $item) {
-            $planet_item = new PlanetItem();
-            $planet_item->initFromSimplepieItem($item, $item->get_feed());
-            $this->items[] = $planet_item;
-        }
-
-        $this->sort();
     }
 
     /**
