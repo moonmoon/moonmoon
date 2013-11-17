@@ -1,5 +1,4 @@
 <?php
-
 require_once dirname(__FILE__) . '/app/app.php';
 
 // This is an helper function returning an html table row to avoid code duplication
@@ -8,23 +7,25 @@ function installStatus($str, $msg, $result) {
     return '<tr><td>' . $str . '</td><td class="' . $class . '">' . $msg . '</td></tr>';
 }
 
+function getBaseUrl() {
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    return $protocol . $_SERVER['HTTP_HOST'] . str_replace('/install.php', '', $_SERVER['REQUEST_URI']);
+}
+
 // If the password and config files exist, moonmoon is already installed
 if (file_exists(dirname(__FILE__) . '/custom/config.yml')
     && file_exists(dirname(__FILE__) . '/admin/inc/pwd.inc.php')) {
     $status = 'installed';
-} elseif (isset($_REQUEST['url'])) {
+} elseif (isset($_REQUEST['action'])) {
     $save = array();
     //Save config file
     $config = array(
-        'url'           => filter_var($_REQUEST['url'],   FILTER_SANITIZE_ENCODED),
+        'url'           => getBaseUrl(),
         'name'          => filter_var($_REQUEST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
         'locale'        => filter_var($_REQUEST['locale'], FILTER_SANITIZE_SPECIAL_CHARS),
         'items'         => 10,
-        'shuffle'       => 0,
         'refresh'       => 240,
         'cache'         => 10,
-        'nohtml'        => 0,
-        'postmaxlength' => 0,
         'cachedir'      => './cache',
         'categories'    => '',
         'storage'       => 'sqlite'
@@ -141,13 +142,6 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
     <div>
         <form method="post" action="">
             <fieldset>
-                <input type="hidden" id="url" name="url" value="" readonly="readonly"/>
-                <script>
-                <!--
-                document.forms[0].elements[1].value = document.URL.replace('install.php','');
-                -->
-                </script>
-
                 <p class="field">
                     <label for="title">Title:</label>
                     <input type="text" id="title" name="title" value="My website"/>
@@ -169,7 +163,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
                     </select>
                 </p>
                 <p>
-                    <input type="submit" class="submit" value="Install"/>
+                    <input type="submit" name="action" class="submit" value="Install"/>
                 </p>
             </fieldset>
         </form>

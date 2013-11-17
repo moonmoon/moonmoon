@@ -15,11 +15,8 @@ class PlanetConfig
             'name'          => '',
             'locale'        => 'en',
             'items'         => 10,
-            'shuffle'       => 0,
             'refresh'       => 240,
             'cache'         => 10,
-            'nohtml'        => 0,
-            'postmaxlength' => 0,
             'cachedir'      => './cache',
             'storage'       => 'sqlite'
         );
@@ -59,27 +56,9 @@ class PlanetConfig
         return $this->conf['cache'];
     }
 
-    //@TODO: drop this pref
-    public function getShuffle()
-    {
-        return $this->conf['shuffle'];
-    }
-
     public function getMaxDisplay()
     {
         return $this->conf['items'];
-    }
-
-    //@TODO: drop this pref
-    public function getNoHTML()
-    {
-        return $this->conf['nohtml'];
-    }
-
-    //@TODO: drop this pref
-    public function getPostMaxLength()
-    {
-        return $this->conf['postmaxlength'];
     }
 
     public function getCategories()
