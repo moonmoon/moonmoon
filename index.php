@@ -8,7 +8,8 @@ if (!isset($Planet)) {
 }
 
 //Load from cache
-$items = Array();
+$items = array();
+$feeds = array();
 if (0 < $Planet->loadOpml(dirname(__FILE__).'/custom/people.opml')) {
     $Planet->loadFeeds();
     $items = $Planet->getItems();
