@@ -25,7 +25,9 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
         'cache'         => 10,
         'nohtml'        => 0,
         'postmaxlength' => 0,
-        'cachedir'      => './cache'
+        'cachedir'      => './cache',
+        'categories'    => '',
+        'storage'       => 'sqlite'
     );
 
     $CreatePlanetConfig = new PlanetConfig($config);

@@ -21,6 +21,7 @@ class PlanetConfig
             'nohtml'        => 0,
             'postmaxlength' => 0,
             'cachedir'      => './cache',
+            'storage'       => 'sqlite'
         );
 
         // User config
@@ -84,6 +85,11 @@ class PlanetConfig
     public function getCategories()
     {
         return $this->conf['categories'];
+    }
+
+    public function getStorage()
+    {
+        return $this->conf['storage'];
     }
 
     public function toYaml()
