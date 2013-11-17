@@ -1,6 +1,9 @@
 {% extends "base.twig" %}
 
 {% block body %}
+<script type="text/javascript">
+document.body.className += 'js';
+</script>
 <div id="page">
     {% include 'header.twig' %}
 
@@ -11,7 +14,13 @@
                     <a href="{{item.permalink}}" title="{{'Go to original place'|g}}">{{ item.title | striptags | default("No title") }}</a>
                 </h2>
                 <p class="article-info">
-                    {{item.author | default("Anonymous")}}
+                    {{item.author | default("Anonymous")}},
+                    <span id="post{{item.date|date('U')}}" class="date">
+                        {{item.date|date("d/m/Y H:i")}}
+                    </span>
+                    |
+                    {{'Source:'|g|raw}}
+                    <a href="{{item.feed.getWebsite}}" class="source">{{item.feed.getName}}</a>
                 </p>
                 <div class="article-content">
                     {{ item.content | raw }}
