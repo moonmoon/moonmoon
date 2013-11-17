@@ -112,7 +112,6 @@ class Planet
     public function loadFeeds()
     {
         foreach ($this->people as $feed) {
-            $feed->set_timeout(-1);
             $feed->init();
             $this->items = array_merge($this->items, $feed->get_items());
         }
