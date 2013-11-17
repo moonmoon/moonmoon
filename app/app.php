@@ -25,10 +25,6 @@ $moon_version = file_get_contents(dirname(__FILE__).'/../VERSION');
 
 if (is_file($savedConfig)){
 
-    $db = __DIR__ . "/../custom/feeds.sqlite";
-    PlanetItemStorage::initialize($db);
-    $storage = new PlanetItemStorage($db);
-
     $conf = Spyc::YAMLLoad($savedConfig);
 
     // this is a check to upgrade older config file without l10n
@@ -39,6 +35,15 @@ if (is_file($savedConfig)){
     }
 
     $PlanetConfig = new PlanetConfig($conf);
+
+    // Use storage ?
+    if ('sqlite' === $PlanetConfig->getStorage()) {
+        $db = __DIR__ . "/../custom/feeds.sqlite";
+        PlanetItemStorage::initialize($db);
+    } else {
+        $storage = null;
+    }
+
     $Planet = new Planet($PlanetConfig, $storage);
 }
 

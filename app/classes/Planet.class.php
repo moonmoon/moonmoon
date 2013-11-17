@@ -149,8 +149,10 @@ class Planet
                 $this->items = array_merge($this->items, $items);
 
                 //Storage
-                foreach ($items as $item) {
-                    $this->storage->save($item);
+                if ($this->storage) {
+                    foreach ($items as $item) {
+                        $this->storage->save($item);
+                    }
                 }
 
             } else {
