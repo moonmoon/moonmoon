@@ -1,0 +1,32 @@
+<div id="sidebar" class="aside">
+    <div id="sidebar-people" class="section">
+        <h2>{{'People'|g}} {{feeds | length}}</h2>
+        <ul>
+            {% for feed in feeds %}
+            <li>
+                <a href="{{feed.getFeed}}" title="{{'Feed'|g}}">
+                    <img src="postload.php?url={{feed.getFeed|url_encode}}" alt="" height="12" width="12" />
+                </a>
+                <a href="{{feed.getWebsite}}" title="{{'Website'|g}}">{{ feed.getName }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <p>
+        <img src="custom/img/opml.png" alt="{{'Feed'|g}}" height="12" width="12" /> <a href="custom/people.opml">{{'All feeds in OPML format'|g}}</a>
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>{{'Syndicate'|g}}</h2>
+        <ul>
+            <li><img src="custom/img/feed.png" alt="{{'Feed'|g}}" height="12" width="12" />&nbsp;<a href="atom.php">{{'Feed (ATOM)'|g}}</a></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>{{'Archives'|g}}</h2>
+        <ul>
+            <li><a href="?type=archive">{{'See all headlines'|g}}</a></li>
+        </ul>
+    </div>
+</div>

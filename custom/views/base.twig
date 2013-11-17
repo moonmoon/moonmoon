@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}{{config.getName}}{% endblock %}
+    </title>
+    {% block meta %}
+    <link rel="stylesheet" media="screen" type="text/css" href="{{ config.getUrl }}/custom/style/default.css" title="Default" />
+    {% endblock %} 
+</head>
+
+<body>
+{% block body %}
+{% endblock %}
+</body>
+</html>

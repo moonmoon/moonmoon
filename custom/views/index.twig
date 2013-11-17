@@ -1,0 +1,35 @@
+{% extends "base.twig" %}
+
+{% block body %}
+<div id="page">
+    {% include 'header.twig' %}
+
+    <div id="content">
+        {% for item in items %}
+            <div class="article <?php echo $host; ?>">
+                <h2 class="article-title">
+                    <a href="{{item.permalink}}" title="{{'Go to original place'|g}}">{{ item.title | striptags | default("No title") }}</a>
+                </h2>
+                <p class="article-info">
+                    {{item.author | default("Anonymous")}}
+                </p>
+                <div class="article-content">
+                    {{ item.content | raw }}
+                </div>
+            </div>
+        {%  else %}
+            <div class="article">
+                <h2 class="article-title">
+                    No article
+                </h2>
+                <p class="article-content">
+                    No news, good news.
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% include 'sidebar.twig' %}
+    {% include 'footer.twig' %}
+</div>
+{% endblock %}

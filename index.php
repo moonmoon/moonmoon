@@ -1,6 +1,5 @@
 <?php
 include_once(dirname(__FILE__).'/app/app.php');
-include_once(dirname(__FILE__).'/app/lib/Cache.php');
 
 //Installed ?
 if (!isset($Planet)) {
@@ -13,36 +12,36 @@ $items = Array();
 if (0 < $Planet->loadOpml(dirname(__FILE__).'/custom/people.opml')) {
     $Planet->loadFeeds();
     $items = $Planet->getItems();
+    
+    $feeds = &$Planet->getPeople();
+    usort($feeds, array('PlanetFeed', 'compare'));
 }
 
-//Prepare output cache
-Cache::$enabled = false;
-$cache_key      = (count($items)) ? $items[0]->get_id()   : '';
-$last_modified  = (count($items)) ? $items[0]->get_date() : '';
-$cache_duration = $PlanetConfig->getOutputTimeout()*60;
-
-Cache::setStore(dirname(__FILE__) . '/' . $conf['cachedir'] . '/');
-
-if (isset($_GET['type']) && $_GET['type'] == 'atom10') {
-    /* XXX: Redirect old ATOM feeds to new url to make sure our users don't
-     * loose subscribers upon upgrading their moonmoon installation.
-     * Remove this check in a more distant future.
-     */
-    header('Status: 301 Moved Permanently', false, 301);
-    header('Location: atom.php');
-    exit;
-}
-
-//Go display
-if (!isset($_GET['type']) ||
-    !is_file(dirname(__FILE__).'/custom/views/'.$_GET['type'].'/index.tpl.php') ||
-    strpos($_GET['type'], DIRECTORY_SEPARATOR)){
-    $_GET['type'] = 'default';
-}
-
-if (!OutputCache::Start($_GET['type'], $cache_key, $cache_duration)) {
-    include_once(dirname(__FILE__).'/custom/views/'.$_GET['type'].'/index.tpl.php');
-    OutputCache::End();
+if (!isset($_GET['type'])) {
+    header('Content-type: text/html; charset=UTF-8');
+    echo $twig->render('index.twig', array(
+        'config' => $PlanetConfig,
+        'items' => $items,
+        'feeds' => $feeds
+    ));
+} else {
+    if ('archive' === $_GET['type']) {
+        header('Content-type: text/html; charset=UTF-8');
+        echo $twig->render('archive.twig', array(
+            'config' => $PlanetConfig,
+            'items' => $items,
+            'feeds' => $feeds
+        ));
+    }
+    if ('atom10' === $_GET['type']) {
+        /* XXX: Redirect old ATOM feeds to new url to make sure our users don't
+         * loose subscribers upon upgrading their moonmoon installation.
+         * Remove this check in a more distant future.
+         */
+        header('Status: 301 Moved Permanently', false, 301);
+        header('Location: atom.php');
+        exit;
+    }
 }
 
 echo "<!--";

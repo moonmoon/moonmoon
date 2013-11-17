@@ -10,7 +10,7 @@ $Planet->addPerson(
 );
 
 //Load feeds
-$Planet->download(1);
+$Planet->download();
 header("Content-type: image/png");
 readfile(dirname(__FILE__)."/custom/img/feed.png");
 die();

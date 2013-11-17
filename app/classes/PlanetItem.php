@@ -13,21 +13,69 @@ class PlanetItem
     private $author;
     private $content;
     private $feedUrl;
+    private $feed;
 
-    public function __construct($feed, $data)
+    public function __construct($data = null)
     {
-        parent::SimplePie_Item($feed, $data);
-        $this->guid = "plop";
-        $this->feedUrl = $this->get_feed()->feed_url;
+        if ($data) {
+            $default = array(
+                'guid' => '',
+                'permalink' => '',
+                'date' => '',
+                'title' => '',
+                'author' => '',
+                'content' => '',
+                'feedUrl' => '',
+                'feed' => null
+            );
+            foreach (array_keys($default) as $attr) {
+                if (array_key_exists($attr, $data)) {
+                    $this->{$attr} = $data[$attr];
+                } else {
+                    $this->{$attr} = $default[$attr];
+                }
+            }
+        }
     }
 
-    function __get($name)
+    public function initFromSimplepieItem($Simplepie_Item, $feed) {
+        $this->guid = $Simplepie_Item->get_id();
+        $this->permalink = $Simplepie_Item->get_permalink();
+        $this->date = $Simplepie_Item->get_date() ? $Simplepie_Item->get_date('U') : date('U');
+        $this->title = $Simplepie_Item->get_title();
+        $this->author = $Simplepie_Item->get_author()? $Simplepie_Item->get_author()->get_name() : '';
+        $this->content = $Simplepie_Item->get_content();
+        $this->feedUrl = $Simplepie_Item->get_feed()->feed_url;    
+
+        $this->feed = $feed;
+    }
+
+    public function __get($name)
     {
-        error_log("get $name");
         if (property_exists('PlanetItem', $name))
         {
             return $this->$name;
         }
+    }
+
+    public function __isset($name)
+    {
+        if (property_exists('PlanetItem', $name)) {
+            return true;
+        }
+        return false;
+    }
+
+    public function get_id() {
+        return $this->id;
+    }
+
+    public function get_date($format='c') {
+        return date($format, $this->date);
+    }
+
+    public function get_feed() {
+        return $this->feed;
     }
 
     public function compare($item1, $item2)

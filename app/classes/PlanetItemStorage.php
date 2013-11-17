@@ -36,9 +36,10 @@ class PlanetItemStorage
                     "guid" TEXT PRIMARY KEY  NOT NULL ,
                     "permalink" TEXT,
                     "date" DATETIME NOT NULL ,
-                    "title" TEXT, "author" TEXT,
+                    "title" TEXT, 
+                    "author" TEXT,
                     "content" TEXT,
-                    "feed_url" text
+                    "feed_url" TEXT
                 );';
             $db->query($query);
 

@@ -1,0 +1,25 @@
+{% extends "base.twig" %}
+
+{% block title %}{{'Archives'|g}} - {{config.getName}}{% endblock %}
+
+{% block body %}
+<div id="page">
+    {% include 'header.twig' %}
+
+    <div id="content">
+        <div class="article">
+            <ul>
+                {% for item in items %}
+                    <li><a href="{{item.permalink}}" title="{{'Go to original place'|g}}">{{ item.title | striptags | default("No title") }}</a>
+                    </li>
+                {%  else %}
+                    <li>{{ 'No article' | g }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    {% include 'sidebar.twig' %}
+    {% include 'footer.twig' %}
+</div>
+{% endblock %}

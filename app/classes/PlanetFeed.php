@@ -16,11 +16,11 @@ class PlanetFeed extends SimplePie
         $this->feed    = $feed;
         $this->website = $website;
         parent::__construct();
-        $this->set_item_class('PlanetItem');
+        // $this->set_item_class('PlanetItem');
         $this->set_cache_location(dirname(__FILE__).'/../../cache');
         $this->set_autodiscovery_level(SIMPLEPIE_LOCATOR_NONE);
         $this->set_feed_url($this->getFeed());
-        $this->set_timeout(5);
+        // $this->set_timeout(5);
         $this->set_stupidly_fast(true);
     }
 

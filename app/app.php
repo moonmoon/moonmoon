@@ -1,13 +1,5 @@
 <?php
-
-//Debug ?
-$debug = isset($_GET['debug']) ? $_GET['debug'] : 0;
-if ($debug) {
-    error_reporting(E_ALL);
-} else {
-    error_reporting(0);
-}
-
+require __DIR__ . '/../vendor/autoload.php';
 include(dirname(__FILE__).'/lib/lib.opml.php');
 include(dirname(__FILE__).'/lib/simplepie/simplepie_1.3.compiled.php');
 include(dirname(__FILE__).'/lib/spyc-0.5/spyc.php');
@@ -40,6 +32,7 @@ if (is_file($savedConfig)){
     if ('sqlite' === $PlanetConfig->getStorage()) {
         $db = __DIR__ . "/../custom/feeds.sqlite";
         PlanetItemStorage::initialize($db);
+        $storage = new PlanetItemStorage($db);
     } else {
         $storage = null;
     }
@@ -53,5 +46,10 @@ $l10n = new Simplel10n($conf['locale']);
 function _g($str, $comment='') {
     return Simplel10n::getString($str);
 }
+$l10n_filter = new Twig_SimpleFilter('g', function ($string) {
+    return _g($string);
+});
 
-
+$loader = new Twig_Loader_Filesystem(__DIR__ . '/../custom/views');
+$twig = new Twig_Environment($loader);
+$twig->addFilter($l10n_filter);

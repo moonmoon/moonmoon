@@ -107,43 +107,42 @@ class Planet
     }
 
     /**
-     * Load feeds
+     * Load feeds from cache
      */
     public function loadFeeds()
     {
+        $this->items = array();
+
+        //Load from database
+        // if ($this->storage) {
+        //     $db_items = $this->storage->getAll();
+        //     foreach ($db_items as $item) {
+        //         $this->items[] = new 
+        //     }
+        // }
+
+        //Load from Simplepie Cache
         foreach ($this->people as $feed) {
             $feed->init();
-            $this->items = array_merge($this->items, $feed->get_items());
+            $feed->set_timeout(0);
+            $items = array_merge($this->items, $feed->get_items());
+            foreach ($items as $item) {
+                $planet_item = new PlanetItem();
+                $planet_item->initFromSimplepieItem($item, $feed);
+                $this->items[] = $planet_item;
+            }
         }
 
         $this->sort();
     }
 
     /**
-     * Download
-     * @var $max_load percentage of feeds to load
+     * Download feeds from source
      */
-    public function download($max_load=0.1)
+    public function download()
     {
-
-        $max_load_feeds = ceil(count($this->people) * $max_load);
-
         foreach ($this->people as $feed) {
-            //Avoid mass loading with variable cache duration
-            //$feed->set_cache_duration($this->config->getCacheTimeout()+rand(0,30));
-            $feed->set_cache_duration($this->config->getCacheTimeout());
-
-            //Load only a few feeds, force other to fetch from the cache
-            if (0 > $max_load_feeds--) {
-                $feed->set_timeout(-1);
-                $this->errors[] = new PlanetError(1, 'Forced from cache : '.$feed->getFeed());
-            }
-
-            //Load feed
             $feed->init();
-
-            // http://simplepie.org/wiki/reference/simplepie/merge_items ?
-            //Add items to index
             if ($feed->get_item_quantity() > 0){
                 $items = $feed->get_items();
                 $this->items = array_merge($this->items, $items);

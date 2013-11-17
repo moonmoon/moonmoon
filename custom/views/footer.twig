@@ -1,0 +1,4 @@
+<div id="footer">
+    <p>{{ 'Powered by <a %s>moonmoon</a>' | g | replace({'%s':'href="http://moonmoon.org"'}) | raw }} | 
+    <a href="{{ config.getUrl }}/admin/">{{'Administration'|g}}</a></p>
+</div>
