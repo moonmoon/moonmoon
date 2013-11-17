@@ -37,9 +37,9 @@ if (is_file($savedConfig)){
     }
 
     $Planet = new Planet($PlanetConfig, $storage);
+$l10n = new Simplel10n($conf['locale']);
 }
 
-$l10n = new Simplel10n($conf['locale']);
 
 // this is an helper function. We will usually use that function and not Simplel10n::getString()
 function _g($str, $comment='') {
