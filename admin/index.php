@@ -1,20 +1,6 @@
 <?php
-
 require_once dirname(__FILE__) . '/inc/auth.inc.php';
 require_once dirname(__FILE__) . '/../app/app.php';
-
-//Load configuration
-$config_file = dirname(__FILE__) . '/../custom/config.yml';
-
-if (is_file($config_file)){
-    $conf = Spyc::YAMLLoad($config_file);
-    $PlanetConfig = new PlanetConfig($conf);
-} else {
-    die('Config file (custom/config.yml) is missing.');
-}
-
-//Instantiate app
-$Planet = new Planet($PlanetConfig);
 
 //Load
 if (0 < $Planet->loadOpml(dirname(__FILE__) . '/../custom/people.opml')) {
