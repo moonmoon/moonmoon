@@ -72,7 +72,14 @@ h1, h2{
     width: 20em;
     float: left;
 }
+    #sidebar a {
+        text-decoration: none;
+    }
+    #sidebar a:hover {
+        text-decoration: underline;
+    }
     #sidebar div {
+        font-size: 0.9em;
         padding: 1em 30px;
     }
     #sidebar h2 {
@@ -88,7 +95,7 @@ h1, h2{
 /* Article
 *******************************************************************************/
 .article{
-    border-radius: 3px;
+    border-radius: 4px;
     margin-bottom: 2em;
     padding: 30px;
     background: #FFF;
