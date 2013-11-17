@@ -41,6 +41,11 @@ class PlanetItemStorage
                     "feed_url" text
                 );';
             $db->query($query);
+
+            $query_index = '
+                CREATE INDEX "feed_url_index" ON "items" (feed_url);
+            ';
+            $db->query($query_index);
         }
         return $db;
     }
@@ -78,10 +83,37 @@ class PlanetItemStorage
      * Get all items from database
      * @return Array All items ordered by date
      */
-    public function getAll()
+    public function getAll($where = array())
     {
-        $query = "SELECT * FROM items ORDER BY date DESC";
+        $query = "SELECT * FROM items";
+        if (count($where)) {
+            $query.= " WHERE " . join($where, " AND ");
+        }
+        $query.= " ORDER BY date DESC";
         $sth = $this->db->query($query);
         return $sth->fetchAll();
+    }
+
+    /**
+     * Get items for a given feed URL
+     * @param String Feed URL
+     * @return Array All items ordered by date
+     */
+    public function getItemsByFeed($feed_url)
+    {
+        return $this->getAll(
+            array(
+                'feed_url = "' . $feed_url . '"'
+            )
+        );
+    }
+
+    /**
+     * Delete items for a given feed
+     */
+    public function deleteItemsByFeed($feed_url) {
+        $query = 'DELETE FROM items WHERE feed_url = ?';
+        $sth = $this->db->prepare($query);
+        $sth->execute(array($feed_url));
     }
 }
