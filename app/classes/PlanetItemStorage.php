@@ -31,22 +31,26 @@ class PlanetItemStorage
 
         if ($sqliteAvailable && $noDatabase) {
             $db = new PDO('sqlite:' . $filepath);
-            $query = '
-                CREATE TABLE "items" (
-                    "guid" TEXT PRIMARY KEY  NOT NULL ,
-                    "permalink" TEXT,
-                    "date" DATETIME NOT NULL ,
-                    "title" TEXT, 
-                    "author" TEXT,
-                    "content" TEXT,
-                    "feed_url" TEXT
-                );';
-            $db->query($query);
 
-            $query_index = '
-                CREATE INDEX "feed_url_index" ON "items" (feed_url);
-            ';
-            $db->query($query_index);
+            //Create tables if needed
+            if ($noDatabase) {
+                $query = '
+                    CREATE TABLE "items" (
+                        "guid" TEXT PRIMARY KEY  NOT NULL ,
+                        "permalink" TEXT,
+                        "date" DATETIME NOT NULL ,
+                        "title" TEXT, 
+                        "author" TEXT,
+                        "content" TEXT,
+                        "feed_url" TEXT
+                    );';
+                $db->query($query);
+
+                $query_index = '
+                    CREATE INDEX "feed_url_index" ON "items" (feed_url);
+                ';
+                $db->query($query_index);
+            }
         }
         return $db;
     }
@@ -83,6 +87,7 @@ class PlanetItemStorage
      * getAll
      * Get all items from database
      * @return Array All items ordered by date
+     * @FIXME : should have feeds as parameter
      */
     public function getAll($where = array())
     {
