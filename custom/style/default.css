@@ -1,19 +1,19 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:700|Open+Sans:400italic,700italic,400,700);
+
 html{
-    font-family: "Lucida Grande", "Segoe UI", sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: #111;
-    background: #EEE;
-    font-size: 62.5%;
+    background: #F3F3F3;
 }
 
 body{
     margin: 0;
     padding: 0;
-    font-size: 1.3em;
     line-height: 1.5em;
 }
 
 a{
-    color: #669;
+    color: #39C;
 }
 
 a:visited{
@@ -36,23 +36,19 @@ pre, code{
 }
 
 h1, h2{
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-h2{
-    margin: 0;
+    /*font-weight: normal;*/
+    font-family: 'Lato', sans-serif;
 }
 
 #page {
-    width: 890px;
+    max-width: 60em;
     margin: 0 auto;
 }
 
 /* Header
 *******************************************************************************/
 #top {
-    color: #FFF;
-    padding: 10px 30px;
+    padding: 1em 30px;
 }
     h1 a,
     h1 a:visited {
@@ -66,20 +62,21 @@ h2{
 /* Content
 *******************************************************************************/
 #content {
-    width: 590px;
+    width: 40em;
     float: left;
 }
 
 /* Sidebar
 *******************************************************************************/
 #sidebar {
-    width: 300px;
+    width: 20em;
     float: left;
 }
     #sidebar div {
         padding: 1em 30px;
     }
     #sidebar h2 {
+        margin-top: 0;
         color: #665;
     }
     #sidebar ul {
@@ -91,25 +88,32 @@ h2{
 /* Article
 *******************************************************************************/
 .article{
+    border-radius: 3px;
     margin-bottom: 2em;
     padding: 30px;
     background: #FFF;
-    border: 1px solid #DDD;
 }
-
+    .article-title {
+        margin-top: 0;
+        line-height: 1.5;
+    }
     .article-title,
     .article-title a{
         color: #111;
         text-decoration: none;
     }
+    .article-title a:hover {
+        color: #39C;
+    }
 
     .article-info{
+        font-size: 0.8em;
         margin: 0 0 1em 0;
         color: #999;
     }
     
     .article-content {
-        font-family: Georgia, serif;
+        
     }
 
     .article img{
