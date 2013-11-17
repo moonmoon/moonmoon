@@ -21,7 +21,7 @@ if (!isset($_GET['type'])) {
     header('Content-type: text/html; charset=UTF-8');
     echo $twig->render('index.twig', array(
         'config' => $PlanetConfig,
-        'items' => $items,
+        'items' => array_slice($items, 0, $PlanetConfig->getMaxDisplay()),
         'feeds' => $feeds
     ));
 } else {
