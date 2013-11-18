@@ -89,7 +89,7 @@ class PlanetItemStorage
      *
      * @todo should have feeds as parameter
      */
-    public function getAll($where = array(), $limit = null, $offset = null)
+    private function getAll($where = array(), $limit = null, $offset = null)
     {
         $query = "SELECT guid, permalink, date, title, author, content, feed_url as feedUrl FROM items";
         if (count($where)) {
@@ -121,11 +121,32 @@ class PlanetItemStorage
      */
     public function getItemsByFeed($feed_url)
     {
-        return $this->getAll(
-            array(
-                'feed_url = "' . $feed_url . '"'
-            )
-        );
+        if (is_string($feed_url)) {
+            $where = array(
+                'feed_url = "' . $this->db->quote($feed_url) . '"'
+            );
+        } else if (is_array($feed_url)) {
+            $urls = array();
+            foreach ($feed_url as $feed) {
+                //expect $feed to be a PlanetFeed instance
+                $urls[] = $this->db->quote($feed->feed_url);
+            }
+            $where = array(
+                'feed_url IN (' . implode(",", $urls) . ')'
+            );
+        }
+
+        $items = $this->getAll($where);
+
+        foreach ($items as $item) {
+            foreach ($feed_url as $feed) {
+                if ($item->feedUrl == $feed->feed_url) {
+                    $item->set_feed($feed);
+                }
+            }
+        }
+
+        return $items;
     }
 
     /**

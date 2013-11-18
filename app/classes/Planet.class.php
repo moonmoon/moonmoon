@@ -111,8 +111,8 @@ class Planet
      */
     public function loadFeeds()
     {
-        //Load items from Simplepie cache
         if (!$this->storage) {
+            // Load items from Simplepie cache
             $simplepie_items = array();
             
             foreach ($this->people as $feed) {
@@ -127,19 +127,9 @@ class Planet
             }
             $this->sort();
         } else {
-            $this->items = $this->storage->getAll();
-
-            //Link an item to its feed
-            //@FIXME: should be done in PlanetItemStorage
-            foreach ($this->items as $item) {
-                foreach ($this->people as $feed) {
-                    if ($item->feedUrl == $feed->feed_url) {
-                        $item->set_feed($feed);
-                    }
-                }
-            }
+            // Load items from database
+            $this->items = $this->storage->getItemsByFeed($this->people);
         }
-
     }
 
     /**
