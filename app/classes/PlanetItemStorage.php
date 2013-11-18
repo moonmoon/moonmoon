@@ -121,11 +121,11 @@ class PlanetItemStorage
      */
     public function getItemsByFeed($feed_url)
     {
-        if (is_string($feed_url)) {
-            $where = array(
-                'feed_url = "' . $this->db->quote($feed_url) . '"'
-            );
-        } else if (is_array($feed_url)) {
+        if (is_a($feed_url, "PlanetFeed")) {
+            $feed_url = array($feed_url);
+        }
+        
+        if (is_array($feed_url)) {
             $urls = array();
             foreach ($feed_url as $feed) {
                 //expect $feed to be a PlanetFeed instance
@@ -152,7 +152,7 @@ class PlanetItemStorage
     /**
      * Delete items for a given feed
      */
-    public function deleteItemsByFeed($feed_url) {
+    public function deleteItemsByFeedUrl($feed_url) {
         $query = 'DELETE FROM items WHERE feed_url = ?';
         $sth = $this->db->prepare($query);
         $sth->execute(array($feed_url));
