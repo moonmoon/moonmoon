@@ -17,7 +17,7 @@ class PlanetItem
 
     public function __construct($data = null)
     {
-        if ($data) {
+        if (is_array($data)) {
             $default = array(
                 'guid' => '',
                 'permalink' => '',
@@ -35,22 +35,17 @@ class PlanetItem
                     $this->{$attr} = $default[$attr];
                 }
             }
-        }
-    }
+        } else if (is_a($data, "SimplePie_Item")) {
+            $this->guid      = $data->get_id();
+            $this->permalink = $data->get_permalink();
+            $this->date      = $data->get_date() ? $data->get_date('U') : date('U');
+            $this->title     = $data->get_title();
+            $this->author    = $data->get_author()? $data->get_author()->get_name() : '';
+            $this->content   = $data->get_content();
+            $this->feedUrl   = $data->get_feed()->feed_url;    
 
-    public function initFromSimplepieItem($Simplepie_Item, $feed) {
-        if ("SimplePie_Item" !== get_class($Simplepie_Item)) {
-            return;
+            $this->feed = $data->get_feed();
         }
-        $this->guid = $Simplepie_Item->get_id();
-        $this->permalink = $Simplepie_Item->get_permalink();
-        $this->date = $Simplepie_Item->get_date() ? $Simplepie_Item->get_date('U') : date('U');
-        $this->title = $Simplepie_Item->get_title();
-        $this->author = $Simplepie_Item->get_author()? $Simplepie_Item->get_author()->get_name() : '';
-        $this->content = $Simplepie_Item->get_content();
-        $this->feedUrl = $Simplepie_Item->get_feed()->feed_url;    
-
-        $this->feed = $feed;
     }
 
     public function __get($name)

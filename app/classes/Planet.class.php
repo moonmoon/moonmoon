@@ -111,10 +111,10 @@ class Planet
      */
     public function loadFeeds()
     {
-        $simplepie_items = array();
-
         //Load items from Simplepie cache
-        if ('sqlite' !== $this->config->storage) {
+        if (!$this->storage) {
+            $simplepie_items = array();
+            
             foreach ($this->people as $feed) {
                 $feed->init();
                 $feed->set_timeout(0);
@@ -123,9 +123,7 @@ class Planet
 
             //Convert Simplepie_Item to PlanetItem
             foreach ($simplepie_items as $item) {
-                $planet_item = new PlanetItem();
-                $planet_item->initFromSimplepieItem($item, $item->get_feed());
-                $this->items[] = $planet_item;
+                $this->items[] = new PlanetItem($item);
             }
             $this->sort();
         } else {

@@ -9,28 +9,19 @@ class PlanetItemStorage
 
     /**
      * PlanetItemStorage constructor
+     *
+     * Connect to given SQLite database. If the database doesn't exists,
+     * it is created.
+     *
      * @param string $filepath Sqlite3 database filepath
      */
-    public function __construct($db)
+    public function __construct($filepath)
     {
-        $this->db = new PDO('sqlite:' . $db);
-    }
-
-    /**
-     * initialize
-     * Create the sqlite database
-     * @param string $filepath Database file path
-     *
-     * @return PDO Newly created database
-     */
-    public static function initialize($filepath)
-    {
-        $db = null;
         $sqliteAvailable = extension_loaded('pdo_sqlite');
         $noDatabase = !is_file($filepath);
 
         if ($sqliteAvailable && $noDatabase) {
-            $db = new PDO('sqlite:' . $filepath);
+            $dbh = new PDO('sqlite:' . $filepath);
 
             //Create tables if needed
             if ($noDatabase) {
@@ -44,21 +35,26 @@ class PlanetItemStorage
                         "content" TEXT,
                         "feed_url" TEXT
                     );';
-                $db->query($query);
+                $dbh->query($query);
 
                 $query_index = '
                     CREATE INDEX "feed_url_index" ON "items" (feed_url);
                 ';
-                $db->query($query_index);
+                $dbh->query($query_index);
             }
+
+            $this->db = $dbh;
+        } else {
+            $this->db = new PDO('sqlite:' . $filepath);
         }
-        return $db;
     }
 
     /**
-     * save
-     * Save one item to database
-     * @param PlanetItem $item
+     * Save an item to database
+     *
+     * @param PlanetItem $item Item to be saved
+     *
+     * @todo return value
      */
     public function save($item)
     {
@@ -84,18 +80,30 @@ class PlanetItemStorage
     }
 
     /**
-     * getAll
-     * Get all items from database
-     * @return Array All items ordered by date
-     * @FIXME : should have feeds as parameter
+     * Fetch items from database
+     *
+     * @param string[] $where Array of where clauses
+     * @param int $limit Number of items to fetch
+     * @param int $offset Offet for fetching items
+     * @return PlanetItem[] Array of PlanetItem ordered by date (most recent first)
+     *
+     * @todo should have feeds as parameter
      */
-    public function getAll($where = array())
+    public function getAll($where = array(), $limit = null, $offset = null)
     {
         $query = "SELECT guid, permalink, date, title, author, content, feed_url as feedUrl FROM items";
         if (count($where)) {
             $query.= " WHERE " . join($where, " AND ");
         }
         $query.= " ORDER BY date DESC";
+        if ($limit) {
+            $limit = (int) $limit;
+            $query.= " LIMIT $limit";
+            if ($offset) {
+                $offset = (int) $offset;
+                $query.= " OFFSET $offset";
+            }
+        }
         $sth = $this->db->query($query);
 
         $out = array();

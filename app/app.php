@@ -13,6 +13,7 @@ include_once(dirname(__FILE__).'/classes/Simplel10n.class.php');
 
 $savedConfig  = dirname(__FILE__).'/../custom/config.yml';
 $moon_version = file_get_contents(dirname(__FILE__).'/../VERSION');
+$db = __DIR__ . "/../custom/feeds.sqlite";
 
 if (is_file($savedConfig)){
 
@@ -27,19 +28,24 @@ if (is_file($savedConfig)){
 
     $PlanetConfig = new PlanetConfig($conf);
 
-    // Use storage ?
+    // Connect to database
     if ('sqlite' === $PlanetConfig->getStorage()) {
-        $db = __DIR__ . "/../custom/feeds.sqlite";
-        PlanetItemStorage::initialize($db);
-        $storage = new PlanetItemStorage($db);
+        try {
+            $storage = new PlanetItemStorage($db);
+        } catch (Exception $e) {
+            error_log("Couldn't open database: " . $e->getMessage());
+            $storage = null;
+        }
     } else {
         $storage = null;
     }
 
+    //Instantiate Planet
     $Planet = new Planet($PlanetConfig, $storage);
-$l10n = new Simplel10n($conf['locale']);
-}
 
+    //Initialize translation
+    $l10n = new Simplel10n($conf['locale']);
+}
 
 // this is an helper function. We will usually use that function and not Simplel10n::getString()
 function _g($str, $comment='') {
@@ -49,6 +55,7 @@ $l10n_filter = new Twig_SimpleFilter('g', function ($string) {
     return _g($string);
 });
 
+// Initialize Twig
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/../custom/views');
 $twig = new Twig_Environment($loader);
 $twig->addFilter($l10n_filter);
