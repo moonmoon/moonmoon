@@ -116,8 +116,8 @@ class PlanetItemStorage
 
     /**
      * Get items for a given feed URL
-     * @param String Feed URL
-     * @return Array All items ordered by date
+     * @param PlanetFeed[] One or multiple PlanetFeed object
+     * @return PlanetItem[] All items ordered by date
      */
     public function getItemsByFeed($feed_url)
     {
