@@ -10,7 +10,7 @@
         <div class="article">
             <ul>
                 {% for item in items %}
-                    <li><a href="{{item.permalink}}" title="{{'Go to original place'|g}}">{{ item.title | striptags | default("No title") }}</a>
+                    <li>{{item.feed.getName}}: <a href="{{item.permalink}}" title="{{'Go to original place'|g}}">{{ item.title | striptags | default("No title") }}</a> ({{item.date|date("d/m/Y H:i")}})
                     </li>
                 {%  else %}
                     <li>{{ 'No article' | g }}</li>
