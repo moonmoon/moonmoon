@@ -28,7 +28,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
         'cache'         => 10,
         'cachedir'      => './cache',
         'categories'    => '',
-        'storage'       => 'sqlite'
+        'storage'       => ''
     );
 
     $CreatePlanetConfig = new PlanetConfig($config);
@@ -41,14 +41,13 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
         $status = 'installed';
     }
 } else {
-
     // We start by malking sure we have PHP5 as a base requirement
-    if(phpversion() >= 5) {
-        $strInstall = installStatus('Server is running PHP5', 'OK',true);
+    if(phpversion() >= 5.3) {
+        $strInstall = installStatus('Server is running PHP >= 5.3', 'OK',true);
         $strRecommendation = '';
     } else {
-        $strInstall = installStatus('Server is running PHP5', 'FAIL',false);
-        $strRecommendation = '<li>Check your server documentation to activate PHP5</li>';
+        $strInstall = installStatus('Server is running PHP5 >= 5.3', 'FAIL',false);
+        $strRecommendation = '<li>Check your server documentation to activate PHP 5.3</li>';
     }
 
     // Writable file requirements
