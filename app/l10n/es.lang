@@ -1,0 +1,244 @@
+# Translation note:  ¿Está seguro que desea vaciar la caché?
+;Are you sure you want to purge the cache?
+&iquest;Est&aacute; seguro de que desea vaciar la cach&eacute;?
+
+
+# Translation note:  Vaciar la caché
+;Clear cache
+Vaciar la cach&eacute;
+
+
+# Translation note:  Vaciar la caché:
+;Clear cache:
+Vaciar la cach&eacute;:
+
+
+;Clear
+Vaciar
+
+
+# Translation note:  Vaciar la caché hará que moonmoon recargue todas las fuentes web.
+;Clearing the cache will make moonmoon reload all feeds.
+Vaciar la cach&eacute; har&aacute; que moonmoon recargue todas las fuentes web.
+
+
+# Translation note:  Cambiar la contraseña de administración
+;Change administrator password
+Cambiar la contrase&ntilde;a de administraci&oacute;n
+
+
+# Translation note: Nueva contraseña:
+;New password:
+Nueva contrase&ntilde;a:
+
+
+# Translation note:  Cambiar la contraseña
+;Change password
+Cambiar la contrase&ntilde;a
+
+
+# Translation note:  Añadir una nueva fuente web - 'feed' = 'fuente web', 'fuente' or 'canal' in spanish, but you can use 'feed' anyway.
+;Add a new feed
+A&ntilde;adir una nueva fuente web
+
+
+# Translation note: Añadir fuente 
+;Add Feed
+A&ntilde;adir fuente
+
+
+;Link:
+Enlace:
+
+
+# Translation note: Los formatos aceptados son RSS y ATOM. Si el enlace no es una fuente web, moonmoon tratará de encontrar la fuente de forma automática.
+;Accepted formats are RSS and ATOM. If the link is not a feed, moonmoon will try to autodiscover the feed.
+Los formatos aceptados son RSS y ATOM. Si el enlace no es una fuente web, moonmoon tratar&aacute; de encontrar la fuente de forma autom&aacute;tica.
+
+
+;Manage existing feeds
+Administrar las fuentes existentes
+
+
+# Translation note:  Número de fuentes
+;Number of feeds: %s
+N&uacute;mero de fuentes: %s
+
+
+;Save changes
+Guardar cambios
+
+
+;Delete selected Feeds
+Borrar seleccionadas
+
+
+;Select :
+Seleccionar:
+
+
+;All
+Todas
+
+
+;None
+Ninguna
+
+
+# Translation note:  Selección
+;Selection
+Selecci&oacute;n
+
+
+;Name
+Nombre
+
+# Translation note: Última entrada
+;Last entry
+&Uacute;ltima entrada
+
+
+;Website link
+Enlace a la web
+
+
+;Feed link
+Enlace a la fuente
+
+
+# Translation note:  'No está en caché' or 'No en caché'
+;Not in cache
+No est&aacute; en cach&eacute;
+
+
+# Translation note:  Contraseña:
+;Password:
+Contrase&ntilde;a:
+
+
+;OK
+Entrar
+
+
+# Translation note:  Administración de moonmoon
+;moonmoon administration
+Administraci&oacute;n de moonmoon
+
+
+# Translation note:  Volver a la página principal
+;Back to main page
+Volver a la p&aacute;gina principal
+
+
+;Logout
+Salir
+
+
+;Feeds
+Fuentes
+
+
+# Translation note:  Administración
+;Administration
+Administraci&oacute;n
+
+
+;Powered by <a %s>moonmoon</a>
+Desarrollado por <a %s>moonmoon</a>
+
+
+# Translation note:  Sin artículos
+;No article
+Sin art&iacute;culos
+
+
+;No news, good news.
+No hay noticias, buena noticia.
+
+
+;Today
+Hoy
+
+
+# Translation note:  Ir a la ubicación original
+;Go to original place
+Ir a la ubicaci&oacute;n original
+
+
+;This week
+Esta semana
+
+
+;This month
+Este mes
+
+
+;Older items
+Titulares anteriores
+
+
+# Translation note: 'People' = 'Personas', but 'fuentes'(sources), which in Spanish means origins, is more generic.
+;People
+Fuentes
+
+
+;Feed
+Fuente
+
+
+;Website
+Sitio web
+
+
+;All feeds in OPML format
+Todas las fuentes (OPML)
+
+
+# Translation note:  Redifusión
+;Syndicate
+Redifusi&oacute;n
+
+
+;Feed (ATOM)
+Fuente (ATOM)
+
+
+;Archives
+Archivos
+
+
+;See all headlines
+Ver todos los titulares
+
+
+# Translation note:  You may use 'Source' = 'Origen' too.
+;Source:
+Fuente:
+
+
+;You might want to <a href="install.php">install moonmoon</a>.
+Es posible que desee <a href="install.php">instalar moonmoon</a>.
+
+
+# Translation note:  Instalación de moonmoon
+;moonmoon installation
+Instalaci&oacute;n de moonmoon
+
+
+# Translation note:  ¡Felicidades! Su moonmoon está preparado.
+;Congratulations! Your moonmoon is ready.
+&iexcl;Felicidades! Su moonmoon est&aacute; preparado.
+
+
+# Translation note: ¿Y ahora?
+;What's next?
+&iquest;Y ahora?
+
+
+;<strong>Delete</strong> <code>install.php</code> with your FTP software.
+<strong>Borre</strong> <code>install.php</code> con su programa de FTP.
+
+
+# Translation note:  Utilice su contraseña para acceder al panel de administración.
+;Use your password to go to the <a href="./admin/">administration panel</a>
+Utilice su contrase&ntilde;a para acceder al <a href="./admin/">panel de administraci&oacute;n</a>.
