@@ -9,10 +9,17 @@ It can be used to blend articles from different blogs with same interests into a
 Moonmoon is stupidly simple: it only aggregates feeds and spits them out in one single page. 
 It does not archive articles, it does not do comments nor votes.
 
-
 Requirements
 ------------
 Web hosting with PHP5.3 (PHP4 & 5.2 will not work).
+
+
+Installing
+----------
+* Upload all the files to your server (with FTP or other)
+* Open install.php with your browser
+* Follow the instructions
+
 
 License
 -------
