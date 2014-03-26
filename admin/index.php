@@ -99,6 +99,7 @@ ob_start();
                             <th><?=_g('Last entry')?></th>
                             <th><?=_g('Website link')?></th>
                             <th><?=_g('Feed link')?></th>
+                            <th><?=_g('Unavailable')?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,10 +119,12 @@ ob_start();
                                 } else {
                                     echo _g('Not in cache');
                                 }
+                                $check_is_down = $opml_person->getIsDown() === '1' ? 'checked="cheched"' : '';
                                 ?>
                             </td>
                             <td><input type="text" size="30" class="text" name="opml[<?=$i; ?>][website]" value="<?=$opml_person->getWebsite(); ?>" /></td>
                             <td><input type="text" size="30" class="text" name="opml[<?=$i; ?>][feed]" value="<?=$opml_person->getFeed(); ?>" /></td>
+                            <td><input type="checkbox" readonly="readonly" name="opml[<?=$i; ?>][isDown]" <?=$check_is_down?> value="1" /></td>
                         </tr>
                         <?php } ?>
                     </tbody>

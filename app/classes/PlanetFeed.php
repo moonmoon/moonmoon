@@ -9,12 +9,14 @@ class PlanetFeed extends SimplePie
     public $name;
     public $feed;
     public $website;
+    public $isDown;
 
-    public function __construct($name, $feed, $website)
+    public function __construct($name, $feed, $website, $isDown)
     {
         $this->name    = $name;
         $this->feed    = $feed;
         $this->website = $website;
+        $this->isDown  = $isDown;
         parent::__construct();
         $this->set_item_class('PlanetItem');
         $this->set_cache_location(dirname(__FILE__).'/../../cache');
@@ -37,6 +39,11 @@ class PlanetFeed extends SimplePie
     public function getWebsite()
     {
         return $this->website;
+    }
+
+    public function getIsDown()
+    {
+        return $this->isDown;
     }
 
     public function compare($person1, $person2)

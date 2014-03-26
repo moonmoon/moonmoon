@@ -97,7 +97,8 @@ class Planet
                 new PlanetFeed(
                     $opml_person['name'],
                     $opml_person['feed'],
-                    $opml_person['website']
+                    $opml_person['website'],
+                    $opml_person['isDown']
                 )
             );
         }
@@ -110,10 +111,14 @@ class Planet
     public function loadFeeds()
     {
         foreach ($this->people as $feed) {
-            $feed->init();
-            $this->items = array_merge($this->items, $feed->get_items());
-        }
+            //Is down it's filled by cron.php, $Planet->download(1.0) proccess
+            if (!$feed->isDown) {
+                $feed->set_timeout(-1);
+                $feed->init();
+                $this->items = array_merge($this->items, $feed->get_items());
+            }
 
+        }
         $this->sort();
     }
 
@@ -123,8 +128,8 @@ class Planet
      */
     public function download($max_load=0.1)
     {
-
         $max_load_feeds = ceil(count($this->people) * $max_load);
+        $opml = OpmlManager::load(dirname(__FILE__).'/../../custom/people.opml');
 
         foreach ($this->people as $feed) {
             //Avoid mass loading with variable cache duration
@@ -139,6 +144,7 @@ class Planet
 
             //Load feed
             $feed->init();
+            $isDown = '';
 
             // http://simplepie.org/wiki/reference/simplepie/merge_items ?
             //Add items to index
@@ -147,8 +153,17 @@ class Planet
                 $this->items = array_merge($this->items, $items);
             } else {
                 $this->errors[] = new PlanetError(1, 'No items : '.$feed->getFeed());
+                $isDown = '1';
+            }
+
+            //Mark if the feed is temporary unavailable
+            foreach ($opml->entries as $key => $entrie) {
+                if ($feed->getFeed() === $entrie['feed']) {
+                    $opml->entries[$key]['isDown'] = $isDown;
+                }
             }
         }
+        OpmlManager::save($opml, dirname(__FILE__).'/../../custom/people.opml');
     }
 
     public function sort()
