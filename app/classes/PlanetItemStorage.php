@@ -30,7 +30,7 @@ class PlanetItemStorage
                         "guid" TEXT PRIMARY KEY  NOT NULL ,
                         "permalink" TEXT,
                         "date" DATETIME NOT NULL ,
-                        "title" TEXT, 
+                        "title" TEXT,
                         "author" TEXT,
                         "content" TEXT,
                         "feed_url" TEXT
@@ -124,7 +124,7 @@ class PlanetItemStorage
         if (is_a($feed_url, "PlanetFeed")) {
             $feed_url = array($feed_url);
         }
-        
+
         if (is_array($feed_url)) {
             $urls = array();
             foreach ($feed_url as $feed) {

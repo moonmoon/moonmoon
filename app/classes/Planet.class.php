@@ -114,7 +114,7 @@ class Planet
         if (!$this->storage) {
             // Load items from Simplepie cache
             $simplepie_items = array();
-            
+
             foreach ($this->people as $feed) {
                 $feed->init();
                 $feed->set_timeout(0);
@@ -152,6 +152,9 @@ class Planet
 
             } else {
                 $this->errors[] = new PlanetError(1, 'No items : '.$feed->getFeed());
+                if ($feed->error) {
+                    $this->errors[] = new PlanetError(1, 'Error : '.$feed->error);
+                }
             }
         }
     }

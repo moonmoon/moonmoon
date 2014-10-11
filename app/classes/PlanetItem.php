@@ -42,7 +42,7 @@ class PlanetItem
             $this->title     = $data->get_title();
             $this->author    = $data->get_author()? $data->get_author()->get_name() : '';
             $this->content   = $data->get_content();
-            $this->feedUrl   = $data->get_feed()->feed_url;    
+            $this->feedUrl   = $data->get_feed()->feed_url;
 
             $this->feed = $data->get_feed();
         }
