@@ -1,3 +1,5 @@
-custom/config.yml
-custom/people.opml
-custom/people.opml.bak
+/admin/inc/pwd.inc.php
+/custom/config.yml
+/custom/people.opml
+/custom/people.opml.bak
+/nbproject/private/
