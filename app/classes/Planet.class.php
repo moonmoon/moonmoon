@@ -54,6 +54,46 @@ class Planet
     }
 
     /**
+     * Compare the supplied password with the known one.
+     *
+     * This functions uses a type-safe and timing-safe comparison, in order to
+     * improve the security of the authentication.
+     *
+     * Read more about this sort of attacks (used for the < PHP 5.6.0 implementation):
+     *  - https://security.stackexchange.com/questions/83660/simple-string-comparisons-not-secure-against-timing-attacks
+     *  - https://github.com/laravel/framework/blob/a1dc78820d2dbf207dbdf0f7075f17f7021c4ee8/src/Illuminate/Support/Str.php#L289
+     *  - https://github.com/symfony/security-core/blob/master/Util/StringUtils.php#L39
+     *
+     * @param  string $known
+     * @param  string $supplied
+     * @return bool
+     */
+    public static function authenticateUser($known = '', $supplied = '')
+    {
+        // The hash_equals function was introduced in PHP 5.6.0. If it's not
+        // existing in the current context (PHP version too old), and to ensure
+        // compatibility with those old interpreters, we'll have to provide
+        // an PHP implementation of this function.
+        if (function_exists('hash_equals')) {
+            return hash_equals($known, $supplied);
+        }
+
+        // Some implementation references can be found on the function comment.
+        $knownLen = mb_strlen($known);
+        if ($knownLen !== mb_strlen($supplied)) {
+            return false;
+        }
+
+        // Ensure that all the characters are the same, and continue until the
+        // end of the string even if an difference was found.
+        for ($i = 0, $comparison = 0; $i < $knownLen; $i++) {
+            $comparison |= ord($known[$i]) ^ ord($supplied[$i]);
+        }
+
+        return ($comparison === 0);
+    }
+
+    /**
      * Getters
      */
     public function getItems()
