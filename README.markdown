@@ -16,9 +16,11 @@ Web hosting with at least PHP5.4 (PHP4 & 5.2, 5.3 will not work).
 Installing
 ----------
 * Upload all the files to your server (with FTP or other)
+OR
+* Use `composer create-project mauricesvay/moonmoon moonmoon`
+* Run `wget https://getcomposer.org/composer.phar && php composer.phar install` 
 * Open install.php with your browser
 * Follow the instructions
-
 
 License
 -------
