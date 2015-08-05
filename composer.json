@@ -1,0 +1,16 @@
+{
+    "name": "mauricesvay/moonmoon",
+    "description": "Moonmoon is a simple feed agregator.",
+    "homepage": "http://moonmoon.org/",
+    "type": "project",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Maurice Svay",
+            "email": "maurice@svay.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    }
+}
