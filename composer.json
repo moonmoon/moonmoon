@@ -18,5 +18,10 @@
     },
     "scripts": {
         "test": "./vendor/bin/codecept"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "app/classes"
+        }
     }
 }
