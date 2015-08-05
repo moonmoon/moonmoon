@@ -4,3 +4,4 @@ custom/people.opml.bak
 
 /vendor/
 composer.lock
+tests/_output/*
