@@ -40,12 +40,12 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
 } else {
 
     // We start by malking sure we have PHP5 as a base requirement
-    if(phpversion() >= 5) {
-        $strInstall = installStatus('Server is running PHP5', 'OK',true);
+    if(version_compare(PHP_VERSION, '5.4.0') >= 0) {
+        $strInstall = installStatus('Server is running at least PHP 5.4', 'OK',true);
         $strRecommendation = '';
     } else {
-        $strInstall = installStatus('Server is running PHP5', 'FAIL',false);
-        $strRecommendation = '<li>Check your server documentation to activate PHP5</li>';
+        $strInstall = installStatus('Server is running at least PHP 5.4', 'FAIL',false);
+        $strRecommendation = '<li>Check your server documentation to activate at least PHP 5.4</li>';
     }
 
     // Writable file requirements
