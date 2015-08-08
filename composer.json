@@ -10,14 +10,15 @@
             "email": "maurice@svay.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "simplepie/simplepie": "1.3.1",
         "php": ">= 5.4",
         "mustangostang/spyc": "0.5.1"
     },
     "require-dev": {
-        "codeception/codeception": "*"
+        "codeception/codeception": "2.1",
+         "guzzlehttp/guzzle": "5.*"
     },
     "scripts": {
         "test": "./vendor/bin/codecept"
