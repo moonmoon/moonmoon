@@ -3,3 +3,5 @@ custom/people.opml
 custom/people.opml.bak
 
 /vendor/
+composer.lock
+tests/_output/*
