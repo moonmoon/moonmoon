@@ -1,17 +1,24 @@
 language: php
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - hhvm
-  - nightly
-
+- 5.4
+- 5.5
+- 5.6
+- hhvm
+- nightly
 matrix:
   allow_failures:
-    - php: hhvm
-    - php: nightly
-
+  - php: hhvm
+  - php: nightly
 install:
-  - composer install
-
+- composer install
+before_deploy:
+- tar czvf moonmoon.tgz --exclude ".git" *
+deploy:
+  provider: releases
+  skip_cleanup: true
+  file: moonmoon.tgz
+  api_key:
+    secure: I9c4d2pgVuXQ7cssMQZ0uW99O8139pJUd92Yo5K/ci6Xlh3BLwkVM/hqlJ8u7Z29cMWcn3i4sIewpA11uRFIAIcmQ0Ug4HxgmgusMjojD+UPC05SqLcABYy630RWUcCFUfWflx/1VwlEtoBuDq1Y/HgJDxYCBIhjDju9f5QxobcreaTa5AboxdJWM1xqampAA5/lBYrJiFOwIXbutjOHbjYXhmHTOT0TlANTaCMlN0HxoApr0JEy+Kwk/kquWov7Y14qk6qRmC/wrMNA6AXd9Mw7iwyW2w54Us5rsBrV4bQjH/+1Uh8WCJQxHHe9uBgHt03t8InA9Mh1M4ErVWS/brxJUkG3yiCdhoolcXXLQVDT+25AzGM94cvwRVQOwZgz4eS5E4/ySwTQBirAz9ZuhDa/sQGCLxsFmpIJ2fGNzxuTMfFt33orsVU7jFWu5pJXM9XcsokFdUPMMm5qV+VVdQsyOrYCeqQdJt8Cjk7BQlNLolLSI9Y/2g32qDW91d1YEzXrX2h1u5TEFXgjvyEz8L+OsuCktfoyOx76RA9YLjDhSCWpjuWwtb3DuaGzvumP1tc7iBqZHO9T4jonjwS6Xq/YUvYYVeNRsylC6U35tXk30MX3URMBx8A4G9ED9KOJvw92BfhlKUFadJ29V/xppwGGAnQGTk0XAmKHymks9qk=
+  on:
+    tags: true
 script: php vendor/bin/codecept run
