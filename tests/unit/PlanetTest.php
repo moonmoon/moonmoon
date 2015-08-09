@@ -44,7 +44,7 @@ class PlanetTest extends \Codeception\TestCase\Test
     public function testFilterItemsByCategoryWithInvalidCategory()
     {
         $this->assertEquals(count($this->planet->_filterItemsByCategory($this->items, null)), count($this->items));
-        $this->assertEquals(count($this->planet->_filterItemsByCategory($this->items, '')), count($this->items));
+        $this->assertEquals(count($this->planet->_filterItemsByCategory($this->items, ' ')), count($this->items));
     }
 
     public function testFilterItemsByCategoryWithNonUsedCategory()
@@ -57,12 +57,14 @@ class PlanetTest extends \Codeception\TestCase\Test
         $this->assertEquals(count($this->planet->_filterItemsByCategory($this->items, 'catA')), 2);
         $this->assertEquals(count($this->planet->_filterItemsByCategory($this->items, 'catB')), 2);
         $this->assertEquals(count($this->planet->_filterItemsByCategory($this->items, 'catC')), 2);
+        $this->assertEquals(count($this->planet->_filterItemsByCategory($this->items, 'CATA')), 2);
     }
 
     public function testFilterItemsByCategoryWithMultipleCategory()
     {
         $this->assertEquals(count($this->planet->_filterItemsByCategory($this->items, 'catA,catB')), 3);
+        $this->assertEquals(count($this->planet->_filterItemsByCategory($this->items, 'catA,catB,catC')), 4);
+        $this->assertEquals(count($this->planet->_filterItemsByCategory($this->items, 'catA, catB')), 3);
     }
-
-
+    
 }
