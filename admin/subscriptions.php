@@ -1,6 +1,7 @@
 <?php
-require_once dirname(__FILE__) . '/inc/auth.inc.php';
+
 require_once dirname(__FILE__) . '/../app/app.php';
+require_once dirname(__FILE__) . '/inc/auth.inc.php';
 
 function removeSlashes(&$item, $key){
     $item = stripslashes($item);

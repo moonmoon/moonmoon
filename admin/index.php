@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(__FILE__) . '/inc/auth.inc.php';
 require_once dirname(__FILE__) . '/../app/app.php';
+require_once dirname(__FILE__) . '/inc/auth.inc.php';
 
 //Load configuration
 $config_file = dirname(__FILE__) . '/../custom/config.yml';

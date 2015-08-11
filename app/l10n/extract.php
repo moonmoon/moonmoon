@@ -17,9 +17,10 @@
 // return;
 
 $root = dirname(__FILE__) . '/../../';
-$GLOBALS['english'] = array();
 
-include_once $root . '/app/classes/Simplel10n.class.php';
+require_once $root.'/vendors/autoload.php';
+
+$GLOBALS['english'] = array();
 
 /*
  * This is a file parser to extract localizable strings (in .php files)

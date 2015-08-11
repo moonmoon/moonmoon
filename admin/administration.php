@@ -1,7 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/inc/auth.inc.php';
 require_once dirname(__FILE__) . '/../app/app.php';
+require_once dirname(__FILE__) . '/inc/auth.inc.php';
+
 
 $opml         = OpmlManager::load(dirname(__FILE__) . '/../custom/people.opml');
 $opml_people  = $opml->getPeople();
