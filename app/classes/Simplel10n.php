@@ -9,7 +9,7 @@ class Simplel10n {
     public function __construct($locale='en') {
         $GLOBALS['locale'] = array();
         $this->locale      = $locale;
-        $this->l10nFolder  = dirname(__FILE__) . '/../l10n/';
+        $this->l10nFolder  = __DIR__ . '/../l10n/';
         $this->load($this->l10nFolder . $this->locale);
     }
 

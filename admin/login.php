@@ -4,7 +4,7 @@ if (isset($_POST['password'])) {
     header('Location: index.php');
 }
 
-require_once dirname(__FILE__) . '/../app/app.php';
+require_once __DIR__ . '/../app/app.php';
 $page_content = <<<FRAGMENT
             <form action="" method="post" class="login">
                 <fieldset>
@@ -31,4 +31,4 @@ FRAGMENT;
 $page_id      = 'admin-login';
 $admin_access = 0;
 
-require_once dirname(__FILE__) . '/template.php';
+require_once __DIR__ . '/template.php';

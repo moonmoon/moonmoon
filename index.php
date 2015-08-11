@@ -1,6 +1,6 @@
 <?php
-include_once(dirname(__FILE__).'/app/app.php');
-include_once(dirname(__FILE__).'/app/lib/Cache.php');
+include_once(__DIR__.'/app/app.php');
+include_once(__DIR__.'/app/lib/Cache.php');
 
 //Installed ?
 if (!isset($Planet)) {
@@ -10,7 +10,7 @@ if (!isset($Planet)) {
 
 //Load from cache
 $items = Array();
-if (0 < $Planet->loadOpml(dirname(__FILE__).'/custom/people.opml')) {
+if (0 < $Planet->loadOpml(__DIR__.'/custom/people.opml')) {
     $Planet->loadFeeds();
     $items = $Planet->getItems();
 }
@@ -21,7 +21,7 @@ $cache_key      = (count($items)) ? $items[0]->get_id()   : '';
 $last_modified  = (count($items)) ? $items[0]->get_date() : '';
 $cache_duration = $PlanetConfig->getOutputTimeout()*60;
 
-Cache::setStore(dirname(__FILE__) . '/' . $conf['cachedir'] . '/');
+Cache::setStore(__DIR__ . '/' . $conf['cachedir'] . '/');
 
 if (isset($_GET['type']) && $_GET['type'] == 'atom10') {
     /* XXX: Redirect old ATOM feeds to new url to make sure our users don't
@@ -35,13 +35,13 @@ if (isset($_GET['type']) && $_GET['type'] == 'atom10') {
 
 //Go display
 if (!isset($_GET['type']) ||
-    !is_file(dirname(__FILE__).'/custom/views/'.$_GET['type'].'/index.tpl.php') ||
+    !is_file(__DIR__.'/custom/views/'.$_GET['type'].'/index.tpl.php') ||
     strpos($_GET['type'], DIRECTORY_SEPARATOR)){
     $_GET['type'] = 'default';
 }
 
 if (!OutputCache::Start($_GET['type'], $cache_key, $cache_duration)) {
-    include_once(dirname(__FILE__).'/custom/views/'.$_GET['type'].'/index.tpl.php');
+    include_once(__DIR__.'/custom/views/'.$_GET['type'].'/index.tpl.php');
     OutputCache::End();
 }
 

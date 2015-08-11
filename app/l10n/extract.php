@@ -16,7 +16,7 @@
 // released versions of moonmoon should immediately return for security
 // return;
 
-$root = dirname(__FILE__) . '/../../';
+$root = __DIR__ . '/../../';
 
 require_once $root.'/vendors/autoload.php';
 

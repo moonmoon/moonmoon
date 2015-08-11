@@ -1,10 +1,10 @@
 <?php
 
 require_once __DIR__.'/../app/app.php';
-require_once dirname(__FILE__).'/inc/auth.inc.php';
+require_once __DIR__.'/inc/auth.inc.php';
 
 if (isset($_POST['purge'])){
-    $dir = dirname(__FILE__).'/../cache/';
+    $dir = __DIR__.'/../cache/';
 
     $dh = opendir($dir);
 

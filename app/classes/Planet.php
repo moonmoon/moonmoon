@@ -169,7 +169,7 @@ class Planet
     public function download($max_load=0.1)
     {
         $max_load_feeds = ceil(count($this->people) * $max_load);
-        $opml = OpmlManager::load(dirname(__FILE__).'/../../custom/people.opml');
+        $opml = OpmlManager::load(__DIR__.'/../../custom/people.opml');
 
         foreach ($this->people as $feed) {
             //Avoid mass loading with variable cache duration
@@ -203,7 +203,7 @@ class Planet
                 }
             }
         }
-        OpmlManager::save($opml, dirname(__FILE__).'/../../custom/people.opml');
+        OpmlManager::save($opml, __DIR__.'/../../custom/people.opml');
     }
 
     public function sort()

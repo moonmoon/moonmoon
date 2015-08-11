@@ -12,7 +12,7 @@ header('Content-type: text/html; charset=UTF-8');
     <meta http-equiv="Content-Style-Type" content="text/css" />
 
     <title><?php echo $PlanetConfig->getName(); ?></title>
-    <?php include(dirname(__FILE__).'/head.tpl.php'); ?>
+    <?php include(__DIR__.'/head.tpl.php'); ?>
 </head>
 
 <body>
@@ -20,7 +20,7 @@ header('Content-type: text/html; charset=UTF-8');
     document.body.className += 'js';
     </script>
     <div id="page">
-        <?php include(dirname(__FILE__).'/top.tpl.php'); ?>
+        <?php include(__DIR__.'/top.tpl.php'); ?>
 
         <div id="content">
             <?php if (0 == count($items)) : ?>
@@ -65,9 +65,9 @@ header('Content-type: text/html; charset=UTF-8');
             <?php endif; ?>
         </div>
 
-        <?php include_once(dirname(__FILE__).'/sidebar.tpl.php'); ?>
+        <?php include_once(__DIR__.'/sidebar.tpl.php'); ?>
 
-        <?php include(dirname(__FILE__).'/footer.tpl.php'); ?>
+        <?php include(__DIR__.'/footer.tpl.php'); ?>
     </div>
 </body>
 </html>

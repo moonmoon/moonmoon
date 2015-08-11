@@ -10,8 +10,8 @@ if ($debug) {
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-$savedConfig  = dirname(__FILE__).'/../custom/config.yml';
-$moon_version = file_get_contents(dirname(__FILE__).'/../VERSION');
+$savedConfig  = __DIR__.'/../custom/config.yml';
+$moon_version = file_get_contents(__DIR__.'/../VERSION');
 
 if (is_file($savedConfig)){
 
