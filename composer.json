@@ -24,8 +24,12 @@
         "test": "./vendor/bin/codecept"
     },
     "autoload": {
-        "psr-4": {
-            "": "app/classes"
-        }
+        "psr-0": {
+            "": "app/classes/"
+        },
+        "files": [
+            "app/lib/lib.opml.php",
+            "app/lib/Cache.php"
+        ]
     }
 }

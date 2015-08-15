@@ -1,10 +1,10 @@
 <?php
 
-require_once dirname(__FILE__) . '/inc/auth.inc.php';
-require_once dirname(__FILE__) . '/../app/app.php';
+require_once __DIR__ . '/../app/app.php';
+require_once __DIR__ . '/inc/auth.inc.php';
 
 //Load configuration
-$config_file = dirname(__FILE__) . '/../custom/config.yml';
+$config_file = __DIR__ . '/../custom/config.yml';
 
 if (is_file($config_file)){
     $conf = Spyc::YAMLLoad($config_file);
@@ -17,7 +17,7 @@ if (is_file($config_file)){
 $Planet = new Planet($PlanetConfig);
 
 //Load
-if (0 < $Planet->loadOpml(dirname(__FILE__) . '/../custom/people.opml')) {
+if (0 < $Planet->loadOpml(__DIR__ . '/../custom/people.opml')) {
     $Planet->loadFeeds();
     $items = $Planet->getItems();
 }
@@ -136,4 +136,4 @@ $page_content = ob_get_contents();
 ob_end_clean();
 
 $admin_access = 1;
-require_once dirname(__FILE__) . '/template.php';
+require_once __DIR__ . '/template.php';

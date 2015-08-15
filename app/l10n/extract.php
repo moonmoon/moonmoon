@@ -16,10 +16,11 @@
 // released versions of moonmoon should immediately return for security
 // return;
 
-$root = dirname(__FILE__) . '/../../';
-$GLOBALS['english'] = array();
+$root = __DIR__ . '/../../';
 
-include_once $root . '/app/classes/Simplel10n.class.php';
+require_once $root.'/vendors/autoload.php';
+
+$GLOBALS['english'] = array();
 
 /*
  * This is a file parser to extract localizable strings (in .php files)

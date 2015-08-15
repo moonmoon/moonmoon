@@ -1,9 +1,10 @@
 <?php
 
-require_once dirname(__FILE__) . '/inc/auth.inc.php';
-require_once dirname(__FILE__) . '/../app/app.php';
+require_once __DIR__ . '/../app/app.php';
+require_once __DIR__ . '/inc/auth.inc.php';
 
-$opml         = OpmlManager::load(dirname(__FILE__) . '/../custom/people.opml');
+
+$opml         = OpmlManager::load(__DIR__ . '/../custom/people.opml');
 $opml_people  = $opml->getPeople();
 $page_id      = 'admin-admin';
 $header_extra = <<<"HTML"
@@ -39,4 +40,4 @@ FRAGMENT;
 
 $footer_extra = '';
 $admin_access = 1;
-require_once dirname(__FILE__) . '/template.php';
+require_once __DIR__ . '/template.php';

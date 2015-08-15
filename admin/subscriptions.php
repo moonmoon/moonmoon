@@ -1,6 +1,7 @@
 <?php
-require_once dirname(__FILE__) . '/inc/auth.inc.php';
-require_once dirname(__FILE__) . '/../app/app.php';
+
+require_once __DIR__ . '/../app/app.php';
+require_once __DIR__ . '/inc/auth.inc.php';
 
 function removeSlashes(&$item, $key){
     $item = stripslashes($item);
@@ -9,12 +10,12 @@ function removeSlashes(&$item, $key){
 if (isset($_POST['opml']) || isset($_POST['add'])) {
 
     // Load config and old OPML
-    $conf = Spyc::YAMLLoad(dirname(__FILE__).'/../custom/config.yml');
+    $conf = Spyc::YAMLLoad(__DIR__.'/../custom/config.yml');
     $PlanetConfig = new PlanetConfig($conf);
     if ($PlanetConfig->getName() === '') {
         $PlanetConfig->setName($oldOpml->getTitle());
     }
-    $oldOpml = OpmlManager::load(dirname(__FILE__).'/../custom/people.opml');
+    $oldOpml = OpmlManager::load(__DIR__.'/../custom/people.opml');
     $newOpml = new opml();
     $newOpml->title = $PlanetConfig->getName();
 
@@ -56,10 +57,10 @@ if (isset($_POST['opml']) || isset($_POST['add'])) {
     }
 
     // Backup old OPML
-    OpmlManager::backup(dirname(__FILE__).'/../custom/people.opml');
+    OpmlManager::backup(__DIR__.'/../custom/people.opml');
 
     // Save new OPML
-    OpmlManager::save($newOpml, dirname(__FILE__).'/../custom/people.opml');
+    OpmlManager::save($newOpml, __DIR__.'/../custom/people.opml');
 }
 header("Location: index.php");
 die();

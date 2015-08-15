@@ -1,8 +1,8 @@
 <?php
-include_once(dirname(__FILE__).'/app/app.php');
-include_once(dirname(__FILE__).'/app/lib/Cache.php');
+include_once(__DIR__.'/app/app.php');
+include_once(__DIR__.'/app/lib/Cache.php');
 
-if ($Planet->loadOpml(dirname(__FILE__).'/custom/people.opml') == 0) exit;
+if ($Planet->loadOpml(__DIR__.'/custom/people.opml') == 0) exit;
 
 $Planet->loadFeeds();
 $items = $Planet->getItems();

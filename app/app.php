@@ -10,18 +10,8 @@ if ($debug) {
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-include(dirname(__FILE__).'/lib/lib.opml.php');
-include(dirname(__FILE__).'/lib/spyc-0.5/spyc.php');
-
-include_once(dirname(__FILE__).'/classes/PlanetConfig.php');
-include_once(dirname(__FILE__).'/classes/PlanetFeed.php');
-include_once(dirname(__FILE__).'/classes/PlanetItem.php');
-include_once(dirname(__FILE__).'/classes/PlanetError.php');
-include_once(dirname(__FILE__).'/classes/Planet.class.php');
-include_once(dirname(__FILE__).'/classes/Simplel10n.class.php');
-
-$savedConfig  = dirname(__FILE__).'/../custom/config.yml';
-$moon_version = file_get_contents(dirname(__FILE__).'/../VERSION');
+$savedConfig  = __DIR__.'/../custom/config.yml';
+$moon_version = file_get_contents(__DIR__.'/../VERSION');
 
 if (is_file($savedConfig)){
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/app/app.php';
+require_once __DIR__ . '/app/app.php';
 
 // This is an helper function returning an html table row to avoid code duplication
 function installStatus($str, $msg, $result) {
@@ -9,8 +9,8 @@ function installStatus($str, $msg, $result) {
 }
 
 // If the password and config files exist, moonmoon is already installed
-if (file_exists(dirname(__FILE__) . '/custom/config.yml')
-    && file_exists(dirname(__FILE__) . '/admin/inc/pwd.inc.php')) {
+if (file_exists(__DIR__ . '/custom/config.yml')
+    && file_exists(__DIR__ . '/admin/inc/pwd.inc.php')) {
     $status = 'installed';
 } elseif (isset($_REQUEST['url'])) {
     $save = array();
@@ -29,10 +29,10 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
     );
 
     $CreatePlanetConfig = new PlanetConfig($config);
-    $save['config'] = file_put_contents(dirname(__FILE__).'/custom/config.yml', $CreatePlanetConfig->toYaml());
+    $save['config'] = file_put_contents(__DIR__.'/custom/config.yml', $CreatePlanetConfig->toYaml());
 
     //Save password
-    $save['password'] = file_put_contents(dirname(__FILE__).'/admin/inc/pwd.inc.php', '<?php $login="admin"; $password="'.md5($_REQUEST['password']).'"; ?>');
+    $save['password'] = file_put_contents(__DIR__.'/admin/inc/pwd.inc.php', '<?php $login="admin"; $password="'.md5($_REQUEST['password']).'"; ?>');
 
     if (0 != ($save['config'] + $save['password'])) {
         $status = 'installed';
@@ -58,7 +58,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml')
 
     // We now test that all required files are writable
     foreach ($tests as $v) {
-        if(is_writable(dirname(__FILE__) . $v)) {
+        if(is_writable(__DIR__ . $v)) {
             $strInstall .= installStatus("<code>$v</code> is writable", 'OK', true);
         } else {
             $strInstall .= installStatus("<code>$v</code> is writable", 'FAIL',false);

@@ -1,5 +1,5 @@
 <?php
-include_once(dirname(__FILE__).'/app/app.php');
+include_once(__DIR__.'/app/app.php');
 
 $Planet->addPerson(
     new PlanetFeed(
@@ -12,5 +12,5 @@ $Planet->addPerson(
 //Load feeds
 $Planet->download(1);
 header("Content-type: image/png");
-readfile(dirname(__FILE__)."/custom/img/feed.png");
+readfile(__DIR__."/custom/img/feed.png");
 die();

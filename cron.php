@@ -1,8 +1,8 @@
 <?php
-include_once(dirname(__FILE__).'/app/app.php');
+include_once(__DIR__.'/app/app.php');
 
 //Load OPML
-if (0 < $Planet->loadOpml(dirname(__FILE__).'/custom/people.opml')) {
+if (0 < $Planet->loadOpml(__DIR__.'/custom/people.opml')) {
     $Planet->download(1.0);
 }
 
