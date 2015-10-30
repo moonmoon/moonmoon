@@ -1,6 +1,10 @@
-custom/config.yml
-custom/people.opml
-custom/people.opml.bak
+/cache
+/custom/config.yml
+/custom/people.opml
+/custom/people.opml.bak
+/admin/inc/pwd.inc.php
 
 /vendor/
-tests/_output/*
+/tests/_output/*
+
+/nbproject/private/

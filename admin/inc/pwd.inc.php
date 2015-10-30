@@ -1,1 +1,0 @@
-<?php $login="admin"; $password=md5("admin"); ?>
