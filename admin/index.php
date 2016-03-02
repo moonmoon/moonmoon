@@ -119,7 +119,7 @@ ob_start();
                                 } else {
                                     echo _g('Not in cache');
                                 }
-                                $check_is_down = $opml_person->getIsDown() === '1' ? 'checked="cheched"' : '';
+                                $check_is_down = $opml_person->getIsDown() === '1' ? 'checked="checked"' : '';
                                 ?>
                             </td>
                             <td><input type="text" size="30" class="text" name="opml[<?=$i; ?>][website]" value="<?=$opml_person->getWebsite(); ?>" /></td>
