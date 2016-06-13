@@ -1,5 +1,14 @@
 <?php
 
+$composerAutoloader =  __DIR__.'/../vendor/autoload.php';
+// Ensure that the user ran `composer install` or has the `vendor` folder
+// before trying to require it. If not, display a short help message.
+if (!file_exists($composerAutoloader)) {
+    die('Please run the following command in a shell: composer install');
+}
+
+require_once $composerAutoloader;
+
 //Debug ?
 $debug = isset($_GET['debug']) ? $_GET['debug'] : 0;
 if ($debug) {
@@ -7,8 +16,6 @@ if ($debug) {
 } else {
     error_reporting(0);
 }
-
-require_once __DIR__.'/../vendor/autoload.php';
 
 $savedConfig  = __DIR__.'/../custom/config.yml';
 $moon_version = file_get_contents(__DIR__.'/../VERSION');
