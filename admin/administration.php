@@ -1,8 +1,8 @@
 <?php
 
 require_once __DIR__ . '/../app/app.php';
-require_once __DIR__ . '/inc/auth.inc.php';
 
+$auth->redirectIfNotAuthenticated();
 
 $opml         = OpmlManager::load(__DIR__ . '/../custom/people.opml');
 $opml_people  = $opml->getPeople();
