@@ -1,5 +1,5 @@
 <?php
-setcookie('auth','', time()-3600);
-header('Location: login.php');
-die;
-?>
+
+require_once __DIR__ . '/../app/app.php';
+
+$auth->logout();

@@ -10,6 +10,8 @@ if ($debug) {
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+$auth = new Authentication();
+
 $savedConfig  = __DIR__.'/../custom/config.yml';
 $moon_version = file_get_contents(__DIR__.'/../VERSION');
 
