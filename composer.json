@@ -29,7 +29,8 @@
         },
         "files": [
             "app/lib/lib.opml.php",
-            "app/lib/Cache.php"
+            "app/lib/Cache.php",
+            "app/lib/helpers.php"
         ]
     }
 }
