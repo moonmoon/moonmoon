@@ -32,7 +32,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml') && isset($login) && is
     $save['config'] = file_put_contents(__DIR__.'/custom/config.yml', $CreatePlanetConfig->toYaml());
 
     //Save password
-    $save['password'] = file_put_contents(__DIR__.'/admin/inc/pwd.inc.php', '<?php $login="admin"; $password="'.md5($_REQUEST['password']).'"; ?>');
+    $save['password'] = $auth->changePassword($_REQUEST['password']);
 
     if (0 != ($save['config'] + $save['password'])) {
         $status = 'installed';
