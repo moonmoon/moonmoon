@@ -5,7 +5,8 @@ $Planet->addPerson(
     new PlanetFeed(
         '',
         htmlspecialchars_decode($_GET['url'], ENT_QUOTES),
-        ''
+        '',
+        false
     )
 );
 
