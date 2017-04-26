@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>moonmoon: simple web based feed aggregator in PHP</title>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/screen.css?v=1">
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>moonmoon</h1>
+        <h2>moonmoon is a simple php app for showing several feeds on one page.</h2>
+    </div>
+    <img src="img/blue-moon.jpg" width="898" height="898" alt="">
+</header>
+
+<nav>
+    <a href="https://github.com/mauricesvay/moonmoon/releases/download/9.0.0-rc/moonmoon_9.0.0-rc.zip" class="bt">Download 9.0.0-rc</a> or <a href="https://github.com/mauricesvay/moonmoon">fork on github</a>
+</nav>
+
+<div class="content">
+    <section>
+        <h2>FEATURES</h2>
+        <p>
+        Moonmoon is stupidly simple: it only aggregates feeds and
+        spits them out in one single page.<br> It does not archive articles,
+        it does not do comments nor votes.<br>
+        <!-- <a href="./demo/">Check out the demo page</a>. -->
+        </p>
+        <ul>
+            <li>Quick 2-step setup</li>
+            <li>Save resources: no database, no cron required</li>
+            <li>Easy-to-use administration panel</li>
+            <li>Standards compliant</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>INSTALLING</h2>
+        <ol>
+            <li>You need a web hosting with PHP 5.3.</li>
+            <li><a href="https://github.com/mauricesvay/moonmoon/releases">Download the latest version</a></li>
+            <li>Extract the files.</li>
+            <li>Upload the files to your server (with FTP)</li>
+            <li>Go to http://&lt;yoursite&gt;/install.php</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>DEVELOPMENT</h2>
+        <p>
+        Moonmoon is free software and is released under BSD license.
+        </p>
+        <p>
+        The source code is currently hosted on <a href="https://github.com/mauricesvay/moonmoon">github.com/mauricesvay/moonmoon</a>
+        </p>
+    </section>
+</div>
+
+<div class="content">
+    <h2>FAQ</h2>
+    <dl>
+        <dt>Can I use cron to update the feeds?</dt>
+        <dd>
+            <p>
+            Yes. Simply set a cron job to make a GET request (curl/wget/etc) on <code>cron.php</code>
+            </p>
+        </dd>
+
+        <dt>How to make it work on my OVH 60GP account?</dt>
+        <dd>
+            <p>Create a .htaccess file containing the following directive:</p>
+            <pre>SetEnv PHP_VER 5</pre>
+        </dd>
+    </dl>
+</div>
+
+<footer>
+    <p>
+        Moonmoon is developed by <a href="http://svay.com/">Maurice Svay</a> and contributors. It includes the SimplePie library.
+    </p>
+    <p>Creative Commons Photo: Luc Viatour / www.Lucnix.be</p>
+</footer>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-572751-2");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</body>
+</html>
