@@ -2,7 +2,9 @@
 
 require_once __DIR__.'/app/app.php';
 
-ensure_installed();
+if (!is_installed()) {
+    die();
+}
 
 $xml = new SimpleXMLElement(file_get_contents(custom_path('people.opml')));
 
