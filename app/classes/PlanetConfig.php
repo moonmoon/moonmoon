@@ -8,27 +8,29 @@ class PlanetConfig
 
     public $conf;
 
+    protected static $defaultConfig = array(
+        'url'           => 'http://www.example.com/',
+        'name'          => '',
+        'locale'        => 'en',
+        'items'         => 10,
+        'shuffle'       => 0,
+        'refresh'       => 240,
+        'cache'         => 10,
+        'nohtml'        => 0,
+        'postmaxlength' => 0,
+        'categories'    => '',
+        'cachedir'      => './cache',
+        'debug'         => false
+    );
+
     public function __construct($array)
     {
-        $defaultConfig = array(
-            'url'           => 'http://www.example.com/',
-            'name'          => '',
-            'locale'        => 'en',
-            'items'         => 10,
-            'shuffle'       => 0,
-            'refresh'       => 240,
-            'cache'         => 10,
-            'nohtml'        => 0,
-            'postmaxlength' => 0,
-            'cachedir'      => './cache',
-        );
-
         // User config
         $this->conf = $array;
 
         // Complete config with default config
-        foreach ($defaultConfig as $key => $value) {
-            if (!isset($this->conf[$key])) {
+        foreach (self::$defaultConfig as $key => $value) {
+            if (!array_key_exists($key, $this->conf)) {
                 $this->conf[$key] = $value;
             }
         }
@@ -89,6 +91,11 @@ class PlanetConfig
     public function toYaml()
     {
         return Spyc::YAMLDump($this->conf,4);
+    }
+
+    public function getDebug()
+    {
+        return $this->conf['debug'];
     }
 
     /**

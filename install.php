@@ -25,7 +25,8 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml') && isset($login) && is
         'cache'         => 10,
         'nohtml'        => 0,
         'postmaxlength' => 0,
-        'cachedir'      => './cache'
+        'cachedir'      => './cache',
+        'debug'         => false
     );
 
     $CreatePlanetConfig = new PlanetConfig($config);

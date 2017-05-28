@@ -1,12 +1,6 @@
 <?php
 
-//Debug ?
-$debug = isset($_GET['debug']) ? $_GET['debug'] : 0;
-if ($debug) {
-    error_reporting(E_ALL);
-} else {
-    error_reporting(0);
-}
+error_reporting(0);
 
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -26,6 +20,11 @@ if (is_file($savedConfig)){
 
     $PlanetConfig = new PlanetConfig($conf);
     $Planet = new Planet($PlanetConfig);
+
+    if ($conf['debug']) {
+        error_reporting(E_ALL);
+    }
+
 }
 
 $l10n = new Simplel10n($conf['locale']);
