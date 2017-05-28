@@ -1,30 +1,44 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 class FoolCategory {
-    var $name = null;
-    function __construct($name) { $this->name = $name; }
-    function get_label() { return $this->name; }
+
+    protected $name;
+
+    function __construct($name)
+    {
+        $this->name = $name;
+    }
+
+    function get_label()
+    {
+        return $this->name;
+    }
 }
 
 class FoolItem
 {
+    protected $categories;
+
     function __construct($categories)
     {
         foreach ($categories as $c)
             $this->categories[] = new FoolCategory($c);
     }
 
-    function get_categories() { return $this->categories; }
+    function get_categories() {
+        return $this->categories;
+    }
 }
 
-class PlanetTest extends \Codeception\TestCase\Test
+class PlanetTest extends TestCase
 {
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
 
-    protected function _before()
+    protected $planet;
+    protected $items;
+
+    public function setUp()
     {
         $this->planet = new Planet();
 
@@ -66,5 +80,5 @@ class PlanetTest extends \Codeception\TestCase\Test
         $this->assertEquals(count($this->planet->_filterItemsByCategory($this->items, 'catA,catB,catC')), 4);
         $this->assertEquals(count($this->planet->_filterItemsByCategory($this->items, 'catA, catB')), 3);
     }
-    
+
 }

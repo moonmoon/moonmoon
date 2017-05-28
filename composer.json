@@ -17,11 +17,11 @@
         "mustangostang/spyc": "0.5.1"
     },
     "require-dev": {
-        "codeception/codeception": "2.1",
-         "guzzlehttp/guzzle": "5.*"
+        "guzzlehttp/guzzle": "5.*",
+        "phpunit/phpunit": "^6.1"
     },
     "scripts": {
-        "test": "./vendor/bin/codecept"
+        "test": ""
     },
     "autoload": {
         "psr-0": {
