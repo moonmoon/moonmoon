@@ -70,7 +70,7 @@ class opml
 
 class OpmlManager
 {
-    public function load($file) {
+    static function load($file) {
         if (@file_exists($file)) {
             $opml = new opml();
 
