@@ -1,4 +1,4 @@
-moonmoon
+moonmoon [![Build Status](https://travis-ci.org/mauricesvay/moonmoon.svg?branch=master)](https://travis-ci.org/mauricesvay/moonmoon)
 ========
 
 [http://moonmoon.org/](http://moonmoon.org/)
