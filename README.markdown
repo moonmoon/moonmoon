@@ -11,17 +11,34 @@ It does not archive articles, it does not do comments nor votes.
 
 Requirements
 ------------
-Web hosting with at least PHP5.4 (PHP4 & 5.2, 5.3 will not work).
+You will need a web hosting with at least PHP 5.4 (PHP 7 is also supported).
+
+If you are installing Moonmoon on a Linux private server (VPS, dedicated host), please not that you 
+will need to install the package `php-xml`.
 
 Installing
 ----------
-* Upload all the files to your server (with FTP or other)
-OR
+
+#### On a shared hosting
+
+* Fetch a copy of the sources:
+  - The last version, by downloading https://github.com/mauricesvay/moonmoon/archive/master.zip (warning, it may be instable!);
+  - The last release, by going on https://github.com/mauricesvay/moonmoon/releases and downloading the last stable one.
+* Extract the zip file on your computer
+* Upload the extracted files your shared hosting server using your FTP client. If your hosting provider offers FTP and SFTP, prefer the last one, as the connection will be established over a secure channel.
+* Go to `http(s)://yourdomain.tld/install.php` with your browser
+* Profit!
+
+#### On a dedicated server (where a web server is already installed)
+
 * Download composer: `wget https://getcomposer.org/composer.phar`
-* Run `php composer.phar create-project mauricesvay/moonmoon moonmoon`
-* Run ` php composer.phar install --no-dev` 
-* Open `install.php` with your browser
-* Follow the instructions
+* Fetch a copy of the sources:
+  - The last version, by downloading a copy of `master`: `wget https://github.com/mauricesvay/moonmoon/archive/master.zip` (warning, it may be instable!);
+  - The last release, by going on https://github.com/mauricesvay/moonmoon/releases and downloading the last stable one.
+* Extract the files by running: `unzip <thefile.zip>`
+* Inside the extracted repository, run ` php composer.phar install --no-dev`
+* Go to `http(s)://yourserver.tld/install.php` with your browser
+* Profit!
 
 License
 -------
@@ -30,7 +47,7 @@ Moonmoon is free software and is released under BSD license.
 
 Configuration options
 ---------------------
-After installation, configuration is kept in a YAML formatted ```custom/config.yml```:
+After installation, configuration is kept in a YAML formatted `custom/config.yml`:
 
 ```%yaml
 url: http://planet.example.net  # your planet base URL
