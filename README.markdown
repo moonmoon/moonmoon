@@ -17,9 +17,10 @@ Installing
 ----------
 * Upload all the files to your server (with FTP or other)
 OR
-* Use `composer create-project mauricesvay/moonmoon moonmoon`
-* Run `wget https://getcomposer.org/composer.phar && php composer.phar install --no-dev` 
-* Open install.php with your browser
+* Download composer: `wget https://getcomposer.org/composer.phar`
+* Run `php composer.phar create-project mauricesvay/moonmoon moonmoon`
+* Run ` php composer.phar install --no-dev` 
+* Open `install.php` with your browser
 * Follow the instructions
 
 License
