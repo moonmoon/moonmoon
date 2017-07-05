@@ -16,7 +16,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml') && isset($login) && is
     $save = array();
     //Save config file
     $config = array(
-        'url'           => filter_var($_REQUEST['url'],   FILTER_SANITIZE_ENCODED),
+        'url'           => $_REQUEST['url'],
         'name'          => filter_var($_REQUEST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
         'locale'        => filter_var($_REQUEST['locale'], FILTER_SANITIZE_SPECIAL_CHARS),
         'items'         => 10,
