@@ -24,14 +24,14 @@ input.text{
 input.submit{
 	font-size: 1em;
 	padding: 4px;
-	background: #D1D1D1 url(img/button.png) repeat-x left center;
+	background: #D1D1D1 url(/custom/img/button.png) repeat-x left center;
 	border: 1px solid #FFF;
 	border-bottom: 1px solid #CECECE;
 	border-right: 1px solid #CECECE;
     cursor: pointer;
 }
 input.submit:hover{
-	background: #D1D1D1 url(img/button-h.png) repeat-x left center;
+	background: #D1D1D1 url(/custom/img/button-h.png) repeat-x left center;
 	color: #000;
 	border: 1px solid #FFF;
 	border-bottom: 1px solid #C6C6C6;
@@ -41,7 +41,7 @@ input.delete{
 	margin-left: 1em;
 }
 input.delete:hover{
-	background: #ffabab url(img/button-delete.png) repeat-x left center;
+	background: #ffabab url(/custom/img/button-delete.png) repeat-x left center;
 	color: #C00;
 	border: 1px solid #FCC;
 	border-bottom: 1px solid #F99;
@@ -51,7 +51,7 @@ input.add{
 	font-weight: bold;
 }
 input.add:hover{
-	background: #65a5e1 url(img/button-add.png) repeat-x left center;
+	background: #65a5e1 url(/custom/img/button-add.png) repeat-x left center;
 	color: #20466a;
 	border: 1px solid #a6c7e5;
 	border-bottom: 1px solid #4f90cd;
@@ -67,7 +67,7 @@ p.help{
 }
 
 	header{
-		background: #E0E0E0 url(img/moonmoon.png) no-repeat right center;
+		background: #E0E0E0 url(/custom/img/moonmoon.png) no-repeat right center;
 		border-top: 5px solid #D0D0D0;
 		margin: 0;
 		padding: 10px;
@@ -78,7 +78,7 @@ p.help{
 			padding: 0;
 			height: 14px;
 			width: 95px;
-			background: transparent url(img/moonmoon.png) no-repeat left center;
+			background: transparent url(/custom/img/moonmoon.png) no-repeat left center;
 
 			overflow: hidden;
 			text-indent: -1000em;
@@ -129,10 +129,10 @@ p.help{
 			color: #111;
 		}
 		#nav-feed a{
-			background-image: url(img/nav-feed.png);
+			background-image: url(/custom/img/nav-feed.png);
 		}
 		#nav-admin a{
-			background-image: url(img/nav-admin.png);
+			background-image: url(/custom/img/nav-admin.png);
 		}
 
 	#content{
@@ -143,7 +143,7 @@ p.help{
 		margin: 20px 0;
 	}
 	.widget h3{
-		background: #3e4350 url(img/h3.png) repeat-x left center;
+		background: #3e4350 url(/custom/img/h3.png) repeat-x left center;
 		color: #FFF;
 		text-transform: uppercase;
 		margin: 0;

@@ -1,7 +1,8 @@
 <?php
 
 require_once __DIR__ . '/../app/app.php';
-require_once __DIR__ . '/inc/auth.inc.php';
+
+$auth->redirectIfNotAuthenticated();
 
 function removeSlashes(&$item, $key){
     $item = stripslashes($item);

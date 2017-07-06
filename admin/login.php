@@ -1,10 +1,12 @@
 <?php
-if (isset($_POST['password'])) {
-    setcookie('auth',md5($_POST['password']));
-    header('Location: index.php');
-}
 
 require_once __DIR__ . '/../app/app.php';
+
+if (isset($_POST['password'])) {
+    $auth->login($_POST['password']);
+    header('Location:'. ($auth->isAuthenticated()?'index.php':'login.php'));
+}
+
 $page_content = <<<FRAGMENT
             <form action="" method="post" class="login">
                 <fieldset>
