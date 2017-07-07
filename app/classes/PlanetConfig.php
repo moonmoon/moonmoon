@@ -6,9 +6,9 @@
 class PlanetConfig
 {
 
-    public $conf;
+    protected $conf = array();
 
-    protected static $defaultConfig = array(
+    protected $defaultConfig = array(
         'url'           => 'http://www.example.com/',
         'name'          => '',
         'locale'        => 'en',
@@ -23,17 +23,27 @@ class PlanetConfig
         'debug'         => false
     );
 
-    public function __construct($array)
+    /**
+     * PlanetConfig constructor.
+     * @param array $userConfig
+     * @param bool  $useDefaultConfig
+     */
+    public function __construct($userConfig = [], $useDefaultConfig = true)
     {
-        // User config
-        $this->conf = $array;
+        $default = $useDefaultConfig ? $this->defaultConfig : array();
+        $this->conf = $this->merge($default, $userConfig);
+    }
 
-        // Complete config with default config
-        foreach (self::$defaultConfig as $key => $value) {
-            if (!array_key_exists($key, $this->conf)) {
-                $this->conf[$key] = $value;
-            }
-        }
+    /**
+     * Merge the configuration of the user in the default one.
+     *
+     * @param array $default
+     * @param array $user
+     * @return array
+     */
+    protected function merge($default, $user)
+    {
+        return array_merge($default, $this->normalizeArrayKeys($user));
     }
 
     public function getUrl()
@@ -60,7 +70,10 @@ class PlanetConfig
         return $this->conf['cache'];
     }
 
-    //@TODO: drop this pref
+    /**
+     * @deprecated
+     * @return mixed
+     */
     public function getShuffle()
     {
         return $this->conf['shuffle'];
@@ -71,13 +84,19 @@ class PlanetConfig
         return $this->conf['items'];
     }
 
-    //@TODO: drop this pref
+    /**
+     * @deprecated
+     * @return mixed
+     */
     public function getNoHTML()
     {
         return $this->conf['nohtml'];
     }
 
-    //@TODO: drop this pref
+    /**
+     * @deprecated
+     * @return mixed
+     */
     public function getPostMaxLength()
     {
         return $this->conf['postmaxlength'];
@@ -90,7 +109,15 @@ class PlanetConfig
 
     public function toYaml()
     {
-        return Spyc::YAMLDump($this->conf,4);
+        return Spyc::YAMLDump($this->conf, 4);
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return $this->conf;
     }
 
     public function getDebug()
@@ -99,14 +126,68 @@ class PlanetConfig
     }
 
     /**
-     * Generic accessor for config.
-    */
+     * @return array
+     */
+    public function getDefaultConfig()
+    {
+        return $this->defaultConfig;
+    }
+
+    /**
+     * Normalize the name of a configuration key.
+     *
+     * @param  string $key
+     * @return string
+     */
+    protected function normalizeKeyName($key = null)
+    {
+        return strtolower($key);
+    }
+
+    /**
+     * Normalize all the keys of the array.
+     *
+     * @param  array $array
+     * @return array
+     */
+    protected function normalizeArrayKeys($array = [])
+    {
+        foreach ($array as $key => $value) {
+            $normalized = $this->normalizeKeyName($key);
+            if ($normalized !== $key) {
+                $array[$this->normalizeKeyName($key)] = $value;
+                unset($array[$key]);
+            }
+        }
+
+        return $array;
+    }
+
+    /**
+     * Generic configuration getter.
+     *
+     * @return mixed|null
+     */
     public function __get($key)
     {
-        $key = strtolower($key);
+        $key = $this->normalizeKeyName($key);
 
         return array_key_exists($key, $this->conf) ?
             $this->conf[$key] :
             null;
     }
+
+    /**
+     * Generic configuration setter.
+     *
+     * @param $key
+     * @param $value
+     */
+    public function __set($key, $value)
+    {
+        $key = $this->normalizeKeyName($key);
+
+        $this->conf[$key] = $value;
+    }
+
 }
