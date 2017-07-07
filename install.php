@@ -13,12 +13,19 @@ include __DIR__ . '/admin/inc/pwd.inc.php';
 if (file_exists(__DIR__ . '/custom/config.yml') && isset($login) && isset($password)) {
     $status = 'installed';
 } elseif (isset($_REQUEST['url'])) {
+
+    // Do no try to use the file of an invalid locale
+    if (strstr($_REQUEST['locale'], '..') !== false
+    || !file_exists(__DIR__ . "/app/l10n/${_REQUEST['locale']}.lang")) {
+        $_REQUEST['locale'] = 'en';
+    }
+
     $save = array();
     //Save config file
     $config = array(
         'url'           => $_REQUEST['url'],
         'name'          => filter_var($_REQUEST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
-        'locale'        => filter_var($_REQUEST['locale'], FILTER_SANITIZE_SPECIAL_CHARS),
+        'locale'        => $_REQUEST['locale'],
         'items'         => 10,
         'shuffle'       => 0,
         'refresh'       => 240,
@@ -164,6 +171,7 @@ if (file_exists(__DIR__ . '/custom/config.yml') && isset($login) && isset($passw
                     <label for="locale">Language:</label>
                     <select name="locale" id="locale">
                         <option selected="selected" value="en">English</option>
+                        <option value="es">Español</option>
                         <option value="fr">Français</option>
                     </select>
                 </p>
