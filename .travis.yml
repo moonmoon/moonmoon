@@ -13,6 +13,8 @@ matrix:
   - php: hhvm
   - php: nightly
 
+dist: trusty
+
 install:
 - composer install
 
