@@ -12,14 +12,13 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">= 5.4",
-        "hhvm": "^3.0",
+        "php": "^5.6 || ^7.0",
         "mustangostang/spyc": "0.5.1",
         "simplepie/simplepie": "1.3.1"
     },
     "require-dev": {
-        "guzzlehttp/guzzle": "5.*",
-        "phpunit/phpunit": "^6.1"
+        "guzzlehttp/guzzle": "^6.0",
+        "phpunit/phpunit": "^5.7 || ^6.2"
     },
     "scripts": {
         "test": ""
@@ -32,8 +31,5 @@
             "app/lib/lib.opml.php",
             "app/lib/Cache.php"
         ]
-    },
-    "conflict": {
-        "hhvm": "*"
     }
 }
