@@ -9,8 +9,8 @@ function installStatus($str, $msg, $result) {
 }
 
 // If the config file exists and the auth variables are set, moonmoon is already installed
-include dirname(__FILE__) . '/admin/inc/pwd.inc.php';
-if (file_exists(dirname(__FILE__) . '/custom/config.yml') && isset($login) && isset($password)) {
+include __DIR__ . '/admin/inc/pwd.inc.php';
+if (file_exists(__DIR__ . '/custom/config.yml') && isset($login) && isset($password)) {
     $status = 'installed';
 } elseif (isset($_REQUEST['url'])) {
     $save = array();
@@ -59,7 +59,7 @@ if (file_exists(dirname(__FILE__) . '/custom/config.yml') && isset($login) && is
 
     // We now test that all required files and directories are writable.
     foreach ($tests as $v) {
-        if(touch(dirname(__FILE__) . $v)) {
+        if(touch(__DIR__ . $v)) {
             $strInstall .= installStatus("<code>$v</code> is writable", 'OK', true);
         } else {
             $strInstall .= installStatus("<code>$v</code> is writable", 'FAIL',false);
