@@ -1,4 +1,4 @@
-moonmoon [![Build Status](https://travis-ci.org/mauricesvay/moonmoon.svg?branch=master)](https://travis-ci.org/mauricesvay/moonmoon)
+moonmoon [![Build Status](https://travis-ci.org/moonmoon/moonmoon.svg?branch=master)](https://travis-ci.org/moonmoon/moonmoon)
 ========
 
 [http://moonmoon.org/](http://moonmoon.org/)
@@ -22,8 +22,8 @@ Installing
 #### On a shared hosting
 
 * Fetch a copy of the sources:
-  - The last version, by downloading https://github.com/mauricesvay/moonmoon/archive/master.zip (warning, it may be instable!);
-  - The last release, by going on https://github.com/mauricesvay/moonmoon/releases and downloading the last stable one.
+  - The last version, by downloading https://github.com/moonmoon/moonmoon/archive/master.zip (warning, it may be instable!);
+  - The last release, by going on https://github.com/moonmoon/moonmoon/releases and downloading the last stable one.
 * Extract the zip file on your computer
 * Upload the extracted files your shared hosting server using your FTP client. If your hosting provider offers FTP and SFTP, prefer the last one, as the connection will be established over a secure channel.
 * Go to `http(s)://yourdomain.tld/install.php` with your browser
@@ -33,8 +33,8 @@ Installing
 
 * Download composer: `wget https://getcomposer.org/composer.phar`
 * Fetch a copy of the sources:
-  - The last version, by downloading a copy of `master`: `wget https://github.com/mauricesvay/moonmoon/archive/master.zip` (warning, it may be instable!);
-  - The last release, by going on https://github.com/mauricesvay/moonmoon/releases and downloading the last stable one.
+  - The last version, by downloading a copy of `master`: `wget https://github.com/moonmoon/moonmoon/archive/master.zip` (warning, it may be instable!);
+  - The last release, by going on https://github.com/moonmoon/moonmoon/releases and downloading the last stable one.
 * Extract the files by running: `unzip <thefile.zip>`
 * Inside the extracted repository, run ` php composer.phar install --no-dev`
 * Go to `http(s)://yourserver.tld/install.php` with your browser
@@ -62,6 +62,7 @@ shuffle: 0                      # deprecated
 nohtml: 0                       # deprecated
 categories:                     # only list posts that have one
                                 # of these (tag or category)
+debug: false                    # debug mode (dangerous in production!)
 ```
 
 ---
