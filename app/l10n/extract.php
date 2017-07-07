@@ -13,12 +13,13 @@
  * The script scans for the files in the l10n/ folder to know which locales are supported
  */
 
-// released versions of moonmoon should immediately return for security
-// return;
-
 $root = __DIR__ . '/../../';
 
-require_once $root.'/vendors/autoload.php';
+require_once __DIR__ . '/../app.php';
+
+if ($conf['debug'] !== true) {
+    die('Please enable the debug mode to use extract.php.');
+}
 
 $GLOBALS['english'] = array();
 
@@ -27,7 +28,6 @@ $GLOBALS['english'] = array();
  * $GLOBALS['english'] is populated with localizable strings and their associated localization notes
  *
  */
-
 
 function extract_l10n_strings($file) {
     $lines    = file($file);
