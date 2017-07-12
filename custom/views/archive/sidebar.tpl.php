@@ -1,5 +1,5 @@
 <?php
-$all_people = &$Planet->getPeople();
+$all_people = $Planet->getPeople();
 usort($all_people, array('PlanetFeed', 'compare'));
 ?>
 <div id="sidebar">
