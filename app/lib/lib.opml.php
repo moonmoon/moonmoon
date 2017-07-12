@@ -86,7 +86,7 @@ class OpmlManager
         }
     }
 
-    public function save($opml, $file){
+    public static function save($opml, $file){
         $out = '<?xml version="1.0"?>'."\n";
         $out.= '<opml version="1.1">'."\n";
         $out.= '<head>'."\n";
@@ -104,7 +104,7 @@ class OpmlManager
         file_put_contents($file, $out);
     }
 
-    public function backup($file){
+    public static function backup($file){
         copy($file, $file.'.bak');
     }
 }
