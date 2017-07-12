@@ -12,14 +12,13 @@ foreach ($xml->xpath('/opml/body/outline[@xmlUrl]') as $element)
 {
     if ($element->attributes()->xmlUrl == $_GET['url'])
     {
-        $Planet->addPerson(
-            new PlanetFeed(
-                '',
-                $_GET['url'],
-                '',
-                false
-            )
+        $person = new PlanetFeed(
+            '',
+            $_GET['url'],
+            '',
+            false
         );
+        $Planet->addPerson($person);
 
         $Planet->download(1);
         header('Content-type: image/png');
