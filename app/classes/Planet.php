@@ -133,14 +133,13 @@ class Planet
         $opml = OpmlManager::load($file);
         $opml_people = $opml->getPeople();
         foreach ($opml_people as $opml_person){
-            $this->addPerson(
-                new PlanetFeed(
-                    $opml_person['name'],
-                    $opml_person['feed'],
-                    $opml_person['website'],
-                    $opml_person['isDown']
-                )
+            $person = new PlanetFeed(
+                $opml_person['name'],
+                $opml_person['feed'],
+                $opml_person['website'],
+                $opml_person['isDown']
             );
+            $this->addPerson($person);
         }
         return count($opml_people);
     }
