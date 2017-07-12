@@ -46,7 +46,14 @@ class PlanetFeed extends SimplePie
         return $this->isDown;
     }
 
-    public function compare($person1, $person2)
+    /**
+     * Compare two Person by their name.
+     *
+     * @param  $person1
+     * @param  $person2
+     * @return int
+     */
+    public static function compare($person1, $person2)
     {
         return strcasecmp($person1->name, $person2->name);
     }
