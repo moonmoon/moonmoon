@@ -46,7 +46,7 @@ if (isset($_POST['opml']) || isset($_POST['add'])) {
             $feed->set_feed_url($_POST['url']);
             $feed->init();
             $feed->handle_content_type();
-            $person['name'] = $feed->get_title();
+            $person['name'] = html_entity_decode($feed->get_title());
             $person['website'] = $feed->get_permalink();
             $person['feed'] = $feed->feed_url;
             $person['isDown'] = '0';
