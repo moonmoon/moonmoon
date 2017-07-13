@@ -181,6 +181,13 @@ class Planet
                 $this->errors[] = new PlanetError(1, 'Forced from cache : '.$feed->getFeed());
             }
 
+            if ($this->config->checkcerts === false) {
+                $feed->set_curl_options([
+                    CURLOPT_SSL_VERIFYHOST => false,
+                    CURLOPT_SSL_VERIFYPEER => false
+                ]);
+            }
+
             //Load feed
             $feed->init();
             $isDown = '';

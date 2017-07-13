@@ -20,7 +20,8 @@ class PlanetConfig
         'postmaxlength' => 0,
         'categories'    => '',
         'cachedir'      => './cache',
-        'debug'         => false
+        'debug'         => false,
+        'checkcerts'    => true,
     );
 
     /**

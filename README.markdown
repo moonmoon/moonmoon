@@ -63,6 +63,7 @@ nohtml: 0                       # deprecated
 categories:                     # only list posts that have one
                                 # of these (tag or category)
 debug: false                    # debug mode (dangerous in production!)
+checkcerts: true                # check feeds certificates
 ```
 
 ---

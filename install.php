@@ -33,7 +33,8 @@ if (file_exists(__DIR__ . '/custom/config.yml') && isset($login) && isset($passw
         'nohtml'        => 0,
         'postmaxlength' => 0,
         'cachedir'      => './cache',
-        'debug'         => false
+        'debug'         => false,
+        'checkcerts'    => true,
     );
 
     $CreatePlanetConfig = new PlanetConfig($config);
