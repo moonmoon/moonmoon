@@ -45,6 +45,8 @@ if (!OutputCache::Start($_GET['type'], $cache_key, $cache_duration)) {
     OutputCache::End();
 }
 
-echo "<!--";
-var_dump($Planet->errors);
-echo "-->";
+if ($conf['debug'] === true) {
+    echo "<!-- \$Planet->errors:\n";
+    var_dump($Planet->errors);
+    echo "-->";
+}
