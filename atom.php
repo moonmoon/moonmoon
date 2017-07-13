@@ -9,7 +9,7 @@ $items = $Planet->getItems();
 $limit = $PlanetConfig->getMaxDisplay();
 $count = 0;
 
-header('Content-Type: application/atom+xml; charset=UTF-8');
+header('Content-Type: text/xml; charset=UTF-8');
 echo '<?xml version="1.0" encoding="UTF-8" ?>';
 ?>
 <feed xmlns="http://www.w3.org/2005/Atom">
