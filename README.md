@@ -13,37 +13,26 @@ Requirements
 ------------
 You will need a web hosting with at least PHP 5.6 (PHP 7 is also supported).
 
-If you are installing Moonmoon on a Linux private server (VPS, dedicated host), please not that you 
-will need to install the package `php-xml`.
+If you are installing moonmoon on a Linux private server (VPS, dedicated host), 
+please note that you will need to install the package `php-xml`.
 
 Installing
 ----------
 
-#### On a shared hosting
+Installation steps (shared hosting or virtual / dedicated server) can be found 
+[in the wiki](https://github.com/moonmoon/moonmoon/wiki/How-to-install).
 
-* Fetch a copy of the sources:
-  - The last version, by downloading https://github.com/moonmoon/moonmoon/archive/master.zip (warning, it may be instable!);
-  - The last release, by going on https://github.com/moonmoon/moonmoon/releases and downloading the last stable one.
-* Extract the zip file on your computer
-* Upload the extracted files your shared hosting server using your FTP client. If your hosting provider offers FTP and SFTP, prefer the last one, as the connection will be established over a secure channel.
-* Go to `http(s)://yourdomain.tld/install.php` with your browser
-* Profit!
+Contributing
+------------
 
-#### On a dedicated server (where a web server is already installed)
-
-* Download composer: `wget https://getcomposer.org/composer.phar`
-* Fetch a copy of the sources:
-  - The last version, by downloading a copy of `master`: `wget https://github.com/moonmoon/moonmoon/archive/master.zip` (warning, it may be instable!);
-  - The last release, by going on https://github.com/moonmoon/moonmoon/releases and downloading the last stable one.
-* Extract the files by running: `unzip <thefile.zip>`
-* Inside the extracted repository, run ` php composer.phar install --no-dev`
-* Go to `http(s)://yourserver.tld/install.php` with your browser
-* Profit!
+You want to contribute to moonmoon? Perfect! [We wrote some guidelines to help you
+craft the best Issue / Pull Request possible](https://github.com/moonmoon/moonmoon/CONTRIBUTING.md),
+don't hesitate to take a look at it :-)
 
 License
 -------
-Moonmoon is free software and is released under BSD license.
 
+Moonmoon is free software and is released under BSD license.
 
 Configuration options
 ---------------------
@@ -65,5 +54,3 @@ categories:                     # only list posts that have one
 debug: false                    # debug mode (dangerous in production!)
 checkcerts: true                # check feeds certificates
 ```
-
----
