@@ -1,9 +1,3 @@
-[We wrote some guidelines to help you
-craft the best Issue / Pull Request possible](https://github.com/moonmoon/moonmoon/CONTRIBUTING.md),
-don't hesitate to take a look at it :-)
-
----
-
 ### Expected behavior
 
 What are you expecting to happen?
