@@ -13,9 +13,9 @@ First of all, thanks a lot for considering to contribute!
 ## Fixing a bug with a patch you made?
 
 * Awesome!
-* If the bug you are fixing is not present in our 
-  [Issues tracker](https://github.com/moonmoon/moonmoon/issues), please
-  [create the associated ticket](https://github.com/moonmoon/moonmoon/issues/new).
+* If the bug you are fixing is present in our 
+  [Issues tracker](https://github.com/moonmoon/moonmoon/issues), don't
+  forget to mention the related issue.
 * Make sure to stick to the [PSR-2](http://www.php-fig.org/psr/psr-2/)
   coding style.
 
