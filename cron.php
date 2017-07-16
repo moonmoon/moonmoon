@@ -6,6 +6,8 @@ if (0 < $Planet->loadOpml(__DIR__.'/custom/people.opml')) {
     $Planet->download(1.0);
 }
 
-foreach ($Planet->errors as $error) {
-    echo $error->toString()."\n";
+if ($conf['debug'] === true) {
+    foreach ($Planet->errors as $error) {
+        echo $error->toString() . "\n";
+    }
 }
