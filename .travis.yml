@@ -21,8 +21,8 @@ before_deploy:
 - tar czvf moonmoon-$TRAVIS_TAG.tgz --exclude ".git" *
 
 before_script:
-- sh -c "if [[ $TRAVIS_PHP_VERSION != hhvm ]]; then (php  -S 127.0.0.1:8081 >& /dev/null &); fi"
-- sh -c "if [[ $TRAVIS_PHP_VERSION  = hhvm ]]; then (hhvm -m server -p 8081 >& /dev/null &); fi"
+- bash -c "if [[ $TRAVIS_PHP_VERSION != hhvm ]]; then (php  -S 127.0.0.1:8081 >& /dev/null &); fi"
+- bash -c "if [[ $TRAVIS_PHP_VERSION  = hhvm ]]; then (hhvm -m server -p 8081 >& /dev/null &); fi"
 
 # deploy:
 #  provider: releases
