@@ -20,6 +20,9 @@ install:
 before_deploy:
 - tar czvf moonmoon-$TRAVIS_TAG.tgz --exclude ".git" *
 
+before_script:
+- php -S 127.0.0.1:8081 >& /dev/null &
+
 # deploy:
 #  provider: releases
 #  skip_cleanup: true
