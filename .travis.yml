@@ -24,6 +24,9 @@ before_script:
 - bash -c "if [[ $TRAVIS_PHP_VERSION != hhvm ]]; then (php  -S 127.0.0.1:8081 >& /dev/null &); fi"
 - bash -c "if [[ $TRAVIS_PHP_VERSION  = hhvm ]]; then (hhvm -m server -p 8081 >& /dev/null &); fi"
 
+script:
+  vendor/bin/phpunit
+
 # deploy:
 #  provider: releases
 #  skip_cleanup: true
