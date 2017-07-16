@@ -17,7 +17,7 @@
         "simplepie/simplepie": "^1.5"
     },
     "require-dev": {
-        "guzzlehttp/guzzle": "^6.0",
+        "guzzlehttp/guzzle": "^6.3",
         "phpunit/phpunit": "^5.7 || ^6.2"
     },
     "scripts": {
