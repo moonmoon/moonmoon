@@ -38,12 +38,12 @@ if (file_exists(__DIR__ . '/custom/config.yml') && isset($login) && isset($passw
     );
 
     $CreatePlanetConfig = new PlanetConfig($config);
-    $save['config'] = file_put_contents(__DIR__.'/custom/config.yml', $CreatePlanetConfig->toYaml());
+    $save['config'] = file_put_contents(custom_path('config.yml'), $CreatePlanetConfig->toYaml());
 
     OpmlManager::save(new Opml(), custom_path('people.opml'));
 
     //Save password
-    $save['password'] = file_put_contents(__DIR__.'/admin/inc/pwd.inc.php', '<?php $login="admin"; $password="'.md5($_REQUEST['password']).'"; ?>');
+    $save['password'] = file_put_contents(admin_path('inc/pwd.inc.php'), '<?php $login="admin"; $password="'.md5($_POST['password']).'"; ?>');
 
     if (0 != ($save['config'] + $save['password'])) {
         $status = 'installed';
