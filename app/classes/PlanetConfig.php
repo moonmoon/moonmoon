@@ -6,9 +6,9 @@
 class PlanetConfig
 {
 
-    protected $conf = array();
+    protected $conf = [];
 
-    protected $defaultConfig = array(
+    public static $defaultConfig = [
         'url'           => 'http://www.example.com/',
         'name'          => '',
         'locale'        => 'en',
@@ -22,7 +22,7 @@ class PlanetConfig
         'cachedir'      => './cache',
         'debug'         => false,
         'checkcerts'    => true,
-    );
+    ];
 
     /**
      * PlanetConfig constructor.
@@ -31,7 +31,7 @@ class PlanetConfig
      */
     public function __construct($userConfig = [], $useDefaultConfig = true)
     {
-        $default = $useDefaultConfig ? $this->defaultConfig : array();
+        $default = $useDefaultConfig ? self::$defaultConfig : array();
         $this->conf = $this->merge($default, $userConfig);
     }
 
@@ -42,7 +42,7 @@ class PlanetConfig
      * @param array $user
      * @return array
      */
-    protected function merge($default, $user)
+    protected function merge($default = [], $user = [])
     {
         return array_merge($default, $this->normalizeArrayKeys($user));
     }
@@ -131,7 +131,7 @@ class PlanetConfig
      */
     public function getDefaultConfig()
     {
-        return $this->defaultConfig;
+        return self::$defaultConfig;
     }
 
     /**

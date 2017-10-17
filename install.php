@@ -9,33 +9,23 @@ function installStatus($str, $msg, $result) {
 }
 
 // If the config file exists and the auth variables are set, moonmoon is already installed
-include __DIR__ . '/admin/inc/pwd.inc.php';
-if (file_exists(__DIR__ . '/custom/config.yml') && isset($login) && isset($password)) {
+if (is_installed()) {
     $status = 'installed';
-} elseif (isset($_REQUEST['url'])) {
+} elseif (isset($_POST['url'])) {
 
     // Do no try to use the file of an invalid locale
-    if (strstr($_REQUEST['locale'], '..') !== false
+    if (strstr($_POST['locale'], '..') !== false
     || !file_exists(__DIR__ . "/app/l10n/${_REQUEST['locale']}.lang")) {
-        $_REQUEST['locale'] = 'en';
+        $_POST['locale'] = 'en';
     }
 
     $save = array();
     //Save config file
-    $config = array(
-        'url'           => $_REQUEST['url'],
-        'name'          => filter_var($_REQUEST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
-        'locale'        => $_REQUEST['locale'],
-        'items'         => 10,
-        'shuffle'       => 0,
-        'refresh'       => 240,
-        'cache'         => 10,
-        'nohtml'        => 0,
-        'postmaxlength' => 0,
-        'cachedir'      => './cache',
-        'debug'         => false,
-        'checkcerts'    => true,
-    );
+    $config = array_merge(PlanetConfig::$defaultConfig, [
+        'url'    => $_POST['url'],
+        'name'   => filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
+        'locale' => $_POST['locale'],
+    ]);
 
     $CreatePlanetConfig = new PlanetConfig($config);
     $save['config'] = file_put_contents(custom_path('config.yml'), $CreatePlanetConfig->toYaml());
