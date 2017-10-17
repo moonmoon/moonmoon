@@ -1,42 +1,19 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-use GuzzleHttp\Client;
+require_once 'GuzzleHarness.php';
 
-class InstallTest extends TestCase {
-
-    /** @var GuzzleHttp\Client */
-    protected $client = null;
+class InstallTest extends GuzzleHarness {
 
     public function setUp()
     {
-        $this->client = new Client([
-            'base_uri'        => 'http://127.0.0.1:8081',
-            'timeout'         => 1,
-        ]);
-
-        $this->removeCustomFiles();
+        parent::setUp();
+        removeCustomFiles();
     }
 
     public function tearDown()
     {
-        $this->removeCustomFiles();
-    }
-
-    protected function removeCustomFiles()
-    {
-        $toRemove = [
-            custom_path('config.yml'),
-            custom_path('people.opml'),
-            custom_path('people.opml.bak'),
-            custom_path('cache')
-        ];
-
-        foreach ($toRemove as $path) {
-            if (file_exists($path)) {
-                unlink($path);
-            }
-        }
+        parent::tearDown();
+        removeCustomFiles();
     }
 
     public function test_index_page_tells_moonmoon_is_not_installed()

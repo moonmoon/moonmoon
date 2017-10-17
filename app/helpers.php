@@ -50,6 +50,26 @@ function is_installed()
  * @param  string $comment
  * @return string
  */
-function _g($str, $comment='') {
+function _g($str, $comment='')
+{
     return Simplel10n::getString($str, $comment);
+}
+
+/**
+ * Reset the moonmoon instance.
+ */
+function removeCustomFiles()
+{
+    $toRemove = [
+        custom_path('config.yml'),
+        custom_path('people.opml'),
+        custom_path('people.opml.bak'),
+        custom_path('cache')
+    ];
+
+    foreach ($toRemove as $path) {
+        if (file_exists($path)) {
+            unlink($path);
+        }
+    }
 }
