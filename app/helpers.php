@@ -12,6 +12,28 @@ function custom_path($file = '')
 }
 
 /**
+ * Path to the _views_ directory.
+ *
+ * @param  string $file Append this filename to the returned path.
+ * @return string
+ */
+function views_path($file = '')
+{
+    return custom_path('views/install.tpl.php');
+}
+
+/**
+ * Path to the _admin_ directory.
+ *
+ * @param  string $file Append this filename to the returned path.
+ * @return string
+ */
+function admin_path($file = '')
+{
+    return __DIR__.'/../admin' . (!empty($file) ? '/'.$file : '');
+}
+
+/**
  * Is moonmoon installed?
  *
  * @return bool
