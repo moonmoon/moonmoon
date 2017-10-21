@@ -28,9 +28,7 @@
             "": "app/classes/"
         },
         "files": [
-            "app/lib/lib.opml.php",
-            "app/helpers.php",
-            "app/lib/Cache.php"
+            "app/helpers.php"
         ]
     }
 }

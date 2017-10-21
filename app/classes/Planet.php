@@ -34,23 +34,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 class Planet
 {
+    /** @var PlanetConfig */
     public $config;
+
+    /** @var PlanetItem[] */
     public $items;
+
+    /** @var PlanetFeed[] */
     public $people;
+
+    /** @var PlanetError[] */
     public $errors;
 
+    /**
+     * Planet constructor.
+     *
+     * @param PlanetConfig $config
+     */
     public function __construct($config=null)
     {
+        $this->config = $config === null ? new PlanetConfig() : $config;
 
-        if ($config == null) {
-            $this->config = new PlanetConfig(array());
-        } else {
-            $this->config = $config;
-        }
-
-        $this->items  = array();
-        $this->people = array();
-        $this->errors = array();
+        $this->items  = [];
+        $this->people = [];
+        $this->errors = [];
     }
 
     /**
@@ -111,8 +118,9 @@ class Planet
     }
 
     /**
-     * Adds a feed to the planet
-     * @param PlanetFeed feed
+     * Adds a feed to the planet.
+     *
+     * @param PlanetFeed $feed
      */
     public function addPerson(&$feed)
     {
@@ -120,8 +128,10 @@ class Planet
     }
 
     /**
-     * Load people from an OPML
-     * @return integer Number of people loaded
+     * Load people from an OPML.
+     *
+     * @param  string  $file File to load the OPML from.
+     * @return integer Number of people loaded.
      */
     public function loadOpml($file)
     {
@@ -162,17 +172,16 @@ class Planet
     }
 
     /**
-     * Download
-     * @var $max_load percentage of feeds to load
+     * Fetch feeds and see if new data is present.
+     *
+     * @param float $max_load Percentage of feeds to load
      */
     public function download($max_load=0.1)
     {
         $max_load_feeds = ceil(count($this->people) * $max_load);
-        $opml = OpmlManager::load(__DIR__.'/../../custom/people.opml');
 
-        foreach ($this->people as $feed) {
+        foreach ($this->people as &$feed) {
             //Avoid mass loading with variable cache duration
-            //$feed->set_cache_duration($this->config->getCacheTimeout()+rand(0,30));
             $feed->set_cache_duration($this->config->getCacheTimeout());
 
             //Load only a few feeds, force other to fetch from the cache
@@ -181,6 +190,8 @@ class Planet
                 $this->errors[] = new PlanetError(1, 'Forced from cache : '.$feed->getFeed());
             }
 
+            // Bypass remote's SSL/TLS certificate if the user explicitly
+            // asked for it in the configuration.
             if ($this->config->checkcerts === false) {
                 $feed->set_curl_options([
                     CURLOPT_SSL_VERIFYHOST => false,
@@ -188,28 +199,22 @@ class Planet
                 ]);
             }
 
-            //Load feed
             $feed->init();
-            $isDown = '';
 
             // http://simplepie.org/wiki/reference/simplepie/merge_items ?
-            //Add items to index
             if (($feed->data) && ($feed->get_item_quantity() > 0)){
                 $items = $feed->get_items();
                 $this->items = array_merge($this->items, $items);
+                $feed['isUp'] = true;
             } else {
-                $this->errors[] = new PlanetError(1, 'No items : '.$feed->getFeed());
-                $isDown = '1';
-            }
-
-            //Mark if the feed is temporary unavailable
-            foreach ($opml->entries as $key => $entrie) {
-                if ($feed->getFeed() === $entrie['feed']) {
-                    $opml->entries[$key]['isDown'] = $isDown;
-                }
+                $this->errors[] = new PlanetError(1, 'No items or down : ' . $feed->getFeed());
+                $feed['isDown'] = false;
             }
         }
-        OpmlManager::save($opml, __DIR__.'/../../custom/people.opml');
+
+        // FIXME: not sure that it's $this->people?
+        // FIXME: make sure we made a change
+        OpmlManager::save($this->people, __DIR__.'/../../custom/people.opml');
     }
 
     public function sort()
