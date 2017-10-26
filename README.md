@@ -26,7 +26,7 @@ Contributing
 ------------
 
 You want to contribute to moonmoon? Perfect! [We wrote some guidelines to help you
-craft the best Issue / Pull Request possible](https://github.com/moonmoon/moonmoon/CONTRIBUTING.md),
+craft the best Issue / Pull Request possible](https://github.com/moonmoon/moonmoon/blob/master/CONTRIBUTING.md),
 don't hesitate to take a look at it :-)
 
 License
