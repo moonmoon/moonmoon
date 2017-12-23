@@ -29,4 +29,4 @@ if (is_installed()) {
 }
 
 $l10n = new Simplel10n($conf['locale']);
-
+$csrf = new CSRF();
