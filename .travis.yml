@@ -28,6 +28,10 @@ before_script:
 script:
   vendor/bin/phpunit
 
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
 # deploy:
 #  provider: releases
 #  skip_cleanup: true
