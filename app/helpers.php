@@ -14,6 +14,11 @@ function register_polyfills()
             call_user_func_array('_hash_equals', func_get_args());
         }
     }
+
+    if (!function_exists('random_bytes')) {
+        // If this function does not exist, it will be exposed
+        // automatically by paragonie/random_compat.
+    }
 }
 
 register_polyfills();
