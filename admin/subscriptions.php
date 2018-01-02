@@ -7,6 +7,10 @@ function removeSlashes(&$item, $key){
     $item = stripslashes($item);
 }
 
+if (!$csrf->verify($_POST['_csrf'], 'feedmanage')) {
+    die('Invalid CSRF token!');
+}
+
 if (isset($_POST['opml']) || isset($_POST['add'])) {
 
     // Load old OPML

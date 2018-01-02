@@ -79,6 +79,7 @@ ob_start();
                         <input type="submit" class="submit add" name="add" value="<?=_g('Add Feed')?>" />
                     </fieldset>
                     <p class="help"><?=_g('Accepted formats are RSS and ATOM. If the link is not a feed, moonmoon will try to autodiscover the feed.')?></p>
+                <input type="hidden" value="<?php echo $csrf->generate('feedmanage'); ?>" name="_csrf">
                 </form>
             </div>
 
@@ -87,6 +88,7 @@ ob_start();
                 <form action="subscriptions.php" method="post" id="feedmanage">
                 <p class="action">
                 <span class="count"><?php echo sprintf(_g('Number of feeds: %s'), $count_feeds)?></span>
+                <input type="hidden" value="<?php echo $csrf->generate('feedmanage'); ?>" name="_csrf">
                 <input type="submit" class="submit save" name="save" id="save" value="<?=_g('Save changes')?>" />
                 <input type="submit" class="submit delete" name="delete" id="delete" value="<?=_g('Delete selected Feeds')?>" />
                 </p>

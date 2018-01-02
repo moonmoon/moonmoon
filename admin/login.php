@@ -1,10 +1,13 @@
 <?php
+
+require_once __DIR__ . '/../app/app.php';
+
 if (isset($_POST['password'])) {
+    session_regenerate_id();
     setcookie('auth',md5($_POST['password']));
     header('Location: index.php');
 }
 
-require_once __DIR__ . '/../app/app.php';
 $page_content = <<<FRAGMENT
             <form action="" method="post" class="login">
                 <fieldset>

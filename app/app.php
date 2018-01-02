@@ -7,6 +7,8 @@ require_once __DIR__.'/../vendor/autoload.php';
 $savedConfig  = __DIR__.'/../custom/config.yml';
 $moon_version = file_get_contents(__DIR__.'/../VERSION');
 
+session_start();
+
 if (is_installed()) {
     $conf = Spyc::YAMLLoad($savedConfig);
 
@@ -27,4 +29,4 @@ if (is_installed()) {
 }
 
 $l10n = new Simplel10n($conf['locale']);
-
+$csrf = new CSRF();
