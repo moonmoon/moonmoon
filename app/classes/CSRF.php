@@ -5,6 +5,9 @@ class CSRF
     /** @var string */
     const HMAC_ALGORITHM = 'sha1';
 
+    /** @var string */
+    const SESSION_KEY_NAME = '_csrf_key';
+
     /**
      * Ensure that a CSRF token is valid for a given action.
      *
@@ -44,6 +47,9 @@ class CSRF
      */
     public static function getKey()
     {
-        return session_id();
+        if (empty($_SESSION[self::SESSION_KEY_NAME])) {
+            $_SESSION[self::SESSION_KEY_NAME] = random_bytes(16);
+        }
+        return $_SESSION[self::SESSION_KEY_NAME];
     }
 }
