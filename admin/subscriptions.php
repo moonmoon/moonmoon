@@ -18,7 +18,7 @@ if (isset($_POST['opml']) || isset($_POST['add'])) {
     if ($PlanetConfig->getName() === '') {
         $PlanetConfig->setName($oldOpml->getTitle());
     }
-    $newOpml = new opml();
+    $newOpml = new Opml();
     $newOpml->title = $PlanetConfig->getName();
 
     // Remove slashes if needed

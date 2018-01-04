@@ -9,7 +9,7 @@ class OpmlManager
             throw new Exception('OPML file not found!');
         }
 
-        $opml = new opml();
+        $opml = new Opml();
 
         //Remove BOM if needed
         $BOM = '/^﻿/';
