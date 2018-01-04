@@ -35,7 +35,7 @@ class CSRF
     public static function generate($action = null)
     {
         if (!is_string($action)) {
-            throw InvalidArgumentException('A valid action must be defined.');
+            throw new InvalidArgumentException('A valid action must be defined.');
         }
         return hash_hmac(self::HMAC_ALGORITHM, $action, self::getKey());
     }
