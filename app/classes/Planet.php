@@ -179,8 +179,9 @@ class Planet
     public function download($max_load=0.1)
     {
         $max_load_feeds = ceil(count($this->people) * $max_load);
+        $opml = OpmlManager::load(__DIR__.'/../../custom/people.opml');
 
-        foreach ($this->people as &$feed) {
+        foreach ($this->people as $feed) {
             //Avoid mass loading with variable cache duration
             $feed->set_cache_duration($this->config->getCacheTimeout());
 
@@ -200,21 +201,25 @@ class Planet
             }
 
             $feed->init();
+            $isDown = '';
 
             // http://simplepie.org/wiki/reference/simplepie/merge_items ?
             if (($feed->data) && ($feed->get_item_quantity() > 0)){
                 $items = $feed->get_items();
                 $this->items = array_merge($this->items, $items);
-                $feed['isUp'] = true;
             } else {
                 $this->errors[] = new PlanetError(1, 'No items or down : ' . $feed->getFeed());
-                $feed['isDown'] = false;
+                $isDown = '1';
+            }
+
+            foreach ($opml->entries as $key => $entrie) {
+                if ($feed->getFeed() === $entrie['feed']) {
+                    $opml->entries[$key]['isDown'] = $isDown;
+                }
             }
         }
 
-        // FIXME: not sure that it's $this->people?
-        // FIXME: make sure we made a change
-        OpmlManager::save($this->people, __DIR__.'/../../custom/people.opml');
+        OpmlManager::save($opml, __DIR__.'/../../custom/people.opml');
     }
 
     public function sort()
