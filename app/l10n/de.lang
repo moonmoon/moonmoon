@@ -1,0 +1,219 @@
+;Are you sure you want to purge the cache?
+Sind Sie sicher, dass sie den Cache säubern wollen?
+
+
+;Clear cache
+Cache Löschen
+
+
+;Clear cache:
+Cache löschen:
+
+
+;Clear
+Löschen
+
+
+;Clearing the cache will make moonmoon reload all feeds.
+Wenn der Cache gelöscht wird, werden alle Feeds von moonmoon neu geladen.
+
+
+;Change administrator password
+Administratorpasswort ändern
+
+
+;New password:
+Neues Passwort:
+
+
+;Change password
+Passwort ändern
+
+
+;Add Feed
+Feed hinzufügen
+
+
+;Link:
+Link:
+
+
+;Accepted formats are RSS and ATOM. If the link is not a feed, moonmoon will try to autodiscover the feed.
+Akzeptierte  Formate sind RSS und ATOM. Wenn der link kein Feed ist, wird moonmoon versuchen, den Feed selbst zu finden.
+
+
+;Manage existing feeds
+Verwalte bestehende Feeds
+
+
+;Number of feeds: %s
+Anzahl der feeds: %s
+
+
+;Save changes
+Änderungen Speichern
+
+
+;Delete selected Feeds
+Ausgewählte Feeds löschen
+
+
+;Select :
+Auswählen
+
+
+;All
+Alle
+
+
+;None
+Nichts
+
+
+;Selection
+Auswahl
+
+
+;Name
+Name
+
+
+;Last entry
+Letzter Eintrag
+
+
+;Website link
+Link der Webseite
+
+
+;Feed link
+Link des Feeds
+
+
+;Unavailable
+Nicht verfügbar
+
+;Not in cache
+Nicht im cache
+
+
+;Password:
+Passwort:
+
+
+;OK
+OK
+
+
+;moonmoon administration
+moonmoon Administration
+
+
+;Back to main page
+Zurück zur Hauptseite
+
+
+;Logout
+Abmelden
+
+
+;Feeds
+Feeds
+
+
+;Administration
+Administration
+
+
+;Powered by <a %s>moonmoon</a>
+Powered by <a %s>moonmoon</a>
+
+
+;No article
+Kein Artikel
+
+
+;No news, good news.
+Keine Neuigkeiten, gute Neuigkeiten.
+
+
+;Today
+Heute
+
+
+;Go to original place
+Gehe zur Originalseite
+
+
+;This week
+Diese Woche
+
+
+;This month
+Diesen Monat
+
+
+;Older items
+Ältere Einträge
+
+
+;People
+Personen
+
+
+;Feed
+Feed
+
+
+;Website
+Webseite
+
+
+;All feeds in OPML format
+Alle Feeds im OPML-Format
+
+
+;Syndicate
+Zusammenfassung
+
+
+;Feed (ATOM)
+Feed (ATOM)
+
+
+;Archives
+Archive
+
+
+;See all headlines
+Alle Schlagzeilen ansehen
+
+
+;Source:
+Quelle:
+
+
+;You might want to <a href="install.php">install moonmoon</a>.
+Sie könnten  <a href="install.php">moonmoon installieren</a> wollen.
+
+
+;moonmoon installation
+moonmoon Installation
+
+
+;Congratulations! Your moonmoon is ready.
+Gratulation! Ihr moonmoon ist bereit.
+
+
+;What's next?
+Was nun?
+
+
+;<strong>Delete</strong> <code>install.php</code> with your FTP software.
+<strong>Entfernen Sie</strong> <code>install.php</code> mit Ihrer FTP-Software.
+
+
+;Use your password to go to the <a href="./admin/">administration panel</a>
+Verwenden Sie Ihr Passwort, um zum <a href="./admin/">Administrationsbereich</a> zu gehen.
+
+
