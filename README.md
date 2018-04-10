@@ -22,7 +22,7 @@ Installing
 Installation steps (shared hosting or virtual / dedicated server) can be found 
 [in the wiki](https://github.com/moonmoon/moonmoon/wiki/How-to-install).
 
-Docker images are also available in [moonmoon/docker-images](https://github.com/moonmoon/moonmoon).
+Docker images are also available in [moonmoon/docker-images](https://github.com/moonmoon/docker-images).
 Theses images are probably not production-ready but should work for manual testing.
 
 Contributing
