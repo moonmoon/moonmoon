@@ -36,7 +36,7 @@ if (isset($_GET['type']) && $_GET['type'] == 'atom10') {
 //Go display
 if (!isset($_GET['type']) ||
     !is_file(__DIR__.'/custom/views/'.$_GET['type'].'/index.tpl.php') ||
-    strpos($_GET['type'], DIRECTORY_SEPARATOR)){
+    strpos($_GET['type'], DIRECTORY_SEPARATOR) || strpos($GET['type'], '..')){
     $_GET['type'] = 'default';
 }
 
