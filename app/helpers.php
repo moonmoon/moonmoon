@@ -42,7 +42,7 @@ function custom_path($file = '')
  */
 function views_path($file = '')
 {
-    return custom_path('views/install.tpl.php');
+    return custom_path('views/' . $file);
 }
 
 /**
