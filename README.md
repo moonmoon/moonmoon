@@ -1,7 +1,10 @@
+<p align="center">
+  <img src="https://github.com/moonmoon/moonmoon/raw/master/custom/img/moonmoon%40128w.png">
+</p>
+
+
 moonmoon [![Build Status](https://travis-ci.org/moonmoon/moonmoon.svg?branch=master)](https://travis-ci.org/moonmoon/moonmoon)
 ========
-
-[http://moonmoon.org/](http://moonmoon.org/)
 
 Moonmoon is a web based aggregator similar to planetplanet.
 It can be used to blend articles from different blogs with same interests into a single page.
