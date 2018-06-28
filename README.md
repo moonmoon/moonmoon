@@ -9,20 +9,20 @@ moonmoon [![Build Status](https://travis-ci.org/moonmoon/moonmoon.svg?branch=mas
 Moonmoon is a web based aggregator similar to planetplanet.
 It can be used to blend articles from different blogs with same interests into a single page.
 
-Moonmoon is stupidly simple: it only aggregates feeds and spits them out in one single page.
+Moonmoon is simple: it only aggregates feeds and spits them out in one single page.
 It does not archive articles, it does not do comments nor votes.
 
 Requirements
 ------------
 You will need a web hosting with at least PHP 5.6 (PHP 7 is also supported).
 
-If you are installing moonmoon on a Linux private server (VPS, dedicated host), 
+If you are installing moonmoon on a Linux private server (VPS, dedicated host),
 please note that you will need to install the package `php-xml`.
 
 Installing
 ----------
 
-Installation steps (shared hosting or virtual / dedicated server) can be found 
+Installation steps (shared hosting or virtual / dedicated server) can be found
 [in the wiki](https://github.com/moonmoon/moonmoon/wiki/How-to-install).
 
 Docker images are also available in [moonmoon/docker-images](https://github.com/moonmoon/docker-images).
@@ -38,7 +38,11 @@ don't hesitate to take a look at it :-)
 License
 -------
 
-Moonmoon is free software and is released under BSD license.
+Moonmoon is free software and is released under the [BSD license](https://github.com/moonmoon/moonmoon/blob/master/LICENSE).
+Third-party code differently licensed is included in this project, in which case mention is always made of
+the applicable license.
+
+[The logo](https://github.com/moonmoon/moonmoon/raw/master/custom/img/moonmoon.png) was designed by [@rakujira](https://twitter.com/rakujira).
 
 Configuration options
 ---------------------
