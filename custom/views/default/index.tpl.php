@@ -10,6 +10,7 @@ header('Content-type: text/html; charset=UTF-8');
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title><?php echo $PlanetConfig->getName(); ?></title>
     <?php include(__DIR__.'/head.tpl.php'); ?>
