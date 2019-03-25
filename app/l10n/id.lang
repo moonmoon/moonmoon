@@ -1,0 +1,274 @@
+# Translation note:  ** String needs translation **
+;Are you sure you want to purge the cache?
+Yakin ingin mengosongkan cache?
+
+
+# Translation note:  ** String needs translation **
+;Clear cache
+Bersihkan cache
+
+
+# Translation note:  ** String needs translation **
+;Clear cache:
+Bersihkan cache:
+
+
+# Translation note:  ** String needs translation **
+;Clear
+Bersihkan
+
+
+# Translation note:  ** String needs translation **
+;Clearing the cache will make moonmoon reload all feeds.
+Membersihkan cache akan memanggil ulang semua pasokan.
+
+
+# Translation note:  ** String needs translation **
+;Change administrator password
+Ganti password administrator
+
+
+# Translation note:  ** String needs translation **
+;New password:
+Password baru:
+
+
+# Translation note:  ** String needs translation **
+;Change password
+Ganti password
+
+
+# Translation note:  ** String needs translation **
+;Add Feed
+Tambah Pasokan
+
+
+# Translation note:  ** String needs translation **
+;Link:
+Link:
+
+
+# Translation note:  ** String needs translation **
+;Accepted formats are RSS and ATOM. If the link is not a feed, moonmoon will try to autodiscover the feed.
+Format yang diterima adalah RSS dan ATOM. Jika link yang dimasukkan bukan merupakan pasokan, akan dicoba menemukan pasokannya.
+
+
+# Translation note:  ** String needs translation **
+;Manage existing feeds
+Kelola pasokan yang ada
+
+
+# Translation note:  ** String needs translation **
+;Number of feeds: %s
+Jumlah pasokan: %s
+
+
+# Translation note:  ** String needs translation **
+;Save changes
+Simpan Perubahan
+
+
+# Translation note:  ** String needs translation **
+;Delete selected Feeds
+Hapus Pasokan Terpilih
+
+
+# Translation note:  ** String needs translation **
+;Select :
+Pilih :
+
+
+# Translation note:  ** String needs translation **
+;All
+Semua
+
+
+# Translation note:  ** String needs translation **
+;None
+Hapus centang
+
+
+# Translation note:  ** String needs translation **
+;Selection
+Pilihan
+
+
+# Translation note:  ** String needs translation **
+;Name
+Nama
+
+
+# Translation note:  ** String needs translation **
+;Last entry
+Entri terakhir
+
+
+# Translation note:  ** String needs translation **
+;Website link
+Link situs
+
+
+# Translation note:  ** String needs translation **
+;Feed link
+Link pasokan
+
+
+# Translation note:  ** String needs translation **
+;Unavailable
+Tak tersedia
+
+# Translation note:  ** String needs translation **
+;Not in cache
+Tidak dalam cache
+
+
+# Translation note:  ** String needs translation **
+;Password:
+Password:
+
+
+# Translation note:  ** String needs translation **
+;OK
+OK
+
+
+# Translation note:  ** String needs translation **
+;moonmoon administration
+Administrasi moonmoon
+
+
+# Translation note:  ** String needs translation **
+;Back to main page
+Kembali ke halaman utama
+
+
+# Translation note:  ** String needs translation **
+;Logout
+Keluar
+
+
+# Translation note:  ** String needs translation **
+;Feeds
+Pasokan
+
+
+# Translation note:  ** String needs translation **
+;Administration
+Administrasi
+
+
+# Translation note:  ** String needs translation **
+;Powered by <a %s>moonmoon</a>
+Dibuat dengan <a %s>moonmoon</a>
+
+
+# Translation note:  ** String needs translation **
+;No article
+Tidak ada artikel
+
+
+# Translation note:  ** String needs translation **
+;No news, good news.
+Tidak ada berita, berita baik.
+
+
+# Translation note:  ** String needs translation **
+;Today
+Hari ini
+
+
+# Translation note:  ** String needs translation **
+;Go to original place
+Baca artikel di lokasi asalnya
+
+
+# Translation note:  ** String needs translation **
+;This week
+Pekan ini
+
+
+# Translation note:  ** String needs translation **
+;This month
+Bulan ini
+
+
+# Translation note:  ** String needs translation **
+;Older items
+Lebih lama
+
+
+# Translation note:  ** String needs translation **
+;People
+Kontributor
+
+
+# Translation note:  ** String needs translation **
+;Feed
+Pasokan
+
+
+# Translation note:  ** String needs translation **
+;Website
+Situs
+
+
+# Translation note:  ** String needs translation **
+;All feeds in OPML format
+Semua pasokan dalam OPML
+
+
+# Translation note:  ** String needs translation **
+;Syndicate
+Sindikasi
+
+
+# Translation note:  ** String needs translation **
+;Feed (ATOM)
+Pasokan (ATOM)
+
+
+# Translation note:  ** String needs translation **
+;Archives
+Arsip
+
+
+# Translation note:  ** String needs translation **
+;See all headlines
+Lihat semua headline
+
+
+# Translation note:  ** String needs translation **
+;Source:
+Sumber:
+
+
+# Translation note:  ** String needs translation **
+;You might want to <a href="install.php">install moonmoon</a>.
+Anda mungkin ingin <a href="install.php">memasang moonmoon</a>.
+
+
+# Translation note:  ** String needs translation **
+;moonmoon installation
+Pemasangan moonmoon
+
+
+# Translation note:  ** String needs translation **
+;Congratulations! Your moonmoon is ready.
+Selamat! moonmoon anda sudah siap.
+
+
+# Translation note:  ** String needs translation **
+;What's next?
+Selanjutnya?
+
+
+# Translation note:  ** String needs translation **
+;<strong>Delete</strong> <code>install.php</code> with your FTP software.
+<strong>Hapus</strong> <code>install.php</code> lewat software FTP anda.
+
+
+# Translation note:  ** String needs translation **
+;Use your password to go to the <a href="./admin/">administration panel</a>
+Gunakan password untuk masuk ke <a href="./admin/">panel administrasi</a>
+
+
