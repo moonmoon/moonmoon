@@ -92,7 +92,7 @@
                         <option selected="selected" value="en">English</option>
                         <option value="es">Español</option>
                         <option value="fr">Français</option>
-                        <option value="en">Deutsch</option>
+                        <option value="de">Deutsch</option>
                     </select>
                 </p>
                 <p>
