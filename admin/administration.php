@@ -19,6 +19,11 @@ $header_extra = <<<"HTML"
 
 HTML;
 
+$repo_url = 'https://github.com/moonmoon/moonmoon';
+$releases_url = "$repo_url/releases";
+$link_url = "<a href='$releases_url'>$releases_url</a>";
+$version_action = str_replace('%s', $link_url, $l10n->getString('Check for a more recent release from %s.'));
+
 $page_content = <<<"FRAGMENT"
 
             <div class="widget">
@@ -38,6 +43,12 @@ $page_content = <<<"FRAGMENT"
                 </form>
             </div>
 
+            <div class="widget">
+                <h3>{$l10n->getString('Version')} $moon_version </h3>
+                <form>
+                <p>{$version_action}</p>
+                </form>
+            </div>
 FRAGMENT;
 
 $footer_extra = '';
