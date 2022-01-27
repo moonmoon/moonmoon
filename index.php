@@ -1,6 +1,5 @@
 <?php
 include_once(__DIR__.'/app/app.php');
-include_once(__DIR__.'/app/lib/Cache.php');
 
 //Installed ?
 if (!isset($Planet)) {
